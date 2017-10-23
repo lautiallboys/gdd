@@ -41,8 +41,8 @@ namespace PagoAgilFrba.Login
                     if (!(bool)reader["login_valido"])
                     {
                         string message;
-                        if ((bool)reader["habilitado"])
-                            message = "La contraseña es incorrecta. Tiene " + (3 - (Int32.Parse(reader["intentos"].ToString()))) + " intentos disponibles";
+                        if ((bool)reader["user_habilitado"])
+                            message = "La contraseña es incorrecta. Tiene " + (3 - (Int32.Parse(reader["user_intentos"].ToString()))) + " intentos disponibles";
                         else
                             message = "Su usuario ha sido bloqueado";
 
@@ -50,8 +50,8 @@ namespace PagoAgilFrba.Login
                         break;
                     }
                     else
-                        role_codes.Add(new KeyValuePair<int, string>(Int32.Parse(reader["cod_rol"].ToString()),
-                                                                      reader["nombre"].ToString()));
+                        role_codes.Add(new KeyValuePair<int, string>(Int32.Parse(reader["user_rol_rol"].ToString()),
+                                                                      reader["rol_nombre"].ToString()));
                 }
             reader.Close();
             connection.Close();
