@@ -84,6 +84,7 @@
             this.Name = "EleccionRoles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Elija un rol - Mercado Envio";
+            this.Load += new System.EventHandler(this.EleccionRoles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

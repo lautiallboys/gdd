@@ -37,7 +37,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnModif = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,22 +119,22 @@
             this.btnBaja.UseVisualStyleBackColor = true;
             this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
             // 
-            // btnModificar
+            // btnModif
             // 
-            this.btnModificar.Location = new System.Drawing.Point(263, 285);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnModificar.TabIndex = 3;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnBaja_Click);
+            this.btnModif.Location = new System.Drawing.Point(268, 285);
+            this.btnModif.Name = "btnModif";
+            this.btnModif.Size = new System.Drawing.Size(75, 23);
+            this.btnModif.TabIndex = 4;
+            this.btnModif.Text = "Modificar";
+            this.btnModif.UseVisualStyleBackColor = true;
+            this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
             // 
             // BMSucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(435, 337);
-            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnModif);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.dataGridView1);
@@ -146,6 +146,7 @@
             this.Controls.Add(this.label1);
             this.Name = "BMSucursal";
             this.Text = "BajaSucursal";
+            this.Load += new System.EventHandler(this.BMSucursal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -163,6 +164,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnBaja;
-        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnModif;
     }
 }

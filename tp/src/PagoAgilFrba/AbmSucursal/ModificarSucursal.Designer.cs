@@ -87,12 +87,11 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(99, 134);
+            this.btnModificar.Location = new System.Drawing.Point(68, 136);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
-            this.btnModificar.TabIndex = 8;
+            this.btnModificar.TabIndex = 0;
             this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // ModificarSucursal

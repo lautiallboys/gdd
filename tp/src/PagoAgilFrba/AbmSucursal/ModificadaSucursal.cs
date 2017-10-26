@@ -8,10 +8,10 @@ namespace PagoAgilFrba.AbmSucursal
 {
     class ModificadaSucursal
     {
-        Int16 id;
-        String nombre;
-        String direccion;
-        String codigo;
+        Int16 id{ get;  set; }
+        String nombre { get;  set; }
+        String direccion { get;  set; }
+        String codigo { get;  set; }
 
         public void setId(Int16 id)
         {

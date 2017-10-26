@@ -38,7 +38,7 @@ namespace PagoAgilFrba.Menu
                 connection.Open();
                 SqlDataReader reader = query.ExecuteReader();
                 while (reader.Read())
-                    roles.Add(new KeyValuePair<int, string>(Int32.Parse(reader["rol_id"].ToString()), reader["func_descripcion"].ToString()));
+                    roles.Add(new KeyValuePair<int, string>(Int32.Parse(reader["func_id"].ToString()), reader["func_descripcion"].ToString()));
             }
             Utils.populate(this.listBox1, roles);
             if (this.listBox1.Items.Count < 1)
@@ -55,6 +55,8 @@ namespace PagoAgilFrba.Menu
             this.form_mapping.Add(3, () => new ABM_Rubro.AbmRubro(this));
             this.form_mapping.Add(10, () => new Listado_Estadistico.ListadoEstadistico(this));
             this.form_mapping.Add(11, () => new CambiarPassword.CambiarPassword(this, this.username)); */
+            this.form_mapping.Add(6, () => new AbmSucursal.InicialSucursal());
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -71,6 +73,16 @@ namespace PagoAgilFrba.Menu
 
             this.Hide();
             (this.form_mapping[selected_functionality_code])().Show();
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

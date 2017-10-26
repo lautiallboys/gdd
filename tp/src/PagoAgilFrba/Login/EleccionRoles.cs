@@ -35,5 +35,10 @@ namespace PagoAgilFrba.Login
             (new Menu.MainMenu(this.login_form, selected_value, this.username)).Show();
             this.Close();
         }
+
+        private void EleccionRoles_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -13,31 +13,32 @@ namespace PagoAgilFrba.AbmSucursal
 {
     public partial class ModificarSucursal : Form
     {
-        int id;
-        public ModificarSucursal(ModificadaSucursal modif)
+  
+        Int16 id;
+        String nombre;
+        String direccion;
+        String codigo;
+              
+        public ModificarSucursal(Int16 id,String nombre,String direccion, String codigo)
         {
-            InitializeComponent();
-            txtNombre.Text = modif.getNombre();
-            txtDireccion.Text = modif.getDireccion();
-            txtCodigo.Text = modif.getCodigo();
-            id = modif.getId();
+           InitializeComponent();
+           this.id = id;
+           this.nombre = nombre;
+           this.direccion = direccion;
+           this.codigo = codigo;
+
+           
+            
+            
         }
 
         private void ModificarSucursal_Load(object sender, EventArgs e)
         {
-            
+            txtNombre.Text = nombre;
+            txtDireccion.Text = direccion;
+            txtCodigo.Text = codigo;
+           
         }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            ModificadaSucursal a_modificar = new ModificadaSucursal();
-            a_modificar.setNombre(txtNombre.Text);
-            a_modificar.setDireccion(txtDireccion.Text);
-            a_modificar.setCodigo(txtCodigo.Text);
-
-
-        }
-
 
         private void modificarSucursal() {
             String nombreSucursal = txtNombre.Text;
@@ -45,7 +46,7 @@ namespace PagoAgilFrba.AbmSucursal
             String codigoPostal = txtCodigo.Text;
 
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.bajaSucursal", connection);
+            SqlCommand query = new SqlCommand("POSTRESQL.modificarSucursal", connection);
             query.CommandType = CommandType.StoredProcedure;
             query.Parameters.Add(new SqlParameter("@id", id));
             query.Parameters.Add(new SqlParameter("@nombre", nombreSucursal));
@@ -55,6 +56,12 @@ namespace PagoAgilFrba.AbmSucursal
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            this.modificarSucursal();
+            this.Close();
         }
 
 

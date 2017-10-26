@@ -16,7 +16,7 @@ namespace PagoAgilFrba.AbmSucursal
         public BMSucursal()
         {
             InitializeComponent();
-            ConfiguradorDataGrid.llenarDataGridConConsulta(this.todos(), dataGridView1);
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -30,25 +30,7 @@ namespace PagoAgilFrba.AbmSucursal
         }
 
 
-        private void btnModificar_Click(object sender, EventArgs e) {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                try
-                {
-                   
-                    Form modif = new AbmSucursal.ModificarSucursal( this.seleccionarSucursal());
-                    modif.Show();
-                    this.Close();
-                }
-                catch (Exception excepcion)
-                {
-                    MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
-                }
-            }
-
-        }
-
-        private void btnBaja_Click(object sender, EventArgs e)
+       private void btnBaja_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
@@ -65,12 +47,11 @@ namespace PagoAgilFrba.AbmSucursal
         }
 
         private void bajaSucursal() {
-                      var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.modificarSucursal", connection);
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand query = new SqlCommand("POSTRESQL.bajaSucursal", connection);
             query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@nombre", this.seleccionarSucursal().getNombre()));
-            query.Parameters.Add(new SqlParameter("@direccion", this.seleccionarSucursal().getDireccion()));
-            query.Parameters.Add(new SqlParameter("@codigo_postal", this.seleccionarSucursal().getCodigo()));
+            query.Parameters.Add(new SqlParameter("@id", this.seleccionarSucursal().getId()));
+           
 
             connection.Open();
             query.ExecuteNonQuery();
@@ -102,17 +83,17 @@ namespace PagoAgilFrba.AbmSucursal
 
         private SqlDataReader filtrar()
         {
-            SqlDataReader reader;
-            SqlCommand consulta = new SqlCommand();
-            consulta.CommandType = CommandType.Text;
-            //hacer el filtrar sucursal
-            
-            consulta.CommandText = "SELECT * from GD2C2017.POSTRESQL.filtrarSucursal(@nombre, @direccion, @codigo_postal)";
-            consulta.Parameters.Add(new SqlParameter("@nombre", txtNombre.Text));
-            consulta.Parameters.Add(new SqlParameter("@direccion", txtDireccion.Text));
-            consulta.Parameters.Add(new SqlParameter("@codigo_postal", txtCodigo.Text));
-            consulta.Connection = DBConnection.getInstance().getConnection();
-            reader = consulta.ExecuteReader();
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand command = new SqlCommand("POSTRESQL.filtrarSucursales", connection);
+            command.CommandType = CommandType.StoredProcedure;
+                     
+           
+            command.Parameters.Add(new SqlParameter("@nombre", txtNombre.Text));
+            command.Parameters.Add(new SqlParameter("@direccion", txtDireccion.Text));
+            command.Parameters.Add(new SqlParameter("@codigo_postal", txtCodigo.Text));
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
 
             return reader;
 
@@ -122,18 +103,47 @@ namespace PagoAgilFrba.AbmSucursal
 
         private SqlDataReader todos()
         {
-            SqlDataReader reader;
-            SqlCommand consulta = new SqlCommand();
-            consulta.CommandType = CommandType.Text;
+            var connection = DBConnection.getInstance().getConnection();
+
+            SqlCommand command = new SqlCommand("POSTRESQL.todasSucursales", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            
             
 
-            consulta.CommandText = "SELECT * from GD2C2017.POSTRESQL)";
-           
-            consulta.Connection = DBConnection.getInstance().getConnection();
-            reader = consulta.ExecuteReader();
-
             return reader;
+           
 
+
+        }
+
+        private void BMSucursal_Load(object sender, EventArgs e)
+        {
+            ConfiguradorDataGrid.llenarDataGridConConsulta(this.todos(), dataGridView1);
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnModif_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    ModificadaSucursal aModif = this.seleccionarSucursal();
+                    Form modif = new AbmSucursal.ModificarSucursal(aModif.getId(), aModif.getNombre(), aModif.getDireccion(), aModif.getCodigo());
+                    modif.Show();
+                    this.Close();
+                }
+                catch (Exception excepcion)
+                {
+                    MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
 
         }
 
