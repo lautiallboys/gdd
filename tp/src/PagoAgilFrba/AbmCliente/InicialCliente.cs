@@ -22,5 +22,16 @@ namespace PagoAgilFrba.AbmCliente
             Form alta = new AbmCliente.AltaCliente();
             alta.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form bm = new AbmCliente.BMCliente();
+            bm.Show();
+        }
+
+        private void InicialCliente_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

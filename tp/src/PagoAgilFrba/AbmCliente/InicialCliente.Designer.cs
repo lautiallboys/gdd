@@ -50,6 +50,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Baja/Modificar cliente";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // InicialCliente
             // 
@@ -60,6 +61,7 @@
             this.Controls.Add(this.button1);
             this.Name = "InicialCliente";
             this.Text = "InicialCliente";
+            this.Load += new System.EventHandler(this.InicialCliente_Load);
             this.ResumeLayout(false);
 
         }
