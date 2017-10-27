@@ -109,6 +109,7 @@
             this.Controls.Add(this.lblSucu_nombre);
             this.Name = "AltaSucursal";
             this.Text = "AltaSucursal";
+            this.Load += new System.EventHandler(this.AltaSucursal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

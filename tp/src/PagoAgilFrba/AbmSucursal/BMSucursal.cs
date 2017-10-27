@@ -103,7 +103,7 @@ namespace PagoAgilFrba.AbmSucursal
 
         private SqlDataReader todos()
         {
-            var connection = DBConnection.getInstance().getConnection();
+           /* var connection = DBConnection.getInstance().getConnection();
 
             SqlCommand command = new SqlCommand("POSTRESQL.todasSucursales", connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -113,7 +113,15 @@ namespace PagoAgilFrba.AbmSucursal
             
 
             return reader;
-           
+           */
+            SqlDataReader reader;
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand consulta = new SqlCommand("SELECT * from POSTRESQL.todasSucursales",connection);
+            connection.Open();
+            
+            reader = consulta.ExecuteReader();
+
+            return reader;
 
 
         }

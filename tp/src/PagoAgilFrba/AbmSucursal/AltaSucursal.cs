@@ -66,5 +66,10 @@ namespace PagoAgilFrba.AbmSucursal
             //    throw new Exception("El código postal debe estar compuesto por 4 números");
         
         }
+
+        private void AltaSucursal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
