@@ -116,7 +116,7 @@ namespace PagoAgilFrba.AbmSucursal
            */
             SqlDataReader reader;
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand consulta = new SqlCommand("SELECT * from POSTRESQL.todasSucursales",connection);
+            SqlCommand consulta = new SqlCommand("SELECT * from POSTRESQL.Sucursal",connection);
             connection.Open();
             
             reader = consulta.ExecuteReader();
