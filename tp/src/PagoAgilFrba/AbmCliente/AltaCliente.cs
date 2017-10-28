@@ -46,9 +46,9 @@ namespace PagoAgilFrba.AbmCliente
                 this.altaCliente();
                 this.Close();
             }
-            catch (Exception excepcion)
+            catch 
             {
-                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("El mail ya existe", "Error", MessageBoxButtons.OK);
             }
         }
         private void altaCliente() {

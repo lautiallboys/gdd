@@ -86,9 +86,10 @@ namespace PagoAgilFrba.AbmSucursal
                 this.modificarSucursal();
                 this.Close();
             }
-            catch (Exception excepcion)
+            catch 
             {
-                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+
+                MessageBox.Show("El codigo postal ya existe", "Error", MessageBoxButtons.OK);
             }
         }
 

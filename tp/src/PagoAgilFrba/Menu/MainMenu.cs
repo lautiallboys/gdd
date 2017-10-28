@@ -16,12 +16,14 @@ namespace PagoAgilFrba.Menu
         Dictionary<int, Func<Form>> form_mapping;
         Form login_form;
         string username;
+        int sucursal_code;
 
-        public MainMenu(Form login_form, int role_code, string username)
+        public MainMenu(Form login_form, int role_code, string username, int sucursal_code)
         {
             InitializeComponent();
             this.login_form = login_form;
             this.username = username;
+            this.sucursal_code = sucursal_code;
             this.initialize_form_mapping();
             this.fill_list(role_code);
         }
