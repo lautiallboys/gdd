@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtCodigo
@@ -94,11 +95,22 @@
             this.btnModificar.Text = "Modificar";
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(188, 116);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // ModificarSucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(314, 192);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.txtDireccion);
@@ -123,5 +135,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

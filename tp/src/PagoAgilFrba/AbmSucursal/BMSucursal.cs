@@ -65,12 +65,13 @@ namespace PagoAgilFrba.AbmSucursal
             Int16 id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[0].Value);
             String nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
             String direccion = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-            String codigo = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-
+            Int32 codigo =  Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+            bool habilitado = (bool)dataGridView1.SelectedRows[0].Cells[4].Value;
             modificar.setId(id);
             modificar.setNombre(nombre);
             modificar.setDireccion(direccion);
             modificar.setCodigo(codigo);
+            modificar.habilitado = habilitado;
             return modificar;    
         
         }
@@ -133,7 +134,7 @@ namespace PagoAgilFrba.AbmSucursal
                 try
                 {
                     ModificadaSucursal aModif = this.seleccionarSucursal();
-                    Form modif = new AbmSucursal.ModificarSucursal(aModif.getId(), aModif.getNombre(), aModif.getDireccion(), aModif.getCodigo());
+                    Form modif = new AbmSucursal.ModificarSucursal(aModif.getId(), aModif.getNombre(), aModif.getDireccion(), aModif.getCodigo(), aModif.habilitado);
                     modif.Show();
                     this.Close();
                 }

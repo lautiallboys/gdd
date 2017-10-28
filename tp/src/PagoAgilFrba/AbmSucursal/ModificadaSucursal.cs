@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.AbmSucursal
 {
-    class ModificadaSucursal
+    public class ModificadaSucursal
     {
-        Int16 id{ get;  set; }
-        String nombre { get;  set; }
-        String direccion { get;  set; }
-        String codigo { get;  set; }
+        public Int16 id{ get;  set; }
+        public String nombre { get;  set; }
+        public String direccion { get;  set; }
+        public Int32 codigo { get;  set; }
+        public bool habilitado { get; set; }
 
         public void setId(Int16 id)
         {
@@ -25,7 +26,7 @@ namespace PagoAgilFrba.AbmSucursal
         {
             this.direccion = direccion;
         }
-        public void setCodigo(String codigo)
+        public void setCodigo(Int32 codigo)
         {
             this.codigo = codigo;
         }
@@ -39,7 +40,7 @@ namespace PagoAgilFrba.AbmSucursal
         {
             return direccion;
         }
-        public String getCodigo()
+        public Int32 getCodigo()
         {
             return codigo;
         }
