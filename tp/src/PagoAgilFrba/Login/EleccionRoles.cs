@@ -14,6 +14,7 @@ namespace PagoAgilFrba.Login
     {
         Form login_form;
         string username;
+        int sucursal_code = 0;
 
         public EleccionRoles(Form login_form, string username, List<KeyValuePair<int, string>> roles)
         {
@@ -32,7 +33,10 @@ namespace PagoAgilFrba.Login
         private void button1_Click(object sender, EventArgs e)
         {
             int selected_value = ((KeyValuePair<int, string>)this.comboBox1.SelectedItem).Key;
-            (new Menu.MainMenu(this.login_form, selected_value, this.username)).Show();
+            if (selected_value == 1)
+                (new Menu.MainMenu(this.login_form, selected_value, this.username, this.sucursal_code)).Show();
+            else
+                (new Sucursales(this.login_form, selected_value, this.username)).Show();
             this.Close();
         }
 

@@ -109,9 +109,9 @@ namespace PagoAgilFrba.AbmCliente
                 this.modificarCliente();
                 this.Close();
             }
-            catch (Exception excepcion)
+            catch
             {
-                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("El email ya existe", "Error", MessageBoxButtons.OK);
             }
         }
 

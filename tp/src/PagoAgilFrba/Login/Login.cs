@@ -58,8 +58,10 @@ namespace PagoAgilFrba.Login
 
             if (role_codes.Count > 0)
                 this.Hide();
-            if (role_codes.Count == 1)
-               (new Menu.MainMenu(this, Int32.Parse(role_codes[0].Key.ToString()), this.textBox1.Text)).Show();
+            if (role_codes.Count == 1 && role_codes[0].Key == 1)
+               (new Menu.MainMenu(this, Int32.Parse(role_codes[0].Key.ToString()), this.textBox1.Text, 0)).Show();
+            if (role_codes.Count == 1 && role_codes[0].Key != 1)
+                (new Sucursales(this, Int32.Parse(role_codes[0].Key.ToString()), this.textBox1.Text)).Show();
             if (role_codes.Count > 1)
               (new EleccionRoles(this, this.textBox1.Text, role_codes)).Show();
 
