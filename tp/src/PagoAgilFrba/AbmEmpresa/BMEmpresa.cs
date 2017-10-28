@@ -13,9 +13,16 @@ namespace PagoAgilFrba.AbmEmpresa
 {
     public partial class BMEmpresa : Form
     {
-        public BMEmpresa()
+        public BMEmpresa(List<Rubro> rubros)
         {
             InitializeComponent();
+            fill_rubro_combo(rubros);
+        }
+
+        private void fill_rubro_combo(List<Rubro> rubros)
+        {
+            foreach (Rubro rubro in rubros)
+                this.comboBoxRubro.Items.Add(rubro);
         }
 
         private void BMCliente_Load(object sender, EventArgs e)
@@ -25,22 +32,41 @@ namespace PagoAgilFrba.AbmEmpresa
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-          //ConfiguradorDataGrid.llenarDataGridConConsulta(this.filtrar(), dataGridView1);
+            ConfiguradorDataGrid.llenarDataGridConConsulta(this.filtrar(), dataGridView1);
         }
-        /*
+
         private SqlDataReader filtrar()
         {
-            //HACER FUNCION
-            SqlDataReader reader= new SqlDataReader();
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand command = new SqlCommand("POSTRESQL.filtrarEmpresas", connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+
+            command.Parameters.Add(new SqlParameter("@empr_nombre", txtNombre.Text));
+            command.Parameters.Add(new SqlParameter("@empr_cuit", txtCuit.Text));
+            if (comboBoxRubro.SelectedIndex > -1)
+            {
+                Rubro rubro = (Rubro)(this.comboBoxRubro.SelectedItem);
+                command.Parameters.Add(new SqlParameter("@empr_rubro", Convert.ToInt32(rubro.code)));
+            }
+            else
+            {
+                command.Parameters.Add(new SqlParameter("@empr_rubro", Convert.ToInt32(0)));
+            }
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+
             return reader;
+
+
         }
-        */
         private SqlDataReader todos()
         {
 
             SqlDataReader reader;
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand consulta = new SqlCommand("SELECT * from POSTRESQL.Cliente", connection);
+            SqlCommand consulta = new SqlCommand("SELECT empr_id, empr_nombre, empr_cuit, empr_direccion, empr_rubro, rubr_detalle, empr_habilitado from POSTRESQL.Empresa join POSTRESQL.Rubro on empr_rubro = rubr_id", connection);
             connection.Open();
 
             reader = consulta.ExecuteReader();
@@ -50,13 +76,11 @@ namespace PagoAgilFrba.AbmEmpresa
 
         }
 
-        private void bajaCliente() {
+        private void bajaEmpresa() {
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.bajaCliente", connection);
+            SqlCommand query = new SqlCommand("POSTRESQL.bajaEmpresa", connection);
             query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@id", this.seleccionarCliente().getId()));
-
-
+            query.Parameters.Add(new SqlParameter("@id", this.seleccionarEmpresa().id));
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();
@@ -71,7 +95,7 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 try
                 {
-                    this.bajaCliente();
+                    this.bajaEmpresa();
                     this.Close();
                 }
                 catch (Exception excepcion)
@@ -83,29 +107,24 @@ namespace PagoAgilFrba.AbmEmpresa
         
         }
 
-        private ModificadoEmpresa seleccionarCliente(){
+        private ModificadoEmpresa seleccionarEmpresa(){
             AbmEmpresa.ModificadoEmpresa modificar = new ModificadoEmpresa();
             Int16 id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[0].Value);
-            Int32 dni = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[1].Value);
-            String apellido = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-            String nombre = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-            DateTime fecha = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[4].Value);
-            String mail = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
-            Int16 telefono = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[6].Value);
-            String direccion = dataGridView1.SelectedRows[0].Cells[7].Value.ToString();
-            String codigo = dataGridView1.SelectedRows[0].Cells[8].Value.ToString();
-            
-            modificar.setId(id);
-            modificar.setNombre(nombre);
-            modificar.setApellido(apellido);
-            modificar.setDni(dni);
-            modificar.setFecha(fecha);
-            modificar.setMail(mail);
-            modificar.setTelefono(telefono);
-            modificar.setDireccion(direccion);
-            modificar.setCodigo(codigo);
-            
-            return modificar;    
+            String nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            String cuit = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+            String direccion = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            Int16 rubro_id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            String rubro_detalle = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
+            bool habilitado = (bool)dataGridView1.SelectedRows[0].Cells[6].Value;
+            Rubro rubro = new Rubro(rubro_id,rubro_detalle);
+
+            modificar.id = id;
+            modificar.cuit = cuit;
+            modificar.direccion = direccion;
+            modificar.nombre = nombre;
+            modificar.rubro = rubro;
+            modificar.habilitado = habilitado;
+            return modificar;
         
         }
 
@@ -115,8 +134,8 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 try
                 {
-                    ModificadoEmpresa aModif = this.seleccionarCliente();
-                    Form modif = new AbmCliente.ModificarCliente(aModif.getId(),aModif.getDni(),aModif.getApellido(),aModif.getNombre(), aModif.getFecha(),aModif.getMail(),aModif.getTelefono(), aModif.getDireccion(), aModif.getCodigo());
+                    ModificadoEmpresa aModif = this.seleccionarEmpresa();
+                    Form modif = new AbmEmpresa.ModificarEmpresa(aModif.id, aModif.rubro, aModif.cuit, aModif.nombre, aModif.direccion, aModif.habilitado);
                     modif.Show();
                     this.Close();
                 }

@@ -32,12 +32,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCuit = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnModif = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.comboBoxRubro = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,18 +55,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(29, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Filtrar por apellido";
+            this.label2.Text = "Filtrar por cuit";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(30, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Filtrar por DNI";
+            this.label3.Text = "Filtrar por rubro";
             // 
             // txtNombre
             // 
@@ -75,19 +75,12 @@
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 1;
             // 
-            // txtApellido
+            // txtCuit
             // 
-            this.txtApellido.Location = new System.Drawing.Point(273, 67);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(100, 20);
-            this.txtApellido.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(273, 105);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 1;
+            this.txtCuit.Location = new System.Drawing.Point(273, 67);
+            this.txtCuit.Name = "txtCuit";
+            this.txtCuit.Size = new System.Drawing.Size(100, 20);
+            this.txtCuit.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -127,22 +120,30 @@
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // BMCliente
+            // comboBoxRubro
+            // 
+            this.comboBoxRubro.FormattingEnabled = true;
+            this.comboBoxRubro.Location = new System.Drawing.Point(273, 105);
+            this.comboBoxRubro.Name = "comboBoxRubro";
+            this.comboBoxRubro.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxRubro.TabIndex = 8;
+            // 
+            // BMEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 373);
+            this.Controls.Add(this.comboBoxRubro);
             this.Controls.Add(this.btnModif);
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.txtApellido);
+            this.Controls.Add(this.txtCuit);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "BMCliente";
+            this.Name = "BMEmpresa";
             this.Text = "BMCliente";
             this.Load += new System.EventHandler(this.BMCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -157,11 +158,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtApellido;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCuit;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnModif;
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.ComboBox comboBoxRubro;
     }
 }

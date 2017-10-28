@@ -13,66 +13,86 @@ namespace PagoAgilFrba.AbmEmpresa
 {
     public partial class ModificarEmpresa : Form
     {
-        Int16 id;
-        Int32 dni;
-        String apellido;
-        String nombre;
-        DateTime fecha;
-        String mail;
-        Int16 telefono;
-        String direccion;
-        String codigo;
+        public Int16 id { get; set; }
+        public Rubro rubro { get; set; }
+        public String cuit { get; set; }
+        public String nombre { get; set; }
+        public String direccion { get; set; }
+        public bool habilitado { get; set; }
 
 
 
 
-        public ModificarEmpresa(Int16 id, Int32 dni, String apellido, String nombre,DateTime fecha, String mail,Int16 telefono,String direccion, String codigo)
+        public ModificarEmpresa(Int16 id,Rubro rubro, String cuit, String nombre, String direccion, bool habilitado)
         {
             InitializeComponent();
             this.id = id;
-            this.dni = dni;
-            this.apellido = apellido;
+            this.rubro = rubro;
+            this.cuit = cuit;
             this.nombre = nombre;
-            this.fecha = fecha;
-            this.mail = mail;
-            this.telefono = telefono;
             this.direccion = direccion;
-            this.codigo = codigo;
-
+            this.habilitado = habilitado;
+            if (habilitado)
+                checkBox1.Checked = true;
+            fill_rubro_combo(rubro);
         }
 
-        private void ModificarCliente_Load(object sender, EventArgs e)
+        private void validar()
         {
-            txtDni.Text = dni.ToString();
-            txtNombre.Text = nombre;
-            txtApellido.Text = apellido;
-            dtmFecha.Value = fecha;
-            txtMail.Text = mail;
-            txtTelefono.Text = telefono.ToString();
+            if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtCuit.Text) || Validacion.estaVacio(txtDireccion.Text) || comboBoxRubro.SelectedItem == null)
+            {
+                throw new Exception("Debe completar todos los datos");
+            }
+        }
+
+        private void fill_rubro_combo(Rubro rubroSeleccionado)
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            List<Rubro> current_functionalities = new List<Rubro>();
+            List<Rubro> all_functionalities = new List<Rubro>();
+
+            // Pido todas las funcionalidades
+            SqlCommand all_functionalities_command = new SqlCommand("SELECT * FROM POSTRESQL.Rubro", connection);
+            connection.Open();
+            SqlDataReader reader = all_functionalities_command.ExecuteReader();
+            while (reader.Read())
+                all_functionalities.Add(new Rubro(Int32.Parse(reader["rubr_id"].ToString()), reader["rubr_detalle"].ToString()));
+            connection.Close();
+            foreach (Rubro rubro in all_functionalities)
+            {
+                this.comboBoxRubro.Items.Add(rubro);
+                if (rubro.code == rubroSeleccionado.code)
+                    this.comboBoxRubro.SelectedItem = rubro;
+            }
+        }
+
+        private void ModificarEmpresa_Load(object sender, EventArgs e)
+        {
             txtDireccion.Text = direccion;
-            txtCodigo.Text = codigo;
-
-
+            txtNombre.Text = nombre;
+            txtCuit.Text = cuit;
+            comboBoxRubro.SelectedItem = rubro;
 
         }
 
 
-        private void modificarCliente() {
+        private void modificarEmpresa() {
 
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.modificarCliente", connection);
+            SqlCommand query = new SqlCommand("POSTRESQL.modificarEmpresa", connection);
             query.CommandType = CommandType.StoredProcedure;
-            query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@id", id));
-            query.Parameters.Add(new SqlParameter("@dni",dni));
-            query.Parameters.Add(new SqlParameter("@apellido", apellido));
-            query.Parameters.Add(new SqlParameter("@nombre", nombre));
-            query.Parameters.Add(new SqlParameter("@mail", mail));
-            query.Parameters.Add(new SqlParameter("@telefono", telefono));
-            query.Parameters.Add(new SqlParameter("@direccion", direccion));
-            query.Parameters.Add(new SqlParameter("@codigo", codigo));
-            query.Parameters.Add(new SqlParameter("@fecha", fecha));
-
+            query.Parameters.Add(new SqlParameter("@empr_id", id));
+            query.Parameters.Add(new SqlParameter("@empr_nombre", this.txtNombre.Text));
+            query.Parameters.Add(new SqlParameter("@empr_cuit", this.txtCuit.Text));
+            query.Parameters.Add(new SqlParameter("@empr_direccion", this.txtDireccion.Text));
+            Rubro rubro = (Rubro)(this.comboBoxRubro.SelectedItem);
+            query.Parameters.Add(new SqlParameter("@empr_rubro", Convert.ToInt32(rubro.code)));
+            bool habilitado = false;
+            if (checkBox1.Checked)
+            {
+                habilitado = true;
+            }
+            query.Parameters.Add(new SqlParameter("@empr_habilitado", habilitado)); 
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();
@@ -80,8 +100,22 @@ namespace PagoAgilFrba.AbmEmpresa
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            this.modificarCliente();
-            this.Close();
+            try
+            {
+                this.validar();
+                this.modificarEmpresa();
+                this.Close();
+            }
+            catch (Exception excepcion)
+            {
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+            }
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

@@ -83,8 +83,6 @@ namespace PagoAgilFrba.AbmSucursal
 
         private SqlDataReader filtrar()
         {
-
-            // HACER FUNCION
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand command = new SqlCommand("POSTRESQL.filtrarSucursales", connection);
             command.CommandType = CommandType.StoredProcedure;

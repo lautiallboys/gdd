@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.AbmEmpresa
 {
-    class Rubro : IEquatable<Rubro>
+    public class Rubro : IEquatable<Rubro>
     {
         public int code { get; private set; }
         public string description { get; private set; }

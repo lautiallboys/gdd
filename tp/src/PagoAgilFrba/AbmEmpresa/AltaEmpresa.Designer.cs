@@ -115,6 +115,7 @@
             this.comboBoxRubro.Name = "comboBoxRubro";
             this.comboBoxRubro.Size = new System.Drawing.Size(200, 21);
             this.comboBoxRubro.TabIndex = 11;
+            this.comboBoxRubro.SelectedIndexChanged += new System.EventHandler(this.comboBoxRubro_SelectedIndexChanged);
             // 
             // AltaEmpresa
             // 
