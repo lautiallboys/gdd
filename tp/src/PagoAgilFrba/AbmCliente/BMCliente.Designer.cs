@@ -33,7 +33,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnModif = new System.Windows.Forms.Button();
             this.btnBaja = new System.Windows.Forms.Button();
@@ -82,12 +82,12 @@
             this.txtApellido.Size = new System.Drawing.Size(100, 20);
             this.txtApellido.TabIndex = 1;
             // 
-            // textBox3
+            // txtDni
             // 
-            this.textBox3.Location = new System.Drawing.Point(273, 105);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 1;
+            this.txtDni.Location = new System.Drawing.Point(273, 105);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.Size = new System.Drawing.Size(100, 20);
+            this.txtDni.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -136,7 +136,7 @@
             this.Controls.Add(this.btnBaja);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtDni);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label3);
@@ -158,7 +158,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnModif;
         private System.Windows.Forms.Button btnBaja;

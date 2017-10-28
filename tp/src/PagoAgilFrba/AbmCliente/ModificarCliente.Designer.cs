@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // dtmFecha
@@ -180,7 +181,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(185, 293);
+            this.btnModificar.Location = new System.Drawing.Point(187, 316);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 19;
@@ -188,11 +189,22 @@
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(227, 282);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(73, 17);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // ModificarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 339);
+            this.ClientSize = new System.Drawing.Size(478, 351);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dtmFecha);
             this.Controls.Add(this.txtCodigo);
@@ -237,5 +249,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

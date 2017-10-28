@@ -25,16 +25,34 @@ namespace PagoAgilFrba.AbmCliente
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-          //ConfiguradorDataGrid.llenarDataGridConConsulta(this.filtrar(), dataGridView1);
+            ConfiguradorDataGrid.llenarDataGridConConsulta(this.filtrar(), dataGridView1);
         }
-        /*
+
         private SqlDataReader filtrar()
         {
-            //HACER FUNCION
-            SqlDataReader reader= new SqlDataReader();
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand command = new SqlCommand("POSTRESQL.filtrarClientes", connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+
+            command.Parameters.Add(new SqlParameter("@nombre", txtNombre.Text));
+            command.Parameters.Add(new SqlParameter("@apellido", txtApellido.Text));
+            if (txtDni.Text == "")
+            {
+                command.Parameters.Add(new SqlParameter("@dni", Convert.ToInt32(0)));
+            }
+            else 
+            {
+                command.Parameters.Add(new SqlParameter("@dni", Convert.ToInt32(txtDni.Text)));
+            }
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+
             return reader;
+
+
         }
-        */
         private SqlDataReader todos()
         {
 
@@ -85,15 +103,16 @@ namespace PagoAgilFrba.AbmCliente
 
         private ModificadoCliente seleccionarCliente() {
             AbmCliente.ModificadoCliente modificar = new ModificadoCliente();
-            Int16 id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[0].Value);
-            Int32 dni = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[1].Value);
+            Int32 id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+            Int32 dni = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value);
             String apellido = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
             String nombre = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
             DateTime fecha = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[4].Value);
             String mail = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
-            Int16 telefono = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[6].Value);
+            Int32 telefono = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[6].Value);
             String direccion = dataGridView1.SelectedRows[0].Cells[7].Value.ToString();
-            String codigo = dataGridView1.SelectedRows[0].Cells[8].Value.ToString();
+            Int32 codigo = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[8].Value.ToString());
+            bool habilitado = (bool)dataGridView1.SelectedRows[0].Cells[9].Value;
             
             modificar.setId(id);
             modificar.setNombre(nombre);
@@ -104,6 +123,7 @@ namespace PagoAgilFrba.AbmCliente
             modificar.setTelefono(telefono);
             modificar.setDireccion(direccion);
             modificar.setCodigo(codigo);
+            modificar.setHabilitado(habilitado);
             
             return modificar;    
         
@@ -116,7 +136,7 @@ namespace PagoAgilFrba.AbmCliente
                 try
                 {
                     ModificadoCliente aModif = this.seleccionarCliente();
-                    Form modif = new AbmCliente.ModificarCliente(aModif.getId(),aModif.getDni(),aModif.getApellido(),aModif.getNombre(), aModif.getFecha(),aModif.getMail(),aModif.getTelefono(), aModif.getDireccion(), aModif.getCodigo());
+                    Form modif = new AbmCliente.ModificarCliente(aModif.getId(),aModif.getDni(),aModif.getApellido(),aModif.getNombre(), aModif.getFecha(),aModif.getMail(),aModif.getTelefono(), aModif.getDireccion(), aModif.getCodigo(), aModif.getHabilitado());
                     modif.Show();
                     this.Close();
                 }

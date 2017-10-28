@@ -8,17 +8,28 @@ namespace PagoAgilFrba.AbmCliente
 {
     class ModificadoCliente
     {
-        Int16 id;
+        Int32 id;
         Int32 dni;
         String apellido;
         String nombre;
         DateTime fecha;
         String mail;
-        Int16 telefono;
+        Int32 telefono;
         String direccion;
-        String codigo;
+        Int32 codigo;
+        bool habilitado;
 
-        public void setId(Int16 id)
+        public void setHabilitado(bool habilitado)
+        {
+            this.habilitado = habilitado;
+        }
+
+        public bool getHabilitado()
+        {
+            return this.habilitado;
+        }
+
+        public void setId(Int32 id)
         {
             this.id = id;
         }
@@ -40,18 +51,18 @@ namespace PagoAgilFrba.AbmCliente
         public void setMail(String mail) {
             this.mail = mail;
         }
-        public void setTelefono(Int16 telefono) {
+        public void setTelefono(Int32 telefono) {
             this.telefono = telefono;
         }
         public void setDireccion(String direccion)
         {
             this.direccion = direccion;
         }
-        public void setCodigo(String codigo)
+        public void setCodigo(Int32 codigo)
         {
             this.codigo = codigo;
         }
-        public Int16 getId()
+        public Int32 getId()
         {
             return id;
         }
@@ -75,11 +86,11 @@ namespace PagoAgilFrba.AbmCliente
         {
             return direccion;
         }
-        public String getCodigo()
+        public Int32 getCodigo()
         {
             return codigo;
         }
-        public Int16 getTelefono()
+        public Int32 getTelefono()
         {
             return telefono;
         }

@@ -33,8 +33,8 @@ namespace PagoAgilFrba.AbmCliente
                 throw new Exception("El código postal debe contener únicamente números");
             if (!Validacion.contieneSoloNumeros(txtTelefono.Text))
                 throw new Exception("El telefono debe contener únicamente números");
-            //  if (!txtSucu_codigo_postal.Text.Count().Equals(4))
-            //    throw new Exception("El código postal debe estar compuesto por 4 números");
+            if (!Validacion.contieneSoloNumeros(txtDni.Text))
+                throw new Exception("El dni debe contener únicamente números");
 
         }
 
@@ -55,11 +55,11 @@ namespace PagoAgilFrba.AbmCliente
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand query = new SqlCommand("POSTRESQL.altaCliente", connection);
             query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@dni", Convert.ToInt16(this.txtDni.Text)));
+            query.Parameters.Add(new SqlParameter("@dni", Convert.ToInt32(this.txtDni.Text)));
             query.Parameters.Add(new SqlParameter("@apellido", this.txtApellido.Text));
             query.Parameters.Add(new SqlParameter("@nombre", this.txtNombre.Text));
             query.Parameters.Add(new SqlParameter("@mail", this.txtMail.Text));
-            query.Parameters.Add(new SqlParameter("@telefono", Convert.ToInt16(this.txtTelefono.Text)));
+            query.Parameters.Add(new SqlParameter("@telefono", Convert.ToInt32(this.txtTelefono.Text)));
             query.Parameters.Add(new SqlParameter("@direccion", this.txtDireccion.Text));
             query.Parameters.Add(new SqlParameter("@codigo", this.txtCodigo.Text));
             query.Parameters.Add(new SqlParameter("@fecha", this.dtmFecha.Value));
