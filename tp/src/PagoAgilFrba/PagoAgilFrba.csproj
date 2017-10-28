@@ -70,12 +70,32 @@
     <Compile Include="AbmCliente\ModificarCliente.Designer.cs">
       <DependentUpon>ModificarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmEmpresa\Form1.cs">
+    <Compile Include="AbmEmpresa\AltaEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmEmpresa\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmEmpresa\AltaEmpresa.Designer.cs">
+      <DependentUpon>AltaEmpresa.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmEmpresa\BMEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmEmpresa\BMEmpresa.Designer.cs">
+      <DependentUpon>BMEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmEmpresa\InicialEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmEmpresa\InicialEmpresa.Designer.cs">
+      <DependentUpon>InicialEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmEmpresa\ModificadoEmpresa.cs" />
+    <Compile Include="AbmEmpresa\ModificarEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmEmpresa\ModificarEmpresa.Designer.cs">
+      <DependentUpon>ModificarEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmEmpresa\Rubro.cs" />
     <Compile Include="AbmFactura\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,7 +193,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\ModificarCliente.resx">
       <DependentUpon>ModificarCliente.cs</DependentUpon>
-	 </EmbeddedResource>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\AltaEmpresa.resx">
+      <DependentUpon>AltaEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\BMEmpresa.resx">
+      <DependentUpon>BMEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\InicialEmpresa.resx">
+      <DependentUpon>InicialEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\ModificarEmpresa.resx">
+      <DependentUpon>ModificarEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AbmRol.resx">
       <DependentUpon>AbmRol.cs</DependentUpon>
     </EmbeddedResource>
