@@ -51,11 +51,24 @@
     <Compile Include="AbmCliente\AltaCliente.Designer.cs">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\BMCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\BMCliente.Designer.cs">
+      <DependentUpon>BMCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmCliente\InicialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmCliente\InicialCliente.Designer.cs">
       <DependentUpon>InicialCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmCliente\ModificadoCliente.cs" />
+    <Compile Include="AbmCliente\ModificarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\ModificarCliente.Designer.cs">
+      <DependentUpon>ModificarCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmEmpresa\Form1.cs">
       <SubType>Form</SubType>
@@ -145,8 +158,14 @@
     <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\BMCliente.resx">
+      <DependentUpon>BMCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\InicialCliente.resx">
       <DependentUpon>InicialCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\ModificarCliente.resx">
+      <DependentUpon>ModificarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmSucursal\AltaSucursal.resx">
       <DependentUpon>AltaSucursal.cs</DependentUpon>

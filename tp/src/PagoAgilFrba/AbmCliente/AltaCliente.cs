@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,13 +31,44 @@ namespace PagoAgilFrba.AbmCliente
             }
             if (!Validacion.contieneSoloNumeros(txtCodigo.Text))
                 throw new Exception("El código postal debe contener únicamente números");
-
+            if (!Validacion.contieneSoloNumeros(txtTelefono.Text))
+                throw new Exception("El telefono debe contener únicamente números");
             //  if (!txtSucu_codigo_postal.Text.Count().Equals(4))
             //    throw new Exception("El código postal debe estar compuesto por 4 números");
 
         }
 
         private void btnAlta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.validar();
+                this.altaCliente();
+                this.Close();
+            }
+            catch (Exception excepcion)
+            {
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+        private void altaCliente() {
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand query = new SqlCommand("POSTRESQL.altaCliente", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@dni", Convert.ToInt16(this.txtDni.Text)));
+            query.Parameters.Add(new SqlParameter("@apellido", this.txtApellido.Text));
+            query.Parameters.Add(new SqlParameter("@nombre", this.txtNombre.Text));
+            query.Parameters.Add(new SqlParameter("@mail", this.txtMail.Text));
+            query.Parameters.Add(new SqlParameter("@telefono", Convert.ToInt16(this.txtTelefono.Text)));
+            query.Parameters.Add(new SqlParameter("@direccion", this.txtDireccion.Text));
+            query.Parameters.Add(new SqlParameter("@codigo", this.txtCodigo.Text));
+            query.Parameters.Add(new SqlParameter("@fecha", this.dtmFecha.Value));
+
+            connection.Open();
+            query.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void AltaCliente_Load(object sender, EventArgs e)
         {
 
         }

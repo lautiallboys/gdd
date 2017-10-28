@@ -56,7 +56,7 @@ namespace PagoAgilFrba.Menu
             this.form_mapping.Add(10, () => new Listado_Estadistico.ListadoEstadistico(this));
             this.form_mapping.Add(11, () => new CambiarPassword.CambiarPassword(this, this.username)); */
             this.form_mapping.Add(5, () => new AbmSucursal.InicialSucursal());
-            this.form_mapping.Add(4, () => new AbmCliente.InicialCliente());   
+            this.form_mapping.Add(3, () => new AbmCliente.InicialCliente());   
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -81,6 +81,11 @@ namespace PagoAgilFrba.Menu
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainMenu_Load_1(object sender, EventArgs e)
         {
 
         }
