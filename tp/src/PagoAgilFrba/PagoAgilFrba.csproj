@@ -156,6 +156,12 @@
     </Compile>
     <Compile Include="ConfiguradorDataGrid.cs" />
     <Compile Include="DBConnection.cs" />
+    <Compile Include="Devoluciones\Devolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devoluciones\Devolucion.Designer.cs">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoEstadistico\ListadoEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     <EmbeddedResource Include="AbmSucursal\ModificarSucursal.resx">
       <DependentUpon>ModificarSucursal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Devoluciones\Devolucion.resx">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadoEstadistico.resx">
       <DependentUpon>ListadoEstadistico.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,9 +300,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Devoluciones\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
