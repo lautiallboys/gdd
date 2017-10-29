@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtmFecha = new System.Windows.Forms.DateTimePicker();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtMail = new System.Windows.Forms.TextBox();
+            this.dtmFechaVenc = new System.Windows.Forms.DateTimePicker();
+            this.txtSucursal = new System.Windows.Forms.TextBox();
+            this.txtImporte = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.txtNumeroFactura = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,36 +46,36 @@
             this.comboEmpresa = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // dtmFecha
+            // dtmFechaVenc
             // 
-            this.dtmFecha.Location = new System.Drawing.Point(227, 162);
-            this.dtmFecha.MaxDate = new System.DateTime(2017, 12, 31, 0, 0, 0, 0);
-            this.dtmFecha.MinDate = new System.DateTime(1910, 1, 1, 0, 0, 0, 0);
-            this.dtmFecha.Name = "dtmFecha";
-            this.dtmFecha.Size = new System.Drawing.Size(200, 20);
-            this.dtmFecha.TabIndex = 18;
-            this.dtmFecha.Value = new System.DateTime(2017, 10, 26, 11, 38, 33, 0);
+            this.dtmFechaVenc.Location = new System.Drawing.Point(227, 162);
+            this.dtmFechaVenc.MaxDate = new System.DateTime(2017, 12, 31, 0, 0, 0, 0);
+            this.dtmFechaVenc.MinDate = new System.DateTime(1910, 1, 1, 0, 0, 0, 0);
+            this.dtmFechaVenc.Name = "dtmFechaVenc";
+            this.dtmFechaVenc.Size = new System.Drawing.Size(200, 20);
+            this.dtmFechaVenc.TabIndex = 18;
+            this.dtmFechaVenc.Value = new System.DateTime(2017, 10, 26, 11, 38, 33, 0);
             // 
-            // txtCodigo
+            // txtSucursal
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(227, 246);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(200, 20);
-            this.txtCodigo.TabIndex = 11;
+            this.txtSucursal.Location = new System.Drawing.Point(227, 246);
+            this.txtSucursal.Name = "txtSucursal";
+            this.txtSucursal.Size = new System.Drawing.Size(200, 20);
+            this.txtSucursal.TabIndex = 11;
             // 
-            // txtDireccion
+            // txtImporte
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(227, 204);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(200, 20);
-            this.txtDireccion.TabIndex = 12;
+            this.txtImporte.Location = new System.Drawing.Point(227, 204);
+            this.txtImporte.Name = "txtImporte";
+            this.txtImporte.Size = new System.Drawing.Size(200, 20);
+            this.txtImporte.TabIndex = 12;
             // 
-            // txtMail
+            // txtCliente
             // 
-            this.txtMail.Location = new System.Drawing.Point(227, 111);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(200, 20);
-            this.txtMail.TabIndex = 14;
+            this.txtCliente.Location = new System.Drawing.Point(227, 111);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(200, 20);
+            this.txtCliente.TabIndex = 14;
             // 
             // txtNumeroFactura
             // 
@@ -168,6 +168,10 @@
             // medioPago
             // 
             this.medioPago.FormattingEnabled = true;
+            this.medioPago.Items.AddRange(new object[] {
+            "Efectivo",
+            "Debito",
+            "Credito"});
             this.medioPago.Location = new System.Drawing.Point(227, 285);
             this.medioPago.Name = "medioPago";
             this.medioPago.Size = new System.Drawing.Size(200, 21);
@@ -193,10 +197,10 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.dtmFecha);
-            this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.txtDireccion);
-            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.dtmFechaVenc);
+            this.Controls.Add(this.txtSucursal);
+            this.Controls.Add(this.txtImporte);
+            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.txtNumeroFactura);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -213,10 +217,10 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dtmFecha;
-        private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.DateTimePicker dtmFechaVenc;
+        private System.Windows.Forms.TextBox txtSucursal;
+        private System.Windows.Forms.TextBox txtImporte;
+        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.TextBox txtNumeroFactura;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
