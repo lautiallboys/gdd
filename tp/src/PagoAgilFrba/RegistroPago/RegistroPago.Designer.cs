@@ -32,9 +32,7 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.txtDni = new System.Windows.Forms.TextBox();
             this.txtNumeroFactura = new System.Windows.Forms.TextBox();
-            this.medioPago = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +42,8 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnContinuar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.medioPago = new System.Windows.Forms.ComboBox();
+            this.comboEmpresa = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // dtmFecha
@@ -65,7 +65,7 @@
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(227, 207);
+            this.txtDireccion.Location = new System.Drawing.Point(227, 204);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(200, 20);
             this.txtDireccion.TabIndex = 12;
@@ -77,28 +77,12 @@
             this.txtMail.Size = new System.Drawing.Size(200, 20);
             this.txtMail.TabIndex = 14;
             // 
-            // txtDni
-            // 
-            this.txtDni.Location = new System.Drawing.Point(227, 75);
-            this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(200, 20);
-            this.txtDni.TabIndex = 15;
-            // 
             // txtNumeroFactura
             // 
             this.txtNumeroFactura.Location = new System.Drawing.Point(227, 32);
             this.txtNumeroFactura.Name = "txtNumeroFactura";
             this.txtNumeroFactura.Size = new System.Drawing.Size(200, 20);
             this.txtNumeroFactura.TabIndex = 17;
-            // 
-            // medioPago
-            // 
-            this.medioPago.FormattingEnabled = true;
-            this.medioPago.Location = new System.Drawing.Point(217, 121);
-            this.medioPago.Name = "comboBoxRubro";
-            this.medioPago.Size = new System.Drawing.Size(200, 21);
-            this.medioPago.TabIndex = 11;
-            this.medioPago.SelectedIndexChanged += new System.EventHandler(this.medioPago_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -181,11 +165,31 @@
             this.label8.TabIndex = 23;
             this.label8.Text = "Medio de pago";
             // 
+            // medioPago
+            // 
+            this.medioPago.FormattingEnabled = true;
+            this.medioPago.Location = new System.Drawing.Point(227, 285);
+            this.medioPago.Name = "medioPago";
+            this.medioPago.Size = new System.Drawing.Size(200, 21);
+            this.medioPago.TabIndex = 24;
+            this.medioPago.SelectedIndexChanged += new System.EventHandler(this.medioPago_SelectedIndexChanged);
+            // 
+            // comboEmpresa
+            // 
+            this.comboEmpresa.FormattingEnabled = true;
+            this.comboEmpresa.Location = new System.Drawing.Point(227, 72);
+            this.comboEmpresa.Name = "comboEmpresa";
+            this.comboEmpresa.Size = new System.Drawing.Size(200, 21);
+            this.comboEmpresa.TabIndex = 25;
+            this.comboEmpresa.SelectedIndexChanged += new System.EventHandler(this.comboEmpresa_SelectedIndexChanged);
+            // 
             // RegistroPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 391);
+            this.Controls.Add(this.comboEmpresa);
+            this.Controls.Add(this.medioPago);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.btnRegistrar);
@@ -193,7 +197,6 @@
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.txtMail);
-            this.Controls.Add(this.txtDni);
             this.Controls.Add(this.txtNumeroFactura);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -214,7 +217,6 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.TextBox txtNumeroFactura;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -226,5 +228,6 @@
         private System.Windows.Forms.Button btnContinuar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox medioPago;
+        private System.Windows.Forms.ComboBox comboEmpresa;
     }
 }

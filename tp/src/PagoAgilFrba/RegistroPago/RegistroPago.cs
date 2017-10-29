@@ -33,16 +33,24 @@ namespace PagoAgilFrba.RegistroPago
             medioPago.Text = medioPago.SelectedText;
         }
 
-        private void fill_medioPago(List<Rubro> rubros)
+        private void comboEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (Rubro rubro in rubros)
-                this.comboBoxRubro.Items.Add(rubro);
+            comboEmpresa.Text = comboEmpresa.SelectedText;
+        }
+
+
+
+        private void fill_medioPago()
+        {
+                this.medioPago.Items.Add(1);
+                this.medioPago.Items.Add(2);
+                this.medioPago.Items.Add(3);
         }
 
         
-        SQLCOMMAND command = new SqlCommand();
-        command.CommandText = "SELECT * from dbo.    
-                                    where SUCURSAL_ID = @SUCURSAL";
+  //      SQLCOMMAND command = new SqlCommand();
+  //      command.CommandText = "SELECT * from dbo.    
+  //                where SUCURSAL_ID = @SUCURSAL";
 
 
         private void registrarPago()
