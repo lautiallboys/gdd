@@ -13,20 +13,22 @@ namespace PagoAgilFrba.AbmFactura
 {
     public partial class  MenuFactura : Form
     {
-        public MenuFactura()
+        Form parent;
+        public MenuFactura(Form parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form alta = new AbmFactura.AltaFactura(obtenerRubros());
+            Form alta = new AbmFactura.AltaFactura();
             alta.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form bm = new AbmFactura.BMFactura(obtenerRubros());
+            Form bm = new AbmFactura.BMFactura();
             bm.Show();
         }
 

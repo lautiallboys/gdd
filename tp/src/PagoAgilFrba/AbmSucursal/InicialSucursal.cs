@@ -12,8 +12,10 @@ namespace PagoAgilFrba.AbmSucursal
 {
     public partial class InicialSucursal  : Form 
     {
-        public InicialSucursal()
+        Form parent;
+        public InicialSucursal(Form parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 
@@ -27,6 +29,12 @@ namespace PagoAgilFrba.AbmSucursal
         {
             Form bm = new AbmSucursal.BMSucursal();
             bm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.parent.Show();
         }
 
     }

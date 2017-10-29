@@ -38,13 +38,13 @@ namespace PagoAgilFrba.AbmFactura
                 this.cmbCliente.Items.Add(cliente);
         }
         
-        private Int64 numeroMayorFactura()
+        private Int32 numeroMayorFactura()
         {
             var connection = DBConnection.getInstance().getConnection();
-            // Pido todas las empresas
+            // Pido el mayor número de factura
             SqlCommand highest_number_command = new SqlCommand("SELECT MAX(fact_numero) FROM POSTRESQL.Factura", connection);
             connection.Open();
-            return (Int64)highest_number_command.ExecuteScalar();
+            return Convert.ToInt32(highest_number_command.ExecuteScalar().ToString()) + 1;
         }
 
         private List<Empresa> obtenerEmpresas()

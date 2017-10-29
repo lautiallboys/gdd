@@ -100,8 +100,8 @@ namespace PagoAgilFrba.AbmFactura
         
         }
 
-        private ModificadoEmpresa seleccionarEmpresa(){
-            AbmEmpresa.ModificadoEmpresa modificar = new ModificadoEmpresa();
+        private AbmEmpresa.ModificadoEmpresa seleccionarEmpresa(){
+            AbmEmpresa.ModificadoEmpresa modificar = new AbmEmpresa.ModificadoEmpresa();
             Int16 id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[0].Value);
             String nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
             String cuit = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
@@ -109,7 +109,7 @@ namespace PagoAgilFrba.AbmFactura
             Int16 rubro_id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
             String rubro_detalle = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
             bool habilitado = (bool)dataGridView1.SelectedRows[0].Cells[6].Value;
-            Rubro rubro = new Rubro(rubro_id,rubro_detalle);
+            AbmEmpresa.Rubro rubro = new AbmEmpresa.Rubro(rubro_id, rubro_detalle);
 
             modificar.id = id;
             modificar.cuit = cuit;
@@ -127,7 +127,7 @@ namespace PagoAgilFrba.AbmFactura
             {
                 try
                 {
-                    ModificadoEmpresa aModif = this.seleccionarEmpresa();
+                    AbmEmpresa.ModificadoEmpresa aModif = this.seleccionarEmpresa();
                     Form modif = new AbmEmpresa.ModificarEmpresa(aModif.id, aModif.rubro, aModif.cuit, aModif.nombre, aModif.direccion, aModif.habilitado);
                     modif.Show();
                     this.Close();

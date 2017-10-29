@@ -13,8 +13,10 @@ namespace PagoAgilFrba.AbmEmpresa
 {
     public partial class InicialEmpresa : Form
     {
-        public InicialEmpresa()
+        Form parent;
+        public InicialEmpresa(Form form)
         {
+            this.parent = form;
             InitializeComponent();
         }
 
@@ -48,6 +50,12 @@ namespace PagoAgilFrba.AbmEmpresa
         private void InicialCliente_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.parent.Show();
         }
     }
 }

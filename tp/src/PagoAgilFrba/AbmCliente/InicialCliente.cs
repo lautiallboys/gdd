@@ -12,8 +12,10 @@ namespace PagoAgilFrba.AbmCliente
 {
     public partial class InicialCliente : Form
     {
-        public InicialCliente()
+        Form parent;
+        public InicialCliente(Form parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 
@@ -32,6 +34,12 @@ namespace PagoAgilFrba.AbmCliente
         private void InicialCliente_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.parent.Show();
         }
     }
 }
