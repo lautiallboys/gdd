@@ -96,12 +96,26 @@
       <DependentUpon>ModificarEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmEmpresa\Rubro.cs" />
-    <Compile Include="AbmFactura\Form1.cs">
+    <Compile Include="AbmFactura\AltaFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmFactura\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmFactura\AltaFactura.Designer.cs">
+      <DependentUpon>AltaFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmFactura\BMFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\BMFactura.Designer.cs">
+      <DependentUpon>BMFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\Cliente.cs" />
+    <Compile Include="AbmFactura\MenuFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\MenuFactura.Designer.cs">
+      <DependentUpon>MenuFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\Empresa.cs" />
     <Compile Include="AbmRol\AbmRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +225,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmEmpresa\ModificarEmpresa.resx">
       <DependentUpon>ModificarEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\AltaFactura.resx">
+      <DependentUpon>AltaFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\BMFactura.resx">
+      <DependentUpon>BMFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\MenuFactura.resx">
+      <DependentUpon>MenuFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AbmRol.resx">
       <DependentUpon>AbmRol.cs</DependentUpon>
