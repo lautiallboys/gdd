@@ -84,7 +84,7 @@
             this.Controls.Add(this.listBox1);
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu Principal - Mercado Envio";
+            this.Text = "Menu Principal - Pago Ágil";
             this.Load += new System.EventHandler(this.MainMenu_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();

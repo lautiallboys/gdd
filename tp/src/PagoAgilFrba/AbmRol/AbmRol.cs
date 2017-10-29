@@ -73,5 +73,32 @@ namespace PagoAgilFrba.AbmRol
             this.Close();
             this.parent.Show();
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un rol");
+                return;
+            }
+            try
+            {
+                Int32 id = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells["rol_id"].Value.ToString());
+                var connection = DBConnection.getInstance().getConnection();
+                SqlCommand query = new SqlCommand("POSTRESQL.bajaRol", connection);
+                query.CommandType = CommandType.StoredProcedure;
+                query.Parameters.Add(new SqlParameter("@id", id));
+                connection.Open();
+                query.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch {
+                MessageBox.Show("No se pudo dar de baja el rol");
+            }
+
+            MessageBox.Show("Rol dado de baja");
+            this.fill_data_set();
+
+        }
     }
 }

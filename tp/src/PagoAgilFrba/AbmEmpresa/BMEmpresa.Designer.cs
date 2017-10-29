@@ -44,7 +44,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 28);
+            this.label1.Location = new System.Drawing.Point(238, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 0;
@@ -53,7 +53,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 67);
+            this.label2.Location = new System.Drawing.Point(237, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 0;
@@ -62,7 +62,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 105);
+            this.label3.Location = new System.Drawing.Point(238, 114);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 0;
@@ -70,14 +70,14 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(273, 28);
+            this.txtNombre.Location = new System.Drawing.Point(481, 37);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 1;
             // 
             // txtCuit
             // 
-            this.txtCuit.Location = new System.Drawing.Point(273, 67);
+            this.txtCuit.Location = new System.Drawing.Point(481, 76);
             this.txtCuit.Name = "txtCuit";
             this.txtCuit.Size = new System.Drawing.Size(100, 20);
             this.txtCuit.TabIndex = 1;
@@ -87,12 +87,12 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(104, 151);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(641, 150);
             this.dataGridView1.TabIndex = 3;
             // 
             // btnModif
             // 
-            this.btnModif.Location = new System.Drawing.Point(275, 323);
+            this.btnModif.Location = new System.Drawing.Point(454, 323);
             this.btnModif.Name = "btnModif";
             this.btnModif.Size = new System.Drawing.Size(75, 23);
             this.btnModif.TabIndex = 7;
@@ -102,7 +102,7 @@
             // 
             // btnBaja
             // 
-            this.btnBaja.Location = new System.Drawing.Point(171, 323);
+            this.btnBaja.Location = new System.Drawing.Point(350, 323);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(75, 23);
             this.btnBaja.TabIndex = 5;
@@ -112,7 +112,7 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(72, 323);
+            this.btnFiltrar.Location = new System.Drawing.Point(251, 323);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
             this.btnFiltrar.TabIndex = 6;
@@ -123,7 +123,7 @@
             // comboBoxRubro
             // 
             this.comboBoxRubro.FormattingEnabled = true;
-            this.comboBoxRubro.Location = new System.Drawing.Point(273, 105);
+            this.comboBoxRubro.Location = new System.Drawing.Point(481, 114);
             this.comboBoxRubro.Name = "comboBoxRubro";
             this.comboBoxRubro.Size = new System.Drawing.Size(100, 21);
             this.comboBoxRubro.TabIndex = 8;
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 373);
+            this.ClientSize = new System.Drawing.Size(861, 373);
             this.Controls.Add(this.comboBoxRubro);
             this.Controls.Add(this.btnModif);
             this.Controls.Add(this.btnBaja);
