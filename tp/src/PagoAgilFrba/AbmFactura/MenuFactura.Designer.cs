@@ -72,8 +72,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "MenuFactura";
-            this.Text = "Menu Factura";
-            this.Load += new System.EventHandler(this.MenuFactura_Load);
             this.ResumeLayout(false);
 
         }

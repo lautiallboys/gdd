@@ -13,12 +13,35 @@ namespace PagoAgilFrba.AbmFactura
 {
     public partial class AltaFactura: Form
     {
-        public AltaFactura()
+        Form parent;
+        public AltaFactura(Form parent)
         {
+            this.parent = parent;
             InitializeComponent();
             cargar_proximo_numero();
-            fill_empresas();
             fill_clientes();
+            fill_rubro_combo();
+        }
+
+        private void fill_rubro_combo()
+        {
+            foreach (Rubro rubro in obtenerRubros())
+                this.cmbFiltroRubro.Items.Add(rubro);
+        }
+
+         private List<Rubro> obtenerRubros()
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            List<Rubro> rubros = new List<Rubro>();
+
+            // Pido todos los rubros
+            SqlCommand all_functionalities_command = new SqlCommand("SELECT * FROM POSTRESQL.Rubro", connection);
+            connection.Open();
+            SqlDataReader reader = all_functionalities_command.ExecuteReader();
+            while (reader.Read())
+                rubros.Add(new Rubro(Int32.Parse(reader["rubr_id"].ToString()), reader["rubr_detalle"].ToString()));
+            connection.Close();
+            return rubros;
         }
 
         private void cargar_proximo_numero()
@@ -26,9 +49,10 @@ namespace PagoAgilFrba.AbmFactura
             this.txtNumero.Text = (numeroMayorFactura() + 1).ToString();
         }
 
-        private void fill_empresas()
+        private void fill_empresas(String nombreFiltro, String cuitFiltro, Int32 codigoRubroFiltro)
         {
-            foreach (Empresa empresa in obtenerEmpresas())
+            this.cmbEmpresa.Items.Clear();
+            foreach (Empresa empresa in obtenerEmpresas(nombreFiltro, cuitFiltro, codigoRubroFiltro))
                 this.cmbEmpresa.Items.Add(empresa);
         }
 
@@ -47,15 +71,22 @@ namespace PagoAgilFrba.AbmFactura
             return Convert.ToInt32(highest_number_command.ExecuteScalar().ToString()) + 1;
         }
 
-        private List<Empresa> obtenerEmpresas()
+        private List<Empresa> obtenerEmpresas(String nombreFiltro, String cuitFiltro, Int32 codigoRubroFiltro)
         {
+            List<Empresa> empresas = new List<Empresa>();
             var connection = DBConnection.getInstance().getConnection();
-            List<Empresa> empresas= new List<Empresa>();
+            SqlCommand command = new SqlCommand("POSTRESQL.filtrarEmpresas", connection);
+            command.CommandType = CommandType.StoredProcedure;
 
-            // Pido todas las empresas
-            SqlCommand all_empresas_command = new SqlCommand("SELECT * FROM POSTRESQL.Empresa", connection);
+
+            command.Parameters.Add(new SqlParameter("@empr_nombre", nombreFiltro));
+            command.Parameters.Add(new SqlParameter("@empr_cuit", cuitFiltro));
+            command.Parameters.Add(new SqlParameter("@empr_rubro", codigoRubroFiltro));
+            
             connection.Open();
-            SqlDataReader reader = all_empresas_command.ExecuteReader();
+
+            SqlDataReader reader = command.ExecuteReader();
+
             while (reader.Read())
                 empresas.Add(new Empresa(Int32.Parse(reader["empr_id"].ToString()), reader["empr_nombre"].ToString()));
             connection.Close();
@@ -79,25 +110,65 @@ namespace PagoAgilFrba.AbmFactura
 
         private void validar()
         {
-            if (Validacion.estaVacio(txtNumero.Text) || cmbCliente.SelectedItem == null || cmbEmpresa.SelectedItem == null || fechaAlta.Value > fechaVencimiento.Value || grdItems.RowCount == 0)
+            if (Validacion.estaVacio(txtNumero.Text) || cmbCliente.SelectedItem == null || cmbEmpresa.SelectedItem == null || grdItems.RowCount == 0 )
             {
                 throw new Exception("Se deben ingresar todos los datos correctamente");
             }
+            if (fechaAlta.Value > fechaVencimiento.Value)
+            {
+                throw new Exception("La fecha de vencimiento debe ser posterior a la fecha de alta");
+            }
+            if (esUnico(Int32.Parse(txtNumero.Text)))
+            {
+                throw new Exception("Ya existe una factura con el número ingresado");
+            }
         }
 
-        private void btnAlta_Click(object sender, EventArgs e)
+        private bool esUnico(Int32 unNumero)
+        {
+            Int32 rowsAffected;
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand query = new SqlCommand("POSTRESQL.facturaPorNumero", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@numero", unNumero));
+            connection.Open();
+            rowsAffected = query.ExecuteNonQuery();
+            connection.Close();
+            return (rowsAffected == 0);
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
                 this.validar();
-               /* this.altaFactura();*/
+                /* this.altaFactura();*/
                 this.Close();
+                parent.Show();
             }
             catch (Exception excepcion)
             {
                 MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
             }
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.parent.Show();
+        }
+
+        private void filtrosEmpresaCambiaron(object sender, EventArgs e)
+        {
+            Int32 codigoRubro;
+            if(cmbFiltroRubro.SelectedItem != null)
+            {
+                codigoRubro =((Rubro)cmbFiltroRubro.SelectedItem).code;
+            }
+            else{codigoRubro = 0;}
+            fill_empresas(txtFiltroNombre.Text, txtFiltroCuit.Text, codigoRubro);
+        }
+
         /*private void altaFactura() {
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand query = new SqlCommand("POSTRESQL.altaEmpresa", connection);

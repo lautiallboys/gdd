@@ -47,6 +47,9 @@
             this.Concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtFiltroNombre = new System.Windows.Forms.TextBox();
+            this.txtFiltroCuit = new System.Windows.Forms.TextBox();
+            this.cmbFiltroRubro = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
+            this.label2.Location = new System.Drawing.Point(12, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 0;
@@ -71,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 67);
+            this.label3.Location = new System.Drawing.Point(12, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 0;
@@ -80,32 +83,32 @@
             // txtTotal
             // 
             this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(232, 230);
+            this.txtTotal.Location = new System.Drawing.Point(232, 204);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(200, 20);
             this.txtTotal.TabIndex = 1;
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(232, 64);
+            this.txtNumero.Location = new System.Drawing.Point(232, 125);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(200, 20);
             this.txtNumero.TabIndex = 1;
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(359, 274);
+            this.btnVolver.Location = new System.Drawing.Point(830, 237);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 3;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
-            this.btnVolver.Click += new System.EventHandler(this.btnAlta_Click);
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 93);
+            this.label4.Location = new System.Drawing.Point(12, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 10;
@@ -115,7 +118,7 @@
             // 
             this.cmbEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(232, 38);
+            this.cmbEmpresa.Location = new System.Drawing.Point(232, 41);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(200, 21);
             this.cmbEmpresa.TabIndex = 11;
@@ -123,7 +126,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 233);
+            this.label5.Location = new System.Drawing.Point(12, 207);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 12;
@@ -132,7 +135,6 @@
             // cmbCliente
             // 
             this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCliente.Enabled = false;
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(232, 12);
             this.cmbCliente.Name = "cmbCliente";
@@ -142,7 +144,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 120);
+            this.label6.Location = new System.Drawing.Point(12, 184);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 14;
@@ -150,23 +152,24 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(278, 274);
+            this.btnConfirmar.Location = new System.Drawing.Point(749, 237);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 16;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // fechaVencimiento
             // 
-            this.fechaVencimiento.Location = new System.Drawing.Point(232, 114);
+            this.fechaVencimiento.Location = new System.Drawing.Point(232, 178);
             this.fechaVencimiento.Name = "fechaVencimiento";
             this.fechaVencimiento.Size = new System.Drawing.Size(200, 20);
             this.fechaVencimiento.TabIndex = 17;
             // 
             // fechaAlta
             // 
-            this.fechaAlta.Location = new System.Drawing.Point(232, 87);
+            this.fechaAlta.Location = new System.Drawing.Point(232, 151);
             this.fechaAlta.Name = "fechaAlta";
             this.fechaAlta.Size = new System.Drawing.Size(200, 20);
             this.fechaAlta.TabIndex = 18;
@@ -174,7 +177,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 143);
+            this.label7.Location = new System.Drawing.Point(476, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 22;
@@ -187,9 +190,9 @@
             this.Concepto,
             this.Monto,
             this.Cantidad});
-            this.grdItems.Location = new System.Drawing.Point(88, 140);
+            this.grdItems.Location = new System.Drawing.Point(552, 12);
             this.grdItems.Name = "grdItems";
-            this.grdItems.Size = new System.Drawing.Size(344, 84);
+            this.grdItems.Size = new System.Drawing.Size(353, 212);
             this.grdItems.TabIndex = 24;
             // 
             // Concepto
@@ -207,11 +210,42 @@
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             // 
+            // txtFiltroNombre
+            // 
+            this.txtFiltroNombre.Location = new System.Drawing.Point(95, 42);
+            this.txtFiltroNombre.Name = "txtFiltroNombre";
+            this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltroNombre.TabIndex = 25;
+            this.txtFiltroNombre.Text = "Filtrar por nombre...";
+            this.txtFiltroNombre.TextChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
+            // 
+            // txtFiltroCuit
+            // 
+            this.txtFiltroCuit.Location = new System.Drawing.Point(95, 68);
+            this.txtFiltroCuit.Name = "txtFiltroCuit";
+            this.txtFiltroCuit.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltroCuit.TabIndex = 27;
+            this.txtFiltroCuit.Text = "Filtrar por Cuit...";
+            this.txtFiltroCuit.TextChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
+            // 
+            // cmbFiltroRubro
+            // 
+            this.cmbFiltroRubro.FormattingEnabled = true;
+            this.cmbFiltroRubro.Location = new System.Drawing.Point(95, 94);
+            this.cmbFiltroRubro.Name = "cmbFiltroRubro";
+            this.cmbFiltroRubro.Size = new System.Drawing.Size(100, 21);
+            this.cmbFiltroRubro.TabIndex = 28;
+            this.cmbFiltroRubro.Text = "Filtrar por Rubro";
+            this.cmbFiltroRubro.SelectedIndexChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
+            // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 309);
+            this.ClientSize = new System.Drawing.Size(917, 272);
+            this.Controls.Add(this.cmbFiltroRubro);
+            this.Controls.Add(this.txtFiltroCuit);
+            this.Controls.Add(this.txtFiltroNombre);
             this.Controls.Add(this.grdItems);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.fechaAlta);
@@ -257,5 +291,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Concepto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.TextBox txtFiltroNombre;
+        private System.Windows.Forms.TextBox txtFiltroCuit;
+        private System.Windows.Forms.ComboBox cmbFiltroRubro;
     }
 }

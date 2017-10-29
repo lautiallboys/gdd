@@ -116,6 +116,7 @@
       <DependentUpon>MenuFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFactura\Empresa.cs" />
+    <Compile Include="AbmFactura\Rubro.cs" />
     <Compile Include="AbmRol\AbmRol.cs">
       <SubType>Form</SubType>
     </Compile>

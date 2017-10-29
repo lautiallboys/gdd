@@ -22,19 +22,16 @@ namespace PagoAgilFrba.AbmFactura
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form alta = new AbmFactura.AltaFactura();
+            Form alta = new AbmFactura.AltaFactura(this);
             alta.Show();
+            this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Form bm = new AbmFactura.BMFactura();
             bm.Show();
-        }
-
-        private void MenuFactura_Load(object sender, EventArgs e)
-        {
-
+            this.Hide();
         }
 
         private void button5_Click(object sender, EventArgs e)
