@@ -50,6 +50,9 @@
             this.txtFiltroNombre = new System.Windows.Forms.TextBox();
             this.txtFiltroCuit = new System.Windows.Forms.TextBox();
             this.cmbFiltroRubro = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,6 +197,7 @@
             this.grdItems.Name = "grdItems";
             this.grdItems.Size = new System.Drawing.Size(353, 212);
             this.grdItems.TabIndex = 24;
+            this.grdItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cambioItems);
             // 
             // Concepto
             // 
@@ -212,37 +216,67 @@
             // 
             // txtFiltroNombre
             // 
-            this.txtFiltroNombre.Location = new System.Drawing.Point(95, 42);
+            this.txtFiltroNombre.Location = new System.Drawing.Point(127, 42);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
             this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
             this.txtFiltroNombre.TabIndex = 25;
-            this.txtFiltroNombre.Text = "Filtrar por nombre...";
             this.txtFiltroNombre.TextChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
             // 
             // txtFiltroCuit
             // 
-            this.txtFiltroCuit.Location = new System.Drawing.Point(95, 68);
+            this.txtFiltroCuit.Location = new System.Drawing.Point(127, 68);
             this.txtFiltroCuit.Name = "txtFiltroCuit";
             this.txtFiltroCuit.Size = new System.Drawing.Size(100, 20);
             this.txtFiltroCuit.TabIndex = 27;
-            this.txtFiltroCuit.Text = "Filtrar por Cuit...";
             this.txtFiltroCuit.TextChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
             // 
             // cmbFiltroRubro
             // 
             this.cmbFiltroRubro.FormattingEnabled = true;
-            this.cmbFiltroRubro.Location = new System.Drawing.Point(95, 94);
+            this.cmbFiltroRubro.Location = new System.Drawing.Point(127, 94);
             this.cmbFiltroRubro.Name = "cmbFiltroRubro";
             this.cmbFiltroRubro.Size = new System.Drawing.Size(100, 21);
             this.cmbFiltroRubro.TabIndex = 28;
-            this.cmbFiltroRubro.Text = "Filtrar por Rubro";
             this.cmbFiltroRubro.SelectedIndexChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label8.Location = new System.Drawing.Point(74, 45);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Nombre:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label9.Location = new System.Drawing.Point(93, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(28, 13);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "Cuit:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label10.Location = new System.Drawing.Point(80, 97);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 13);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "Rubro:";
             // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 272);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbFiltroRubro);
             this.Controls.Add(this.txtFiltroCuit);
             this.Controls.Add(this.txtFiltroNombre);
@@ -294,5 +328,8 @@
         private System.Windows.Forms.TextBox txtFiltroNombre;
         private System.Windows.Forms.TextBox txtFiltroCuit;
         private System.Windows.Forms.ComboBox cmbFiltroRubro;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

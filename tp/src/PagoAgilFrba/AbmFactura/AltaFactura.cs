@@ -68,7 +68,7 @@ namespace PagoAgilFrba.AbmFactura
             // Pido el mayor número de factura
             SqlCommand highest_number_command = new SqlCommand("SELECT MAX(fact_numero) FROM POSTRESQL.Factura", connection);
             connection.Open();
-            return Convert.ToInt32(highest_number_command.ExecuteScalar().ToString()) + 1;
+            return Convert.ToInt32(highest_number_command.ExecuteScalar().ToString());
         }
 
         private List<Empresa> obtenerEmpresas(String nombreFiltro, String cuitFiltro, Int32 codigoRubroFiltro)
@@ -122,19 +122,24 @@ namespace PagoAgilFrba.AbmFactura
             {
                 throw new Exception("Ya existe una factura con el número ingresado");
             }
+            if (!estanBienGenerados(generarItems()))
+            {
+                throw new Exception("Se deben completar los 3 campos de cada item ingresado correctamente");
+            }
+            
         }
 
         private bool esUnico(Int32 unNumero)
         {
-            Int32 rowsAffected;
+            bool existsNumber;
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand query = new SqlCommand("POSTRESQL.facturaPorNumero", connection);
             query.CommandType = CommandType.StoredProcedure;
             query.Parameters.Add(new SqlParameter("@numero", unNumero));
             connection.Open();
-            rowsAffected = query.ExecuteNonQuery();
+            existsNumber = query.ExecuteReader().HasRows;
             connection.Close();
-            return (rowsAffected == 0);
+            return existsNumber;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -142,7 +147,7 @@ namespace PagoAgilFrba.AbmFactura
             try
             {
                 this.validar();
-                /* this.altaFactura();*/
+                this.altaFactura();
                 this.Close();
                 parent.Show();
             }
@@ -169,18 +174,57 @@ namespace PagoAgilFrba.AbmFactura
             fill_empresas(txtFiltroNombre.Text, txtFiltroCuit.Text, codigoRubro);
         }
 
-        /*private void altaFactura() {
+        private void cambioItems(object sender, DataGridViewCellEventArgs e)
+        {
+            List<ItemFactura> listaItems = generarItems();
+            if (estanBienGenerados(listaItems))
+            {
+                txtTotal.Text = listaItems.Sum(item => item.cantidad * item.monto).ToString();
+            }
+            else 
+            {
+                txtTotal.Clear();
+            }
+        }
+
+        private bool estanBienGenerados(List<ItemFactura> listaItems)
+        {
+            return listaItems.Count != 0;
+        }
+
+        private List<ItemFactura> generarItems()
+        {
+            List<ItemFactura> listaItems = new List<ItemFactura>();
+            try
+            {
+                
+                foreach (DataGridViewRow row in grdItems.Rows)
+                    if (!row.IsNewRow)
+                    {
+                        listaItems.Add(new ItemFactura(row.Cells[0].Value.ToString(), Double.Parse(row.Cells[1].Value.ToString()), Int32.Parse(row.Cells[2].Value.ToString()), Int32.Parse(txtNumero.Text)));
+                    }
+               
+            }
+            catch (NullReferenceException e)
+            {
+                listaItems.Clear();
+            }
+            return listaItems;
+        }
+
+        private void altaFactura() {
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.altaEmpresa", connection);
+            SqlCommand query = new SqlCommand("POSTRESQL.altaFactura", connection);
             query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@empr_nombre", this.txtCliente.Text));
-            query.Parameters.Add(new SqlParameter("@empr_cuit", this.txtTotal.Text));
-            query.Parameters.Add(new SqlParameter("@empr_direccion", this.txtNumero.Text));
-            Rubro rubro = (Rubro) (this.cmbEmpresa.SelectedItem);
-            query.Parameters.Add(new SqlParameter("@empr_rubro", Convert.ToInt32(rubro.code))); 
+            query.Parameters.Add(new SqlParameter("@fact_numero", Int32.Parse(txtNumero.Text)));
+            query.Parameters.Add(new SqlParameter("@fact_cliente", ((Cliente)cmbCliente.SelectedItem).code));
+            query.Parameters.Add(new SqlParameter("@fact_empresa", ((Empresa)cmbEmpresa.SelectedItem).code));
+            query.Parameters.Add(new SqlParameter("@fact_fecha", fechaVencimiento.Value));
+            query.Parameters.Add(new SqlParameter("@fact_fecha_vencimiento", fechaAlta.Value));
+            query.Parameters.Add(new SqlParameter("@fact_total", Double.Parse(txtTotal.Text)));
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();
-        }*/
+        }
     }
 }

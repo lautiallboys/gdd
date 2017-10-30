@@ -109,6 +109,7 @@
       <DependentUpon>BMFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFactura\Cliente.cs" />
+    <Compile Include="AbmFactura\ItemFactura.cs" />
     <Compile Include="AbmFactura\MenuFactura.cs">
       <SubType>Form</SubType>
     </Compile>
