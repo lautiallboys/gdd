@@ -21,6 +21,7 @@ namespace PagoAgilFrba.RegistroPago
         Int32 importe;
         Int32 sucursal;
         AbmFactura.Empresa empresaSeleccionada;
+        AbmFactura.Cliente clienteSeleccionado;
         MedioPago medioPagoSeleccionado;
         private IList<SqlParameter> parametros = new List<SqlParameter>();
 
@@ -33,6 +34,7 @@ namespace PagoAgilFrba.RegistroPago
             InitializeComponent();
             fill_empresa_combo();
             fill_medioPago_combo();
+            fill_clientes_combo();
         }
 
         private void medioPago_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +61,7 @@ namespace PagoAgilFrba.RegistroPago
             query.Parameters.Add(new SqlParameter("@medio_pago", Convert.ToInt32(this.txtNumeroFactura.Text)));
             query.Parameters.Add(new SqlParameter("@sucursal", this.txtSucursal.Text));
          // query.Parameters.Add(new SqlParameter("@usuario", this.txtUsuario.Text));
-            query.Parameters.Add(new SqlParameter("@cliente", this.txtCliente.Text));
+         //   query.Parameters.Add(new SqlParameter("@cliente", this.txtCliente.Text));
             query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
             query.Parameters.Add(new SqlParameter("@total", this.txtImporte.Text));
 
@@ -78,7 +80,7 @@ namespace PagoAgilFrba.RegistroPago
         }
 
 
-        private void fill_empresa_combo()
+        private void fill_medioPago_combo()
         {
             var connection = DBConnection.getInstance().getConnection();
             List<MedioPago> current_functionalities = new List<MedioPago>();
@@ -99,14 +101,14 @@ namespace PagoAgilFrba.RegistroPago
             }
         }
 
-        private void fill_medioPago_combo()
+        private void fill_empresa_combo()
         {
             var connection = DBConnection.getInstance().getConnection();
             List<AbmFactura.Empresa> current_functionalities = new List<AbmFactura.Empresa>();
             List<AbmFactura.Empresa> all_functionalities = new List<AbmFactura.Empresa>();
 
             // Pido todas las funcionalidades
-            SqlCommand all_functionalities_command = new SqlCommand("SELECT empr_id, empr_nombre FROM POSTRESQL.Empresa", connection);
+            SqlCommand all_functionalities_command = new SqlCommand("SELECT empr_id, empr_nombre FROM POSTRESQL.Empresa where empr_habilitado = 1", connection);
             connection.Open();
             SqlDataReader reader = all_functionalities_command.ExecuteReader();
             while (reader.Read())
@@ -117,6 +119,27 @@ namespace PagoAgilFrba.RegistroPago
                 this.comboEmpresa.Items.Add(empresa);
                 // if (rubro.code == rubroSeleccionado.code)
                 this.comboEmpresa.SelectedItem = empresaSeleccionada;
+            }
+        }
+
+        private void fill_clientes_combo()
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            List<AbmFactura.Cliente> current_functionalities = new List<AbmFactura.Cliente>();
+            List<AbmFactura.Cliente> all_functionalities = new List<AbmFactura.Cliente>();
+
+            // Pido todas las funcionalidades
+            SqlCommand all_functionalities_command = new SqlCommand("SELECT medio_pago_id, medio_pago_descripcion FROM POSTRESQL.MedioPago", connection);
+            connection.Open();
+            SqlDataReader reader = all_functionalities_command.ExecuteReader();
+            while (reader.Read())
+                all_functionalities.Add(new AbmFactura.Cliente(Int32.Parse(reader["clie_id"].ToString()), reader["clie_nombre"].ToString(), reader["clie_apellido"].ToString()));
+            connection.Close();
+            foreach (AbmFactura.Cliente cliente in all_functionalities)
+            {
+                this.comboCliente.Items.Add(cliente);
+                // if (rubro.code == rubroSeleccionado.code)
+                this.comboCliente.SelectedItem = clienteSeleccionado;
             }
         }
 
@@ -147,6 +170,11 @@ namespace PagoAgilFrba.RegistroPago
         }
 
         private void RegistroPago_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
