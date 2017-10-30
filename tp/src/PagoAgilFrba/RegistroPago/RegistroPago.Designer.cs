@@ -31,7 +31,6 @@
             this.dtmFechaVenc = new System.Windows.Forms.DateTimePicker();
             this.txtSucursal = new System.Windows.Forms.TextBox();
             this.txtImporte = new System.Windows.Forms.TextBox();
-            this.txtCliente = new System.Windows.Forms.TextBox();
             this.txtNumeroFactura = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,12 +46,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboCliente = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtmFechaVenc
             // 
-            this.dtmFechaVenc.Location = new System.Drawing.Point(227, 119);
+            this.dtmFechaVenc.Location = new System.Drawing.Point(227, 81);
             this.dtmFechaVenc.MaxDate = new System.DateTime(2017, 12, 31, 0, 0, 0, 0);
             this.dtmFechaVenc.MinDate = new System.DateTime(1910, 1, 1, 0, 0, 0, 0);
             this.dtmFechaVenc.Name = "dtmFechaVenc";
@@ -69,17 +69,10 @@
             // 
             // txtImporte
             // 
-            this.txtImporte.Location = new System.Drawing.Point(227, 154);
+            this.txtImporte.Location = new System.Drawing.Point(227, 116);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(200, 20);
             this.txtImporte.TabIndex = 12;
-            // 
-            // txtCliente
-            // 
-            this.txtCliente.Location = new System.Drawing.Point(227, 71);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(200, 20);
-            this.txtCliente.TabIndex = 14;
             // 
             // txtNumeroFactura
             // 
@@ -93,14 +86,14 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(40, 203);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Sucursal";
+            this.label7.Text = "Sucursal*";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 161);
+            this.label6.Location = new System.Drawing.Point(40, 119);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 5;
@@ -109,7 +102,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 125);
+            this.label5.Location = new System.Drawing.Point(40, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 13);
             this.label5.TabIndex = 6;
@@ -118,11 +111,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 78);
+            this.label4.Location = new System.Drawing.Point(40, 162);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 13);
+            this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Cliente";
+            this.label4.Text = "Cliente*";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -214,11 +208,20 @@
             this.dataGridView1.Size = new System.Drawing.Size(378, 269);
             this.dataGridView1.TabIndex = 28;
             // 
+            // comboCliente
+            // 
+            this.comboCliente.FormattingEnabled = true;
+            this.comboCliente.Location = new System.Drawing.Point(227, 154);
+            this.comboCliente.Name = "comboCliente";
+            this.comboCliente.Size = new System.Drawing.Size(200, 21);
+            this.comboCliente.TabIndex = 29;
+            // 
             // RegistroPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 391);
+            this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label2);
@@ -230,7 +233,6 @@
             this.Controls.Add(this.dtmFechaVenc);
             this.Controls.Add(this.txtSucursal);
             this.Controls.Add(this.txtImporte);
-            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.txtNumeroFactura);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -252,7 +254,6 @@
         private System.Windows.Forms.DateTimePicker dtmFechaVenc;
         private System.Windows.Forms.TextBox txtSucursal;
         private System.Windows.Forms.TextBox txtImporte;
-        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.TextBox txtNumeroFactura;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -268,5 +269,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboCliente;
     }
 }

@@ -24,22 +24,36 @@ namespace PagoAgilFrba.Devoluciones
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 this.validar();
                 this.efectuarDevolucion();
                 this.Close();
+                this.parent.Show();
             }
-            catch
-            {
+            //catch
+            //{
                 //   MessageBox.Show("El mail ya existe", "Error", MessageBoxButtons.OK);
-            }
+            //}
 
-        }
+        //}
 
 
         private void efectuarDevolucion()
-        {
+        {   
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand query = new SqlCommand("POSTRESQL.efectuarDevolucion", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@factura", Convert.ToInt32(this.txtCodigoFactura.Text)));
+            query.Parameters.Add(new SqlParameter("@motivo", this.txtMotivo.Text));
+            query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
+
+
+
+            connection.Open();
+            query.ExecuteNonQuery();
+            connection.Close();
+            
         }
 
     
@@ -52,6 +66,7 @@ namespace PagoAgilFrba.Devoluciones
           if (!Validacion.contieneSoloNumeros(txtCodigoFactura.Text)){
                 throw new Exception("El código de Factura debe tener solo numeros");
           }
+          
 
         }
 
