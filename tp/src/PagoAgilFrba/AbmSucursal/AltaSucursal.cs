@@ -26,9 +26,9 @@ namespace PagoAgilFrba.AbmSucursal
                 this.altaSucursal();
                 this.Close();
             }
-            catch
+            catch (Exception excepcion)
             {
-                //MessageBox.Show("El codigo postal ya existe", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -58,12 +58,12 @@ namespace PagoAgilFrba.AbmSucursal
         private void validar() {
             if (Validacion.estaVacio(txtSucu_codigo_postal.Text) || Validacion.estaVacio(txtSucu_direccion.Text) || Validacion.estaVacio(txtSucu_nombre.Text))
             {
-                MessageBox.Show("Debe completar todos los datos", "Error", MessageBoxButtons.OK);
+               
                 throw new Exception("Debe completar todos los datos");
             }
             if (!Validacion.contieneSoloNumeros(txtSucu_codigo_postal.Text))
             {
-                MessageBox.Show("El código postal debe contener únicamente números", "Error", MessageBoxButtons.OK);
+                
                 throw new Exception("El código postal debe contener únicamente números");
             }
 

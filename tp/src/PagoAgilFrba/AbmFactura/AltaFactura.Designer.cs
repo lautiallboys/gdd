@@ -297,6 +297,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaFactura";
             this.Text = "Alta Factura";
+            this.Load += new System.EventHandler(this.AltaFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

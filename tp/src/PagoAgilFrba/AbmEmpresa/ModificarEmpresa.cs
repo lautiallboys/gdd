@@ -43,6 +43,11 @@ namespace PagoAgilFrba.AbmEmpresa
             {
                 throw new Exception("Debe completar todos los datos");
             }
+            if (!Validacion.tieneFormatoDeCuit(txtCuit.Text))
+            {
+
+                throw new Exception("No tiene formato de cuit");
+            }
         }
 
         private void fill_rubro_combo(Rubro rubroSeleccionado)

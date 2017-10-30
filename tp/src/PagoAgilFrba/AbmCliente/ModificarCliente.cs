@@ -88,23 +88,23 @@ namespace PagoAgilFrba.AbmCliente
         {
             if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtApellido.Text) || Validacion.estaVacio(txtDni.Text) || Validacion.estaVacio(txtMail.Text) || Validacion.estaVacio(txtTelefono.Text) || Validacion.estaVacio(txtDireccion.Text) || Validacion.estaVacio(txtCodigo.Text))
             {
-                MessageBox.Show("Debe completar todos los datos", "Error", MessageBoxButtons.OK);
+                
                 throw new Exception("Debe completar todos los datos");
 
             }
             if (!Validacion.contieneSoloNumeros(txtCodigo.Text))
             {
-                MessageBox.Show("El código postal debe contener únicamente números", "Error", MessageBoxButtons.OK);
+               
                 throw new Exception("El código postal debe contener únicamente números");
             }
             if (!Validacion.contieneSoloNumeros(txtTelefono.Text))
             {
-                MessageBox.Show("El telefono debe contener únicamente números", "Error", MessageBoxButtons.OK);
+        
                 throw new Exception("El telefono debe contener únicamente números");
             }
             if (!Validacion.contieneSoloNumeros(txtDni.Text))
             {
-                MessageBox.Show("El dni debe contener únicamente números", "Error", MessageBoxButtons.OK);
+               
                 throw new Exception("El dni debe contener únicamente números");
             }
 
@@ -121,9 +121,9 @@ namespace PagoAgilFrba.AbmCliente
                 this.modificarCliente();
                 this.Close();
             }
-            catch
+            catch (Exception excepcion)
             {
-                //MessageBox.Show("El email ya existe", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
             }
         }
 

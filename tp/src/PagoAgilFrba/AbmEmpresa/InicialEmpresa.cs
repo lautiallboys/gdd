@@ -52,5 +52,10 @@ namespace PagoAgilFrba.AbmEmpresa
             this.Close();
             this.parent.Show();
         }
+
+        private void InicialEmpresa_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

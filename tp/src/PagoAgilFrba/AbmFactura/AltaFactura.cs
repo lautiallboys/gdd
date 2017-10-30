@@ -226,5 +226,10 @@ namespace PagoAgilFrba.AbmFactura
             query.ExecuteNonQuery();
             connection.Close();
         }
+
+        private void AltaFactura_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -132,7 +132,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AltaEmpresa";
-            this.Text = "AltaCliente";
+            this.Text = "AltaEmpresa";
             this.Load += new System.EventHandler(this.AltaCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

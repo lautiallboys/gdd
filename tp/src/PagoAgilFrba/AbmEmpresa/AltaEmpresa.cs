@@ -35,7 +35,12 @@ namespace PagoAgilFrba.AbmEmpresa
         {
             if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtCuit.Text) || Validacion.estaVacio(txtDireccion.Text) || comboBoxRubro.SelectedItem == null)
             {
+               
                 throw new Exception("Debe completar todos los datos");
+            }
+           if (!Validacion.tieneFormatoDeCuit(txtCuit.Text)) {
+                
+                throw new Exception("No tiene formato de cuit");
             }
         }
 
