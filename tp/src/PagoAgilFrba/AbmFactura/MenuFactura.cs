@@ -29,7 +29,7 @@ namespace PagoAgilFrba.AbmFactura
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form bm = new AbmFactura.BMFactura();
+            Form bm = new AbmFactura.BMFactura(this);
             bm.Show();
             this.Hide();
         }
