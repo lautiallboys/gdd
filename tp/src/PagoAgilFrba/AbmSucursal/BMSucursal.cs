@@ -87,11 +87,18 @@ namespace PagoAgilFrba.AbmSucursal
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand command = new SqlCommand("POSTRESQL.filtrarSucursales", connection);
             command.CommandType = CommandType.StoredProcedure;
-                     
-           
+
+
             command.Parameters.Add(new SqlParameter("@nombre", txtNombre.Text));
             command.Parameters.Add(new SqlParameter("@direccion", txtDireccion.Text));
-            command.Parameters.Add(new SqlParameter("@codigo_postal", txtCodigo.Text));
+            if (txtCodigo.Text == "")
+            {
+                command.Parameters.Add(new SqlParameter("@codigo_postal", Convert.ToInt32(0)));
+            }
+            else
+            {
+                command.Parameters.Add(new SqlParameter("@codigo_postal", Convert.ToInt32(txtCodigo.Text)));
+            }
             connection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
@@ -100,6 +107,7 @@ namespace PagoAgilFrba.AbmSucursal
 
 
         }
+
 
 
         private SqlDataReader todos()
