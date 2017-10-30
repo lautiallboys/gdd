@@ -72,8 +72,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "InicialEmpresa";
-            this.Text = "InicialCliente";
-            this.Load += new System.EventHandler(this.InicialCliente_Load);
+            this.Text = "InicialEmpresa";
             this.ResumeLayout(false);
 
         }

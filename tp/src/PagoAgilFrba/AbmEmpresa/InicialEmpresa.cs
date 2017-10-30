@@ -47,11 +47,6 @@ namespace PagoAgilFrba.AbmEmpresa
             bm.Show();
         }
 
-        private void InicialCliente_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
