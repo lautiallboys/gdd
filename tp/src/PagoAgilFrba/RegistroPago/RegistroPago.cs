@@ -20,6 +20,8 @@ namespace PagoAgilFrba.RegistroPago
         DateTime fechaDeVencimiento;
         Int32 importe;
         Int32 sucursal;
+        AbmFactura.Empresa empresaSeleccionada;
+        MedioPago medioPagoSeleccionado;
         private IList<SqlParameter> parametros = new List<SqlParameter>();
 
 
@@ -29,11 +31,13 @@ namespace PagoAgilFrba.RegistroPago
         {
             this.parent = parent;
             InitializeComponent();
+            fill_empresa_combo();
+            fill_medioPago_combo();
         }
 
         private void medioPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            medioPago.Text = medioPago.SelectedText;
+            comboMedioPago.Text = comboMedioPago.SelectedText;
         }
 
         private void comboEmpresa_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,6 +71,54 @@ namespace PagoAgilFrba.RegistroPago
             connection.Close();
         }
 
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.parent.Show();
+        }
+
+
+        private void fill_empresa_combo()
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            List<MedioPago> current_functionalities = new List<MedioPago>();
+            List<MedioPago> all_functionalities = new List<MedioPago>();
+
+            // Pido todas las funcionalidades
+            SqlCommand all_functionalities_command = new SqlCommand("SELECT medio_pago_id, medio_pago_descripcion FROM POSTRESQL.MedioPago", connection);
+            connection.Open();
+            SqlDataReader reader = all_functionalities_command.ExecuteReader();
+            while (reader.Read())
+                all_functionalities.Add(new MedioPago(Int32.Parse(reader["medio_pago_id"].ToString()), reader["medio_pago_descripcion"].ToString()));
+            connection.Close();
+            foreach (MedioPago medioPago in all_functionalities)
+            {
+                this.comboMedioPago.Items.Add(medioPago);
+               // if (rubro.code == rubroSeleccionado.code)
+                this.comboMedioPago.SelectedItem = medioPagoSeleccionado;
+            }
+        }
+
+        private void fill_medioPago_combo()
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            List<AbmFactura.Empresa> current_functionalities = new List<AbmFactura.Empresa>();
+            List<AbmFactura.Empresa> all_functionalities = new List<AbmFactura.Empresa>();
+
+            // Pido todas las funcionalidades
+            SqlCommand all_functionalities_command = new SqlCommand("SELECT empr_id, empr_nombre FROM POSTRESQL.Empresa", connection);
+            connection.Open();
+            SqlDataReader reader = all_functionalities_command.ExecuteReader();
+            while (reader.Read())
+                all_functionalities.Add(new AbmFactura.Empresa(Int32.Parse(reader["empr_id"].ToString()), reader["empr_nombre"].ToString()));
+            connection.Close();
+            foreach (AbmFactura.Empresa empresa in all_functionalities)
+            {
+                this.comboEmpresa.Items.Add(empresa);
+                // if (rubro.code == rubroSeleccionado.code)
+                this.comboEmpresa.SelectedItem = empresaSeleccionada;
+            }
+        }
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -93,6 +145,12 @@ namespace PagoAgilFrba.RegistroPago
         {
 
         }
+
+        private void RegistroPago_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

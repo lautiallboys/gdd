@@ -147,5 +147,10 @@ namespace PagoAgilFrba.AbmCliente
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }

@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroPago\MedioPago.cs" />
     <Compile Include="RegistroPago\RegistroPago.cs">
       <SubType>Form</SubType>
     </Compile>

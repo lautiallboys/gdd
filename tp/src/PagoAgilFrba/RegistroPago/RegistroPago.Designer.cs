@@ -42,14 +42,17 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnContinuar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.medioPago = new System.Windows.Forms.ComboBox();
+            this.comboMedioPago = new System.Windows.Forms.ComboBox();
             this.comboEmpresa = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtmFechaVenc
             // 
-            this.dtmFechaVenc.Location = new System.Drawing.Point(227, 162);
+            this.dtmFechaVenc.Location = new System.Drawing.Point(227, 119);
             this.dtmFechaVenc.MaxDate = new System.DateTime(2017, 12, 31, 0, 0, 0, 0);
             this.dtmFechaVenc.MinDate = new System.DateTime(1910, 1, 1, 0, 0, 0, 0);
             this.dtmFechaVenc.Name = "dtmFechaVenc";
@@ -59,21 +62,21 @@
             // 
             // txtSucursal
             // 
-            this.txtSucursal.Location = new System.Drawing.Point(227, 246);
+            this.txtSucursal.Location = new System.Drawing.Point(227, 200);
             this.txtSucursal.Name = "txtSucursal";
             this.txtSucursal.Size = new System.Drawing.Size(200, 20);
             this.txtSucursal.TabIndex = 11;
             // 
             // txtImporte
             // 
-            this.txtImporte.Location = new System.Drawing.Point(227, 204);
+            this.txtImporte.Location = new System.Drawing.Point(227, 154);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(200, 20);
             this.txtImporte.TabIndex = 12;
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(227, 111);
+            this.txtCliente.Location = new System.Drawing.Point(227, 71);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Size = new System.Drawing.Size(200, 20);
             this.txtCliente.TabIndex = 14;
@@ -88,7 +91,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(40, 246);
+            this.label7.Location = new System.Drawing.Point(40, 203);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 4;
@@ -97,7 +100,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 207);
+            this.label6.Location = new System.Drawing.Point(40, 161);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 5;
@@ -106,7 +109,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 162);
+            this.label5.Location = new System.Drawing.Point(40, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 13);
             this.label5.TabIndex = 6;
@@ -115,7 +118,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 118);
+            this.label4.Location = new System.Drawing.Point(40, 78);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 7;
@@ -124,11 +127,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 75);
+            this.label3.Location = new System.Drawing.Point(41, 246);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Empresa";
+            this.label3.Text = "Empresa*";
             // 
             // label1
             // 
@@ -141,7 +144,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(63, 346);
+            this.btnRegistrar.Location = new System.Drawing.Point(43, 346);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrar.TabIndex = 19;
@@ -150,7 +153,7 @@
             // 
             // btnContinuar
             // 
-            this.btnContinuar.Location = new System.Drawing.Point(286, 346);
+            this.btnContinuar.Location = new System.Drawing.Point(227, 346);
             this.btnContinuar.Name = "btnContinuar";
             this.btnContinuar.Size = new System.Drawing.Size(141, 23);
             this.btnContinuar.TabIndex = 22;
@@ -166,23 +169,19 @@
             this.label8.TabIndex = 23;
             this.label8.Text = "Medio de pago*";
             // 
-            // medioPago
+            // comboMedioPago
             // 
-            this.medioPago.FormattingEnabled = true;
-            this.medioPago.Items.AddRange(new object[] {
-            "Efectivo",
-            "Debito",
-            "Credito"});
-            this.medioPago.Location = new System.Drawing.Point(227, 285);
-            this.medioPago.Name = "medioPago";
-            this.medioPago.Size = new System.Drawing.Size(200, 21);
-            this.medioPago.TabIndex = 24;
-            this.medioPago.SelectedIndexChanged += new System.EventHandler(this.medioPago_SelectedIndexChanged);
+            this.comboMedioPago.FormattingEnabled = true;
+            this.comboMedioPago.Location = new System.Drawing.Point(227, 285);
+            this.comboMedioPago.Name = "comboMedioPago";
+            this.comboMedioPago.Size = new System.Drawing.Size(200, 21);
+            this.comboMedioPago.TabIndex = 24;
+            this.comboMedioPago.SelectedIndexChanged += new System.EventHandler(this.medioPago_SelectedIndexChanged);
             // 
             // comboEmpresa
             // 
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(227, 72);
+            this.comboEmpresa.Location = new System.Drawing.Point(227, 243);
             this.comboEmpresa.Name = "comboEmpresa";
             this.comboEmpresa.Size = new System.Drawing.Size(200, 21);
             this.comboEmpresa.TabIndex = 25;
@@ -197,14 +196,34 @@
             this.label2.TabIndex = 26;
             this.label2.Text = "*Seleccionar despues de que se hayan cargado todas las facturas";
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(479, 346);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(75, 23);
+            this.btnVolver.TabIndex = 27;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(479, 32);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(378, 269);
+            this.dataGridView1.TabIndex = 28;
+            // 
             // RegistroPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 391);
+            this.ClientSize = new System.Drawing.Size(869, 391);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboEmpresa);
-            this.Controls.Add(this.medioPago);
+            this.Controls.Add(this.comboMedioPago);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.btnRegistrar);
@@ -220,7 +239,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "RegistroPago";
-            this.Text = "RegistrarPago";
+            this.Text = "Registro Pago";
+            this.Load += new System.EventHandler(this.RegistroPago_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,8 +263,10 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnContinuar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox medioPago;
+        private System.Windows.Forms.ComboBox comboMedioPago;
         private System.Windows.Forms.ComboBox comboEmpresa;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

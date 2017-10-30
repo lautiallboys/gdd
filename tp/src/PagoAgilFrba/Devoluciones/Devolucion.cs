@@ -24,16 +24,41 @@ namespace PagoAgilFrba.Devoluciones
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
+            try
+            {
+                this.validar();
+                this.efectuarDevolucion();
+                this.Close();
+            }
+            catch
+            {
+                //   MessageBox.Show("El mail ya existe", "Error", MessageBoxButtons.OK);
+            }
+
+        }
 
 
+        private void efectuarDevolucion()
+        {
         }
 
     
         private void validar() {
+          if (Validacion.estaVacio(txtCodigoFactura.Text) || Validacion.estaVacio(txtMotivo.Text))
+            {
+                MessageBox.Show("Debe completar todos los datos", "Error", MessageBoxButtons.OK);
+                throw new Exception("Debe completar todos los datos");
+           } 
+          if (!Validacion.contieneSoloNumeros(txtCodigoFactura.Text)){
+                throw new Exception("El código de Factura debe tener solo numeros");
+          }
 
-          //  if (!txtSucu_codigo_postal.Text.Count().Equals(4))
-            //    throw new Exception("El código postal debe estar compuesto por 4 números");
-        
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.parent.Show();
         }
 
         private void AltaSucursal_Load(object sender, EventArgs e)
