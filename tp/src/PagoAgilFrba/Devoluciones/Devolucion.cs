@@ -13,10 +13,14 @@ namespace PagoAgilFrba.Devoluciones
 {
     public partial class Devolucion : Form
     {
-        public Devolucion()
+
+        Form parent;
+        public Devolucion(Form parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
+
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {

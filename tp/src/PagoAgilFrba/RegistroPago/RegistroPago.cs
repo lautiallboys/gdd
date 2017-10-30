@@ -23,8 +23,11 @@ namespace PagoAgilFrba.RegistroPago
         private IList<SqlParameter> parametros = new List<SqlParameter>();
 
 
-        public RegistroPago()
+
+        Form parent;
+        public RegistroPago(Form parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 

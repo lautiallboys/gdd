@@ -164,6 +164,7 @@
     <Compile Include="Devoluciones\Devolucion.Designer.cs">
       <DependentUpon>Devolucion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devoluciones\Devoluciones.cs" />
     <Compile Include="ListadoEstadistico\ListadoEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>

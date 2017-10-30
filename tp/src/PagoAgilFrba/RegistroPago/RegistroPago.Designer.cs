@@ -44,6 +44,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.medioPago = new System.Windows.Forms.ComboBox();
             this.comboEmpresa = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dtmFechaVenc
@@ -144,7 +145,7 @@
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrar.TabIndex = 19;
-            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.Text = "Pagar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             // 
             // btnContinuar
@@ -153,7 +154,7 @@
             this.btnContinuar.Name = "btnContinuar";
             this.btnContinuar.Size = new System.Drawing.Size(141, 23);
             this.btnContinuar.TabIndex = 22;
-            this.btnContinuar.Text = "Registrar otro pago";
+            this.btnContinuar.Text = "Registrar otra factura";
             this.btnContinuar.UseVisualStyleBackColor = true;
             // 
             // label8
@@ -161,9 +162,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(40, 288);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 13);
+            this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 23;
-            this.label8.Text = "Medio de pago";
+            this.label8.Text = "Medio de pago*";
             // 
             // medioPago
             // 
@@ -187,11 +188,21 @@
             this.comboEmpresa.TabIndex = 25;
             this.comboEmpresa.SelectedIndexChanged += new System.EventHandler(this.comboEmpresa_SelectedIndexChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(160, 309);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(320, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "*Seleccionar despues de que se hayan cargado todas las facturas";
+            // 
             // RegistroPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 391);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.comboEmpresa);
             this.Controls.Add(this.medioPago);
             this.Controls.Add(this.label8);
@@ -233,5 +244,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox medioPago;
         private System.Windows.Forms.ComboBox comboEmpresa;
+        private System.Windows.Forms.Label label2;
     }
 }
