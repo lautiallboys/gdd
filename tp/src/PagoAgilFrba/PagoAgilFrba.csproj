@@ -157,6 +157,12 @@
     </Compile>
     <Compile Include="ConfiguradorDataGrid.cs" />
     <Compile Include="DBConnection.cs" />
+    <Compile Include="Devoluciones\Devolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devoluciones\Devolucion.Designer.cs">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoEstadistico\ListadoEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,12 +195,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistroPago\Form1.cs">
+    <Compile Include="RegistroPago\RegistroPago.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistroPago\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistroPago\RegistroPago.Designer.cs">
+      <DependentUpon>RegistroPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistroPago\PagoRegistrado.cs" />
     <Compile Include="Rendicion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +261,9 @@
     <EmbeddedResource Include="AbmSucursal\ModificarSucursal.resx">
       <DependentUpon>ModificarSucursal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Devoluciones\Devolucion.resx">
+      <DependentUpon>Devolucion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadoEstadistico.resx">
       <DependentUpon>ListadoEstadistico.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +285,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistroPago\RegistroPago.resx">
+      <DependentUpon>RegistroPago.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -288,9 +301,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Devoluciones\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
