@@ -24,6 +24,8 @@ namespace PagoAgilFrba.RegistroPago
         AbmFactura.Cliente clienteSeleccionado;
         MedioPago medioPagoSeleccionado;
         private IList<SqlParameter> parametros = new List<SqlParameter>();
+        private Decimal importeTotal = 0;
+        private List<Decimal> facturas = new List<Decimal>();
 
 
 
@@ -55,22 +57,7 @@ namespace PagoAgilFrba.RegistroPago
 
         private void registrarPago()
         {
-            var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.registrarPago", connection);
-            query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@medio_pago", Convert.ToInt32(this.txtNumeroFactura.Text)));
-            query.Parameters.Add(new SqlParameter("@sucursal", this.txtSucursal.Text));
-         // query.Parameters.Add(new SqlParameter("@usuario", this.txtUsuario.Text));
-         //   query.Parameters.Add(new SqlParameter("@cliente", this.txtCliente.Text));
-            query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
-            query.Parameters.Add(new SqlParameter("@total", this.txtImporte.Text));
 
-            //PONER FACTURA COMO PAGA
-            //LLENAR TABLA INTERMEDIA
-
-            connection.Open();
-            query.ExecuteNonQuery();
-            connection.Close();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -143,14 +130,10 @@ namespace PagoAgilFrba.RegistroPago
             }
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void validar()
         {
+
+    //       If fechaVencimiento > fechaActual -> Rompe
    //         if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtApellido.Text) || Validacion.estaVacio(txtDni.Text) || Validacion.estaVacio(txtCliente.Text) || Validacion.estaVacio(txtTelefono.Text) || Validacion.estaVacio(txtImporte.Text) || Validacion.estaVacio(txtSucursal.Text))
    //         {
     //            throw new Exception("Debe completar todos los datos");
@@ -164,19 +147,61 @@ namespace PagoAgilFrba.RegistroPago
 
         }
 
-        private void AltaCliente_Load(object sender, EventArgs e)
+        private void btnPagar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                this.validar();
+                this.cargarFactura();
+                this.pagar();
+                this.Close();
+            }
+            catch (Exception excepcion)
+            {
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
-        private void RegistroPago_Load(object sender, EventArgs e)
+        private void btnCargarOtraFactura_Click(object sender, EventArgs e)
         {
+                try
+                {
+                    this.validar();
+                    this.cargarFactura();
+                    this.Close();
 
+                }
+                catch (Exception excepcion)
+                {
+                    MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+                }           
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
 
+
+        private void pagar()
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            SqlCommand query = new SqlCommand("POSTRESQL.registrarPago", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            //query.Parameters.Add(new SqlParameter("@medio_pago", this.comboMedioPago.SelectedItem.getCode() ));
+            // query.Parameters.Add(new SqlParameter("@sucursal", this.txtSucursal.Text));
+            query.Parameters.Add(new SqlParameter("@usuario", this.txtUsuario.Text));
+            // query.Parameters.Add(new SqlParameter("@cliente", this.comboCliente.SelectedItem.getId());
+            query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
+            query.Parameters.Add(new SqlParameter("@total", importeTotal));
+
+            //PONER FACTURA COMO PAGA
+
+            connection.Open();
+            query.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        private void cargarFactura()
+        {
+            facturas.Add(Convert.ToDecimal(txtNumeroFactura.Text));
+            importeTotal += Convert.ToDecimal(txtImporte.Text);
         }
 
 

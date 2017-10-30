@@ -29,17 +29,15 @@
         private void InitializeComponent()
         {
             this.dtmFechaVenc = new System.Windows.Forms.DateTimePicker();
-            this.txtSucursal = new System.Windows.Forms.TextBox();
             this.txtImporte = new System.Windows.Forms.TextBox();
             this.txtNumeroFactura = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.btnContinuar = new System.Windows.Forms.Button();
+            this.btnPagar = new System.Windows.Forms.Button();
+            this.btnCargarOtraFactura = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.comboMedioPago = new System.Windows.Forms.ComboBox();
             this.comboEmpresa = new System.Windows.Forms.ComboBox();
@@ -47,6 +45,8 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboCliente = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,13 +59,6 @@
             this.dtmFechaVenc.Size = new System.Drawing.Size(200, 20);
             this.dtmFechaVenc.TabIndex = 18;
             this.dtmFechaVenc.Value = new System.DateTime(2017, 10, 26, 11, 38, 33, 0);
-            // 
-            // txtSucursal
-            // 
-            this.txtSucursal.Location = new System.Drawing.Point(227, 200);
-            this.txtSucursal.Name = "txtSucursal";
-            this.txtSucursal.Size = new System.Drawing.Size(200, 20);
-            this.txtSucursal.TabIndex = 11;
             // 
             // txtImporte
             // 
@@ -80,15 +73,6 @@
             this.txtNumeroFactura.Name = "txtNumeroFactura";
             this.txtNumeroFactura.Size = new System.Drawing.Size(200, 20);
             this.txtNumeroFactura.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(40, 203);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Sucursal*";
             // 
             // label6
             // 
@@ -116,12 +100,11 @@
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Cliente*";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 246);
+            this.label3.Location = new System.Drawing.Point(40, 229);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 8;
@@ -136,28 +119,30 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Numero de Factura";
             // 
-            // btnRegistrar
+            // btnPagar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(43, 346);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 19;
-            this.btnRegistrar.Text = "Pagar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnPagar.Location = new System.Drawing.Point(43, 346);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(75, 23);
+            this.btnPagar.TabIndex = 19;
+            this.btnPagar.Text = "Pagar";
+            this.btnPagar.UseVisualStyleBackColor = true;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
-            // btnContinuar
+            // btnCargarOtraFactura
             // 
-            this.btnContinuar.Location = new System.Drawing.Point(227, 346);
-            this.btnContinuar.Name = "btnContinuar";
-            this.btnContinuar.Size = new System.Drawing.Size(141, 23);
-            this.btnContinuar.TabIndex = 22;
-            this.btnContinuar.Text = "Registrar otra factura";
-            this.btnContinuar.UseVisualStyleBackColor = true;
+            this.btnCargarOtraFactura.Location = new System.Drawing.Point(227, 346);
+            this.btnCargarOtraFactura.Name = "btnCargarOtraFactura";
+            this.btnCargarOtraFactura.Size = new System.Drawing.Size(141, 23);
+            this.btnCargarOtraFactura.TabIndex = 22;
+            this.btnCargarOtraFactura.Text = "Registrar otra factura";
+            this.btnCargarOtraFactura.UseVisualStyleBackColor = true;
+            this.btnCargarOtraFactura.Click += new System.EventHandler(this.btnCargarOtraFactura_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(40, 288);
+            this.label8.Location = new System.Drawing.Point(40, 255);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 23;
@@ -166,7 +151,7 @@
             // comboMedioPago
             // 
             this.comboMedioPago.FormattingEnabled = true;
-            this.comboMedioPago.Location = new System.Drawing.Point(227, 285);
+            this.comboMedioPago.Location = new System.Drawing.Point(227, 252);
             this.comboMedioPago.Name = "comboMedioPago";
             this.comboMedioPago.Size = new System.Drawing.Size(200, 21);
             this.comboMedioPago.TabIndex = 24;
@@ -175,7 +160,7 @@
             // comboEmpresa
             // 
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(227, 243);
+            this.comboEmpresa.Location = new System.Drawing.Point(227, 225);
             this.comboEmpresa.Name = "comboEmpresa";
             this.comboEmpresa.Size = new System.Drawing.Size(200, 21);
             this.comboEmpresa.TabIndex = 25;
@@ -184,7 +169,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(160, 309);
+            this.label2.Location = new System.Drawing.Point(153, 288);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(320, 13);
             this.label2.TabIndex = 26;
@@ -216,11 +201,29 @@
             this.comboCliente.Size = new System.Drawing.Size(200, 21);
             this.comboCliente.TabIndex = 29;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(40, 196);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Usuario*";
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Location = new System.Drawing.Point(227, 189);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(200, 20);
+            this.txtUsuario.TabIndex = 31;
+            // 
             // RegistroPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 391);
+            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnVolver);
@@ -228,13 +231,11 @@
             this.Controls.Add(this.comboEmpresa);
             this.Controls.Add(this.comboMedioPago);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.btnContinuar);
-            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.btnCargarOtraFactura);
+            this.Controls.Add(this.btnPagar);
             this.Controls.Add(this.dtmFechaVenc);
-            this.Controls.Add(this.txtSucursal);
             this.Controls.Add(this.txtImporte);
             this.Controls.Add(this.txtNumeroFactura);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -242,7 +243,6 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistroPago";
             this.Text = "Registro Pago";
-            this.Load += new System.EventHandler(this.RegistroPago_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -252,17 +252,15 @@
         #endregion
 
         private System.Windows.Forms.DateTimePicker dtmFechaVenc;
-        private System.Windows.Forms.TextBox txtSucursal;
         private System.Windows.Forms.TextBox txtImporte;
         private System.Windows.Forms.TextBox txtNumeroFactura;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnRegistrar;
-        private System.Windows.Forms.Button btnContinuar;
+        private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.Button btnCargarOtraFactura;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboMedioPago;
         private System.Windows.Forms.ComboBox comboEmpresa;
@@ -270,5 +268,7 @@
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboCliente;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtUsuario;
     }
 }

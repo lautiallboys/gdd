@@ -24,19 +24,19 @@ namespace PagoAgilFrba.Devoluciones
 
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 this.validar();
                 this.efectuarDevolucion();
                 this.Close();
                 this.parent.Show();
             }
-            //catch
-            //{
-                //   MessageBox.Show("El mail ya existe", "Error", MessageBoxButtons.OK);
-            //}
+            catch
+            {
+               //essageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+            }
 
-        //}
+        }
 
 
         private void efectuarDevolucion()
