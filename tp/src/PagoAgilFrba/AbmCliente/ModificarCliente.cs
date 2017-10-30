@@ -107,7 +107,11 @@ namespace PagoAgilFrba.AbmCliente
                
                 throw new Exception("El dni debe contener únicamente números");
             }
+            if (!Validacion.tieneFormatoMail(txtMail.Text))
+            {
 
+                throw new Exception("Ingrese el mail correctamente");
+            }
 
         }
 
