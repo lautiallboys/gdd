@@ -30,7 +30,6 @@ namespace PagoAgilFrba.AbmFactura
 
         private void fill_empresas()
         {
-            this.cmbEmpresa.Items.Clear();
             foreach (Empresa empresa in obtenerEmpresas())
                 this.cmbEmpresa.Items.Add(empresa);
         }

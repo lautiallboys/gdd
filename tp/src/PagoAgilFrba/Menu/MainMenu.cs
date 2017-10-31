@@ -59,7 +59,7 @@ namespace PagoAgilFrba.Menu
             this.form_mapping.Add(5, () => new AbmFactura.MenuFactura(this));
             this.form_mapping.Add(6, () => new RegistroPago.RegistroPago(this, this.username, this.sucursal_code));
             this.form_mapping.Add(7, () => new Devoluciones.Devolucion(this));
-            /* this.form_mapping.Add(8, () => new Rendicion.Rendicion(this));*/
+            this.form_mapping.Add(8, () => new Rendicion.Rendicion(this));
             this.form_mapping.Add(9, () => new ListadoEstadistico.ListadoEstadistico(this));
         }
 

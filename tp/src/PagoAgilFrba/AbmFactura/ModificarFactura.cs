@@ -42,8 +42,16 @@ namespace PagoAgilFrba.AbmFactura
             reader.Read();
             
             txtNumero.Text = reader["fact_numero"].ToString();
-            cmbCliente.SelectedValue = obtenerClientes().Find(cliente => cliente.code == Int32.Parse(reader["fact_cliente"].ToString())).name;
-            cmbEmpresa.SelectedValue = obtenerEmpresas().Find(empresa => empresa.code == Int32.Parse(reader["fact_empresa"].ToString())).name;
+            foreach (Cliente cliente in cmbCliente.Items)
+            {
+                if (cliente.code == Int32.Parse(reader["fact_cliente"].ToString()))
+                    cmbCliente.SelectedIndex = cmbCliente.Items.IndexOf(cliente);
+            } 
+            foreach (Empresa empresa in cmbEmpresa.Items)
+            {
+                if (empresa.code == Int32.Parse(reader["fact_empresa"].ToString()))
+                    cmbEmpresa.SelectedIndex = cmbEmpresa.Items.IndexOf(empresa);
+            }
             fechaAlta.Value = DateTime.Parse(reader["fact_fecha"].ToString());
             fechaVencimiento.Value = DateTime.Parse(reader["fact_fecha_vencimiento"].ToString());
 
@@ -140,10 +148,6 @@ namespace PagoAgilFrba.AbmFactura
             {
                 throw new Exception("La fecha de vencimiento debe ser posterior a la fecha de alta");
             }
-            if (esUnico(Int32.Parse(txtNumero.Text)))
-            {
-                throw new Exception("Ya existe una factura con el número ingresado");
-            }
             if (!estanBienGenerados(generarItems()))
             {
                 throw new Exception("Se deben completar los 3 campos de cada item ingresado correctamente");
@@ -169,7 +173,7 @@ namespace PagoAgilFrba.AbmFactura
             try
             {
                 this.validar();
-                this.altaFactura();
+                this.modificarFactura();
                 this.Close();
                 parent.Show();
             }
@@ -233,9 +237,9 @@ namespace PagoAgilFrba.AbmFactura
             return listaItems;
         }
 
-        private void altaFactura() {
+        private void modificarFactura() {
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.altaFactura", connection);
+            SqlCommand query = new SqlCommand("POSTRESQL.modificarFactura", connection);
             query.CommandType = CommandType.StoredProcedure;
             query.Parameters.Add(new SqlParameter("@fact_numero", Int16.Parse(txtNumero.Text)));
             query.Parameters.Add(new SqlParameter("@fact_cliente", ((Cliente)cmbCliente.SelectedItem).code));

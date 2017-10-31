@@ -223,11 +223,12 @@
       <DependentUpon>RegistroPago.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistroPago\PagoRegistrado.cs" />
-    <Compile Include="Rendicion\Form1.cs">
+    <Compile Include="Rendicion\Empresa.cs" />
+    <Compile Include="Rendicion\Rendicion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Rendicion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Rendicion\Rendicion.Designer.cs">
+      <DependentUpon>Rendicion.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Validacion.cs" />
@@ -317,6 +318,9 @@
     </Compile>
     <EmbeddedResource Include="RegistroPago\RegistroPago.resx">
       <DependentUpon>RegistroPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rendicion\Rendicion.resx">
+      <DependentUpon>Rendicion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
