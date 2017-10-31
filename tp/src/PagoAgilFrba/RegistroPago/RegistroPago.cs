@@ -161,13 +161,16 @@ namespace PagoAgilFrba.RegistroPago
 
         private void pagar()
         {
+
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand query = new SqlCommand("POSTRESQL.registrarPago", connection);
             query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@medio_pago", this.comboMedioPago.Text));
+            MedioPago medioPago = (MedioPago)(this.comboMedioPago.SelectedItem);
+            query.Parameters.Add(new SqlParameter("@medio_pago", Convert.ToInt32(medioPago.code)));   
             query.Parameters.Add(new SqlParameter("@sucursal", sucursalCode));
             query.Parameters.Add(new SqlParameter("@usuario", username));
-            query.Parameters.Add(new SqlParameter("@cliente", this.comboCliente.Text));
+            AbmFactura.Cliente cliente = (AbmFactura.Cliente)(this.comboCliente.SelectedItem);
+            query.Parameters.Add(new SqlParameter("@cliente", Convert.ToInt32(cliente.code)));
             query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
             query.Parameters.Add(new SqlParameter("@total", importeTotal));    
 
@@ -191,10 +194,12 @@ namespace PagoAgilFrba.RegistroPago
             query.Parameters.Add(new SqlParameter("@usuario", username));
             query.Parameters.Add(new SqlParameter("@factura", idFactura));
             query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
-            query.Parameters.Add(new SqlParameter("@cliente", this.comboCliente.Text));
+            AbmFactura.Cliente cliente = (AbmFactura.Cliente)(this.comboCliente.SelectedItem);
+            query.Parameters.Add(new SqlParameter("@cliente", Convert.ToInt32(cliente.code)));
             query.Parameters.Add(new SqlParameter("@importe", importeTotal));
             query.Parameters.Add(new SqlParameter("@sucursal", sucursalCode));
-            query.Parameters.Add(new SqlParameter("@medio", this.comboMedioPago.Text));
+            MedioPago medioPago = (MedioPago)(this.comboMedioPago.SelectedItem);
+            query.Parameters.Add(new SqlParameter("@medio", Convert.ToInt32(medioPago.code)));
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();
