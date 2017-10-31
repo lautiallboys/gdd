@@ -26,7 +26,7 @@ namespace PagoAgilFrba.AbmCliente
         private void validar()
         {
 
-            if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtApellido.Text) || Validacion.estaVacio(txtDni.Text) || Validacion.estaVacio(txtMail.Text) || Validacion.estaVacio(txtTelefono.Text) || Validacion.estaVacio(txtDireccion.Text) || Validacion.estaVacio(txtCodigo.Text))
+            if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtApellido.Text) || Validacion.estaVacio(txtDni.Text) || Validacion.estaVacio(txtMail.Text) || Validacion.estaVacio(txtTelefono.Text) || Validacion.estaVacio(txtCalle.Text) || Validacion.estaVacio(txtCodigo.Text) || Validacion.estaVacio(txtLocalidad.Text))
             {
               
                 throw new Exception("Debe completar todos los datos");
@@ -79,7 +79,7 @@ namespace PagoAgilFrba.AbmCliente
             query.Parameters.Add(new SqlParameter("@nombre", this.txtNombre.Text));
             query.Parameters.Add(new SqlParameter("@mail", this.txtMail.Text));
             query.Parameters.Add(new SqlParameter("@telefono", Convert.ToInt32(this.txtTelefono.Text)));
-            query.Parameters.Add(new SqlParameter("@direccion", this.txtDireccion.Text));
+            query.Parameters.Add(new SqlParameter("@direccion", this.obtenerDireccion()));
             query.Parameters.Add(new SqlParameter("@codigo", this.txtCodigo.Text));
             query.Parameters.Add(new SqlParameter("@fecha", this.dtmFecha.Value));
 
@@ -90,6 +90,27 @@ namespace PagoAgilFrba.AbmCliente
         private void AltaCliente_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private String obtenerDireccion() {
+
+            if (!(txtPisoDepto.Text == ""))
+            {
+                return this.txtCalle.Text + ", " + txtPisoDepto.Text + ", " + txtLocalidad.Text;
+            }
+            else
+                return this.txtCalle.Text + ", " + txtLocalidad.Text;
+        
         }
     }
 }
