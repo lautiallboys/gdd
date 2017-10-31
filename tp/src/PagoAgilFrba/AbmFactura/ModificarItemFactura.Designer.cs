@@ -43,14 +43,14 @@
             this.txtMonto.Location = new System.Drawing.Point(122, 38);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(100, 20);
-            this.txtMonto.TabIndex = 4;
+            this.txtMonto.TabIndex = 1;
             // 
             // txtConcepto
             // 
             this.txtConcepto.Location = new System.Drawing.Point(122, 12);
             this.txtConcepto.Name = "txtConcepto";
             this.txtConcepto.Size = new System.Drawing.Size(100, 20);
-            this.txtConcepto.TabIndex = 5;
+            this.txtConcepto.TabIndex = 0;
             // 
             // lblSucu_direccion
             // 
@@ -84,14 +84,14 @@
             this.txtCantidad.Location = new System.Drawing.Point(122, 64);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(100, 20);
-            this.txtCantidad.TabIndex = 4;
+            this.txtCantidad.TabIndex = 2;
             // 
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(66, 102);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 6;
+            this.btnAceptar.TabIndex = 3;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAlta_Click);
@@ -101,7 +101,7 @@
             this.btnVolver.Location = new System.Drawing.Point(147, 102);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
-            this.btnVolver.TabIndex = 7;
+            this.btnVolver.TabIndex = 4;
             this.btnVolver.Text = " Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);

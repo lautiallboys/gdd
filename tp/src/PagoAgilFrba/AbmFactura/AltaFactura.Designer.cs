@@ -62,7 +62,7 @@
             this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Cliente";
             // 
             // label2
@@ -89,21 +89,21 @@
             this.txtTotal.Location = new System.Drawing.Point(232, 202);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(200, 20);
-            this.txtTotal.TabIndex = 1;
+            this.txtTotal.TabIndex = 8;
             // 
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(232, 123);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(200, 20);
-            this.txtNumero.TabIndex = 1;
+            this.txtNumero.TabIndex = 5;
             // 
             // btnVolver
             // 
             this.btnVolver.Location = new System.Drawing.Point(830, 227);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
-            this.btnVolver.TabIndex = 3;
+            this.btnVolver.TabIndex = 14;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -124,7 +124,7 @@
             this.cmbEmpresa.Location = new System.Drawing.Point(232, 96);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(200, 21);
-            this.cmbEmpresa.TabIndex = 11;
+            this.cmbEmpresa.TabIndex = 4;
             // 
             // label5
             // 
@@ -142,7 +142,7 @@
             this.cmbCliente.Location = new System.Drawing.Point(232, 12);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(200, 21);
-            this.cmbCliente.TabIndex = 15;
+            this.cmbCliente.TabIndex = 3;
             // 
             // label6
             // 
@@ -158,7 +158,7 @@
             this.btnConfirmar.Location = new System.Drawing.Point(749, 227);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirmar.TabIndex = 16;
+            this.btnConfirmar.TabIndex = 13;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
@@ -168,14 +168,14 @@
             this.fechaVencimiento.Location = new System.Drawing.Point(232, 176);
             this.fechaVencimiento.Name = "fechaVencimiento";
             this.fechaVencimiento.Size = new System.Drawing.Size(200, 20);
-            this.fechaVencimiento.TabIndex = 17;
+            this.fechaVencimiento.TabIndex = 7;
             // 
             // fechaAlta
             // 
             this.fechaAlta.Location = new System.Drawing.Point(232, 149);
             this.fechaAlta.Name = "fechaAlta";
             this.fechaAlta.Size = new System.Drawing.Size(200, 20);
-            this.fechaAlta.TabIndex = 18;
+            this.fechaAlta.TabIndex = 6;
             // 
             // label7
             // 
@@ -196,7 +196,7 @@
             this.grdItems.Location = new System.Drawing.Point(552, 12);
             this.grdItems.Name = "grdItems";
             this.grdItems.Size = new System.Drawing.Size(353, 206);
-            this.grdItems.TabIndex = 24;
+            this.grdItems.TabIndex = 12;
             this.grdItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cambioItems);
             // 
             // Concepto
@@ -219,7 +219,7 @@
             this.txtFiltroNombre.Location = new System.Drawing.Point(126, 13);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
             this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroNombre.TabIndex = 25;
+            this.txtFiltroNombre.TabIndex = 0;
             this.txtFiltroNombre.TextChanged += new System.EventHandler(this.filtrosClienteCambiaron);
             // 
             // txtFiltroDni
@@ -227,7 +227,7 @@
             this.txtFiltroDni.Location = new System.Drawing.Point(126, 65);
             this.txtFiltroDni.Name = "txtFiltroDni";
             this.txtFiltroDni.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroDni.TabIndex = 27;
+            this.txtFiltroDni.TabIndex = 2;
             this.txtFiltroDni.TextChanged += new System.EventHandler(this.filtrosClienteCambiaron);
             // 
             // label8
@@ -265,7 +265,7 @@
             this.txtFiltroApellido.Location = new System.Drawing.Point(126, 39);
             this.txtFiltroApellido.Name = "txtFiltroApellido";
             this.txtFiltroApellido.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroApellido.TabIndex = 31;
+            this.txtFiltroApellido.TabIndex = 1;
             this.txtFiltroApellido.TextChanged += new System.EventHandler(this.filtrosClienteCambiaron);
             // 
             // AltaFactura
@@ -308,27 +308,27 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.TextBox txtNumero;
-        private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbEmpresa;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.DateTimePicker fechaVencimiento;
-        private System.Windows.Forms.DateTimePicker fechaAlta;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtFiltroNombre;
+        private System.Windows.Forms.TextBox txtFiltroDni;
+        private System.Windows.Forms.TextBox txtFiltroApellido;
+        private System.Windows.Forms.ComboBox cmbCliente;
+        private System.Windows.Forms.ComboBox cmbEmpresa;
+        private System.Windows.Forms.TextBox txtNumero;
+        private System.Windows.Forms.DateTimePicker fechaAlta;
+        private System.Windows.Forms.DateTimePicker fechaVencimiento;
         private System.Windows.Forms.DataGridView grdItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn Concepto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.TextBox txtFiltroNombre;
-        private System.Windows.Forms.TextBox txtFiltroDni;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtFiltroApellido;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

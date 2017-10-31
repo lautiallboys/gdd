@@ -80,7 +80,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 91);
+            this.label4.Location = new System.Drawing.Point(349, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 13);
             this.label4.TabIndex = 0;
@@ -89,7 +89,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(370, 18);
+            this.label5.Location = new System.Drawing.Point(698, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 0;
@@ -98,7 +98,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 197);
+            this.label6.Location = new System.Drawing.Point(12, 94);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 0;
@@ -107,7 +107,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 223);
+            this.label7.Location = new System.Drawing.Point(12, 120);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 0;
@@ -116,7 +116,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 246);
+            this.label8.Location = new System.Drawing.Point(12, 143);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 0;
@@ -125,7 +125,7 @@
             // txtImporteComision
             // 
             this.txtImporteComision.Enabled = false;
-            this.txtImporteComision.Location = new System.Drawing.Point(143, 220);
+            this.txtImporteComision.Location = new System.Drawing.Point(143, 117);
             this.txtImporteComision.Name = "txtImporteComision";
             this.txtImporteComision.Size = new System.Drawing.Size(200, 20);
             this.txtImporteComision.TabIndex = 1;
@@ -141,17 +141,17 @@
             // txtTotalRendicion
             // 
             this.txtTotalRendicion.Enabled = false;
-            this.txtTotalRendicion.Location = new System.Drawing.Point(143, 246);
+            this.txtTotalRendicion.Location = new System.Drawing.Point(143, 143);
             this.txtTotalRendicion.Name = "txtTotalRendicion";
             this.txtTotalRendicion.Size = new System.Drawing.Size(200, 20);
             this.txtTotalRendicion.TabIndex = 1;
             // 
             // txtPorcentaje
             // 
-            this.txtPorcentaje.Location = new System.Drawing.Point(143, 194);
+            this.txtPorcentaje.Location = new System.Drawing.Point(143, 91);
             this.txtPorcentaje.Name = "txtPorcentaje";
             this.txtPorcentaje.Size = new System.Drawing.Size(200, 20);
-            this.txtPorcentaje.TabIndex = 1;
+            this.txtPorcentaje.TabIndex = 2;
             this.txtPorcentaje.TextChanged += new System.EventHandler(this.cambioComision);
             // 
             // fechaRendicion
@@ -161,26 +161,26 @@
             this.fechaRendicion.MinDate = new System.DateTime(1910, 1, 1, 0, 0, 0, 0);
             this.fechaRendicion.Name = "fechaRendicion";
             this.fechaRendicion.Size = new System.Drawing.Size(200, 20);
-            this.fechaRendicion.TabIndex = 2;
+            this.fechaRendicion.TabIndex = 0;
             this.fechaRendicion.Value = new System.DateTime(2017, 10, 26, 11, 38, 33, 0);
             this.fechaRendicion.ValueChanged += new System.EventHandler(this.cambioFiltro);
             // 
             // btnRendir
             // 
-            this.btnRendir.Location = new System.Drawing.Point(530, 286);
+            this.btnRendir.Location = new System.Drawing.Point(858, 286);
             this.btnRendir.Name = "btnRendir";
             this.btnRendir.Size = new System.Drawing.Size(75, 23);
-            this.btnRendir.TabIndex = 3;
+            this.btnRendir.TabIndex = 5;
             this.btnRendir.Text = "Rendir";
             this.btnRendir.UseVisualStyleBackColor = true;
             this.btnRendir.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(611, 286);
+            this.btnVolver.Location = new System.Drawing.Point(939, 286);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
-            this.btnVolver.TabIndex = 4;
+            this.btnVolver.TabIndex = 6;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -192,7 +192,7 @@
             this.cmbEmpresa.Location = new System.Drawing.Point(143, 38);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(200, 21);
-            this.cmbEmpresa.TabIndex = 5;
+            this.cmbEmpresa.TabIndex = 1;
             this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cambioFiltro);
             // 
             // grdFacturas
@@ -200,26 +200,28 @@
             this.grdFacturas.AllowUserToAddRows = false;
             this.grdFacturas.AllowUserToDeleteRows = false;
             this.grdFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdFacturas.Location = new System.Drawing.Point(143, 91);
+            this.grdFacturas.Location = new System.Drawing.Point(352, 38);
             this.grdFacturas.Name = "grdFacturas";
             this.grdFacturas.ReadOnly = true;
-            this.grdFacturas.Size = new System.Drawing.Size(200, 97);
-            this.grdFacturas.TabIndex = 8;
+            this.grdFacturas.Size = new System.Drawing.Size(343, 242);
+            this.grdFacturas.TabIndex = 3;
             this.grdFacturas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cargarItems);
+            this.grdFacturas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.cargarItems);
+            this.grdFacturas.SelectionChanged += new System.EventHandler(this.cargarItems);
             // 
             // grdItems
             // 
             this.grdItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdItems.Location = new System.Drawing.Point(408, 12);
+            this.grdItems.Location = new System.Drawing.Point(701, 38);
             this.grdItems.Name = "grdItems";
-            this.grdItems.Size = new System.Drawing.Size(278, 254);
-            this.grdItems.TabIndex = 9;
+            this.grdItems.Size = new System.Drawing.Size(313, 242);
+            this.grdItems.TabIndex = 4;
             // 
             // Rendicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 321);
+            this.ClientSize = new System.Drawing.Size(1026, 321);
             this.Controls.Add(this.grdItems);
             this.Controls.Add(this.grdFacturas);
             this.Controls.Add(this.cmbEmpresa);

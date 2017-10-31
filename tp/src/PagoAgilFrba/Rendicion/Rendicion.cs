@@ -172,5 +172,18 @@ namespace PagoAgilFrba.Rendicion
             this.parent.Show();
         }
 
+        private void cargarItems(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (grdFacturas.SelectedRows.Count == 1)
+                obtenerItemsPara(Int32.Parse(grdFacturas.SelectedRows[0].Cells[0].Value.ToString()));
+        }
+
+        private void cargarItems(object sender, EventArgs e)
+        {
+            if (grdFacturas.SelectedRows.Count == 1)
+                obtenerItemsPara(Int32.Parse(grdFacturas.SelectedRows[0].Cells[0].Value.ToString()));
+     
+        }
+
     }
 }

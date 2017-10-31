@@ -53,14 +53,14 @@
             this.dataGridView1.Location = new System.Drawing.Point(28, 172);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(635, 150);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.TabIndex = 6;
             // 
             // btnModif
             // 
             this.btnModif.Location = new System.Drawing.Point(669, 235);
             this.btnModif.Name = "btnModif";
             this.btnModif.Size = new System.Drawing.Size(75, 23);
-            this.btnModif.TabIndex = 7;
+            this.btnModif.TabIndex = 8;
             this.btnModif.Text = "Modificar";
             this.btnModif.UseVisualStyleBackColor = true;
             this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
@@ -70,7 +70,7 @@
             this.btnBaja.Location = new System.Drawing.Point(669, 206);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(75, 23);
-            this.btnBaja.TabIndex = 5;
+            this.btnBaja.TabIndex = 7;
             this.btnBaja.Text = "Baja";
             this.btnBaja.UseVisualStyleBackColor = true;
             this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
@@ -80,7 +80,7 @@
             this.btnVolver.Location = new System.Drawing.Point(669, 338);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
-            this.btnVolver.TabIndex = 6;
+            this.btnVolver.TabIndex = 9;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -100,7 +100,7 @@
             this.txtFiltroApellido.Location = new System.Drawing.Point(144, 38);
             this.txtFiltroApellido.Name = "txtFiltroApellido";
             this.txtFiltroApellido.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroApellido.TabIndex = 43;
+            this.txtFiltroApellido.TabIndex = 1;
             // 
             // label9
             // 
@@ -127,14 +127,14 @@
             this.txtFiltroDni.Location = new System.Drawing.Point(144, 64);
             this.txtFiltroDni.Name = "txtFiltroDni";
             this.txtFiltroDni.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroDni.TabIndex = 40;
+            this.txtFiltroDni.TabIndex = 2;
             // 
             // txtFiltroNombre
             // 
             this.txtFiltroNombre.Location = new System.Drawing.Point(144, 12);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
             this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroNombre.TabIndex = 39;
+            this.txtFiltroNombre.TabIndex = 0;
             // 
             // cmbCliente
             // 
@@ -143,7 +143,7 @@
             this.cmbCliente.Location = new System.Drawing.Point(250, 11);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(200, 21);
-            this.cmbCliente.TabIndex = 38;
+            this.cmbCliente.TabIndex = 3;
             this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cambioFiltro);
             // 
             // cmbEmpresa
@@ -153,7 +153,7 @@
             this.cmbEmpresa.Location = new System.Drawing.Point(250, 95);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(200, 21);
-            this.cmbEmpresa.TabIndex = 37;
+            this.cmbEmpresa.TabIndex = 4;
             this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cambioFiltro);
             // 
             // txtNumero
@@ -161,7 +161,7 @@
             this.txtNumero.Location = new System.Drawing.Point(250, 122);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(200, 20);
-            this.txtNumero.TabIndex = 36;
+            this.txtNumero.TabIndex = 5;
             this.txtNumero.TextChanged += new System.EventHandler(this.cambioFiltro);
             // 
             // label3
