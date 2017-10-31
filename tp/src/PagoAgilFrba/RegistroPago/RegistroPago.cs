@@ -14,22 +14,30 @@ namespace PagoAgilFrba.RegistroPago
     public partial class RegistroPago : Form
     {
         private IList<SqlParameter> parametros = new List<SqlParameter>();
-        private Decimal importeTotal = 0;
+        private double importeTotal = 0;
         private List<Decimal> facturas = new List<Decimal>();
         private int sucursalCode;
         private string username;
 
         Form parent;
+
         public RegistroPago(Form parent, string username, int sucursalCode)
         {
             this.parent = parent;
             this.sucursalCode = sucursalCode;
             this.username = username;
+            this.cargarPagina();
+        }
+
+        void cargarPagina()
+        {
             InitializeComponent();
             fill_empresa_combo();
             fill_medioPago_combo();
             fill_clientes_combo();
         }
+
+
 
         private void medioPago_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -113,27 +121,45 @@ namespace PagoAgilFrba.RegistroPago
 
         private void validar()
         {
+            if (Validacion.estaVacio(txtNumeroFactura.Text) || Validacion.estaVacio(txtImporte.Text))
+            {
+                throw new Exception("Debe completar todos los datos");
+            }
 
-    //       If fechaVencimiento > fechaActual -> Rompe
-    //      if factura <> empresa -> Rompe
-   //         if (Validacion.estaVacio(txtNombre.Text) || Validacion.estaVacio(txtApellido.Text) || Validacion.estaVacio(txtDni.Text) || Validacion.estaVacio(txtCliente.Text) || Validacion.estaVacio(txtTelefono.Text) || Validacion.estaVacio(txtImporte.Text) || Validacion.estaVacio(txtSucursal.Text))
-   //         {
-    //            throw new Exception("Debe completar todos los datos");
-            //         }
-            //         if (!Validacion.contieneSoloNumeros(txtSucursal.Text))
-            //              throw new Exception("El código postal debe contener únicamente números");
-            //       if (!Validacion.contieneSoloNumeros(txtTelefono.Text))
-            //           throw new Exception("El telefono debe contener únicamente números");
-            //      if (!Validacion.contieneSoloNumeros(txtDni.Text))
-            //      throw new Exception("El dni debe contener únicamente números");
+            if (!Validacion.contieneSoloNumeros(txtNumeroFactura.Text))
+            {
+                throw new Exception("La factura debe contener únicamente números");
+            }
+
+            if( dtmFechaVenc.Value < DateTime.Today){
+        //        throw new Exception("La factura esta vencida");
+            }
 
         }
 
+
+        private void validarPago()
+        {
+            if (Validacion.estaVacio(comboMedioPago.Text) || Validacion.estaVacio(comboEmpresa.Text) || Validacion.estaVacio(comboCliente.Text))
+            {
+                throw new Exception("Debe completar todos los datos para pagar");
+            }
+
+            if (false)
+            {
+                //      if factura <> empresa -> Rompe        
+            }
+
+        }
+
+
+    
         private void btnPagar_Click(object sender, EventArgs e)
         {
             try
             {
                 this.validar();
+                this.validarPago();
                 this.cargarFactura();
                 this.pagar();
                 this.Close();
@@ -150,8 +176,8 @@ namespace PagoAgilFrba.RegistroPago
                 {
                     this.validar();
                     this.cargarFactura();
-                    this.Close();
-                    //refresh()
+                    this.Controls.Clear();
+                    this.cargarPagina();
                 }
                 catch (Exception excepcion)
                 {
@@ -208,7 +234,7 @@ namespace PagoAgilFrba.RegistroPago
         private void cargarFactura()
         {
             facturas.Add(Convert.ToDecimal(txtNumeroFactura.Text));
-            importeTotal += Convert.ToDecimal(txtImporte.Text);
+            importeTotal += Convert.ToDouble(txtImporte.Text);
         }
 
     }
