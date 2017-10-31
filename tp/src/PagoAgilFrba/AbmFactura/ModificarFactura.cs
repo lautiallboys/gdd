@@ -11,21 +11,58 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.AbmFactura
 {
-    public partial class AltaFactura: Form
+    public partial class ModificarFactura: Form
     {
         Form parent;
-        public AltaFactura(Form parent)
+        int numeroFactura;
+
+        public ModificarFactura(Form parent, int numeroFactura)
         {
             this.parent = parent;
+            this.numeroFactura = numeroFactura;
             InitializeComponent();
-            cargar_proximo_numero();
             fill_clientes();
             fill_empresas();
+            cargarDatos();
+            cargarItems();
+            actualizarItems();
         }
 
-        private void cargar_proximo_numero()
+        private void cargarDatos()
         {
-            this.txtNumero.Text = (numeroMayorFactura() + 1).ToString();
+            var connection = DBConnection.getInstance().getConnection();
+            //Obtengo Factura
+            SqlCommand query = new SqlCommand("POSTRESQL.facturaPorNumero", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@numero", numeroFactura));
+            connection.Open();
+
+            SqlDataReader reader = query.ExecuteReader();
+
+            reader.Read();
+            
+            txtNumero.Text = reader["fact_numero"].ToString();
+            cmbCliente.SelectedValue = obtenerClientes().Find(cliente => cliente.code == Int32.Parse(reader["fact_cliente"].ToString())).name;
+            cmbEmpresa.SelectedValue = obtenerEmpresas().Find(empresa => empresa.code == Int32.Parse(reader["fact_empresa"].ToString())).name;
+            fechaAlta.Value = DateTime.Parse(reader["fact_fecha"].ToString());
+            fechaVencimiento.Value = DateTime.Parse(reader["fact_fecha_vencimiento"].ToString());
+
+            connection.Close();
+        }
+
+        private void cargarItems() 
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            //Obtengo Factura
+            SqlCommand query = new SqlCommand("POSTRESQL.itemsPorFactura", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@numeroFactura", numeroFactura));
+            connection.Open();
+
+            SqlDataReader reader = query.ExecuteReader();
+
+            ConfiguradorDataGrid.llenarDataGridConConsulta(reader, grdItems);
+            
         }
 
         private void fill_empresas()
@@ -133,7 +170,6 @@ namespace PagoAgilFrba.AbmFactura
             {
                 this.validar();
                 this.altaFactura();
-                this.altaItems();
                 this.Close();
                 parent.Show();
             }
@@ -146,7 +182,7 @@ namespace PagoAgilFrba.AbmFactura
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.parent.Show();
+            this.parent.Enabled = true;
         }
 
         private void filtrosClienteCambiaron(object sender, EventArgs e)
@@ -156,12 +192,17 @@ namespace PagoAgilFrba.AbmFactura
 
         private void cambioItems(object sender, DataGridViewCellEventArgs e)
         {
+            actualizarItems();
+        }
+
+        private void actualizarItems()
+        {
             List<ItemFactura> listaItems = generarItems();
             if (estanBienGenerados(listaItems))
             {
                 txtTotal.Text = listaItems.Sum(item => item.cantidad * item.monto).ToString();
             }
-            else 
+            else
             {
                 txtTotal.Clear();
             }
@@ -181,7 +222,7 @@ namespace PagoAgilFrba.AbmFactura
                 foreach (DataGridViewRow row in grdItems.Rows)
                     if (!row.IsNewRow)
                     {
-                        listaItems.Add(new ItemFactura(row.Cells[0].Value.ToString(), Double.Parse(row.Cells[1].Value.ToString()), Int32.Parse(row.Cells[2].Value.ToString()), Int16.Parse(txtNumero.Text)));
+                        listaItems.Add(new ItemFactura(row.Cells[1].Value.ToString(), Double.Parse(row.Cells[3].Value.ToString()), Int32.Parse(row.Cells[2].Value.ToString()), Int16.Parse(txtNumero.Text)));
                     }
                
             }
@@ -199,33 +240,96 @@ namespace PagoAgilFrba.AbmFactura
             query.Parameters.Add(new SqlParameter("@fact_numero", Int16.Parse(txtNumero.Text)));
             query.Parameters.Add(new SqlParameter("@fact_cliente", ((Cliente)cmbCliente.SelectedItem).code));
             query.Parameters.Add(new SqlParameter("@fact_empresa", ((Empresa)cmbEmpresa.SelectedItem).code));
-            query.Parameters.Add(new SqlParameter("@fact_fecha", fechaAlta.Value));
-            query.Parameters.Add(new SqlParameter("@fact_fecha_vencimiento", fechaVencimiento.Value));
+            query.Parameters.Add(new SqlParameter("@fact_fecha", fechaVencimiento.Value));
+            query.Parameters.Add(new SqlParameter("@fact_fecha_vencimiento", fechaAlta.Value));
             query.Parameters.Add(new SqlParameter("@fact_total", Double.Parse(txtTotal.Text)));
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();
         }
 
-        private void altaItems()
+        private void btnBorrarItem_Click(object sender, EventArgs e)
         {
-            List<ItemFactura> items = generarItems();
+            foreach (DataGridViewRow row in grdItems.SelectedRows){
+                bajaItemFactura(Convert.ToInt32(row.Cells[0].Value));
+                cargarItems();
+                actualizarItems();
+            }
+        }
 
+        private void bajaItemFactura(int numeroItem)
+        {
             var connection = DBConnection.getInstance().getConnection();
             connection.Open();
-
-            foreach (ItemFactura item in items)
-            {
-                SqlCommand query = new SqlCommand("POSTRESQL.altaItemFactura", connection);
-                query.CommandType = CommandType.StoredProcedure;
-                query.Parameters.Add(new SqlParameter("@concepto", item.concepto));
-                query.Parameters.Add(new SqlParameter("@cantidad", item.cantidad));
-                query.Parameters.Add(new SqlParameter("@monto", item.monto));
-                query.Parameters.Add(new SqlParameter("@numeroFactura", item.factura));    
-                query.ExecuteNonQuery();   
-            }
+            SqlCommand query = new SqlCommand("POSTRESQL.bajaItemFactura", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@id", numeroItem));
+            query.ExecuteNonQuery();
             connection.Close();
         }
 
+        private void btnModificarItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grdItems.SelectedRows.Count == 1)
+                {
+                    DataGridViewRow row = grdItems.SelectedRows[0];
+                    int id= Int32.Parse(row.Cells[0].Value.ToString());
+                    double monto= Double.Parse(row.Cells[3].Value.ToString());
+                    int cantidad= Int32.Parse(row.Cells[2].Value.ToString());
+                    string concepto = row.Cells[1].Value.ToString();
+                    Form modif = new AbmFactura.ModificarItemFactura(this, id, monto, cantidad, concepto);
+                    modif.Show();
+                    this.Enabled = false;
+                }
+                else
+                    throw new Exception("Se debe seleccionar exactamente una fila");
+            }
+
+            catch (Exception excepcion)
+            {
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        public void modificarItemFactura(int id, string concepto, int cantidad, double monto)
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            connection.Open();
+            SqlCommand query = new SqlCommand("POSTRESQL.modificarItemFactura", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@concepto", concepto));
+            query.Parameters.Add(new SqlParameter("@cantidad", cantidad));
+            query.Parameters.Add(new SqlParameter("@monto", monto));
+            query.Parameters.Add(new SqlParameter("@id", id));
+            query.ExecuteNonQuery();
+            connection.Close();
+            cargarItems();
+            actualizarItems();
+        }
+
+        public void agregarItemFactura(string concepto, int cantidad, double monto)
+        {
+            var connection = DBConnection.getInstance().getConnection();
+            connection.Open();
+            SqlCommand query = new SqlCommand("POSTRESQL.altaItemFactura", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@concepto", concepto));
+            query.Parameters.Add(new SqlParameter("@cantidad", cantidad));
+            query.Parameters.Add(new SqlParameter("@monto", monto));
+            query.Parameters.Add(new SqlParameter("@numeroFactura", Int32.Parse(txtNumero.Text)));
+            query.ExecuteNonQuery();
+            connection.Close();
+            cargarItems();
+            actualizarItems();
+        }
+
+        private void btnAgregarItem_Click(object sender, EventArgs e)
+        {
+            Form agregar = new AbmFactura.AgregarItemFactura(this);
+            agregar.Show();
+            this.Enabled = false;
+        }
     }
 }

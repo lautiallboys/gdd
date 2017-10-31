@@ -102,6 +102,18 @@
     <Compile Include="AbmFactura\AltaFactura.Designer.cs">
       <DependentUpon>AltaFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmFactura\AgregarItemFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\AgregarItemFactura.Designer.cs">
+      <DependentUpon>AgregarItemFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\ModificarItemFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\ModificarItemFactura.Designer.cs">
+      <DependentUpon>ModificarItemFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmFactura\BMFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,12 @@
       <DependentUpon>BMFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFactura\Cliente.cs" />
+    <Compile Include="AbmFactura\ModificarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\ModificarFactura.Designer.cs">
+      <DependentUpon>ModificarFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmFactura\ItemFactura.cs" />
     <Compile Include="AbmFactura\MenuFactura.cs">
       <SubType>Form</SubType>
@@ -240,8 +258,17 @@
     <EmbeddedResource Include="AbmFactura\AltaFactura.resx">
       <DependentUpon>AltaFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\AgregarItemFactura.resx">
+      <DependentUpon>AgregarItemFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\ModificarItemFactura.resx">
+      <DependentUpon>ModificarItemFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmFactura\BMFactura.resx">
       <DependentUpon>BMFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\ModificarFactura.resx">
+      <DependentUpon>ModificarFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFactura\MenuFactura.resx">
       <DependentUpon>MenuFactura.cs</DependentUpon>

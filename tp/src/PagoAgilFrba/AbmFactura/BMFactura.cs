@@ -16,51 +16,32 @@ namespace PagoAgilFrba.AbmFactura
         Form parent;
         public BMFactura(Form parent)
         {
-            InitializeComponent();
             this.parent = parent;
-            InitializeComponent();
-            fill_rubro_combo();
+            InitializeComponent(); 
+            fill_clientes();
+            fill_empresas();
+            actualizarFacturas();
         }
 
-        private void fill_rubro_combo()
-        {
-            foreach (Rubro rubro in obtenerRubros())
-                this.cmbFiltroRubro.Items.Add(rubro);
-        }
-
-        private List<Rubro> obtenerRubros()
-        {
-            var connection = DBConnection.getInstance().getConnection();
-            List<Rubro> rubros = new List<Rubro>();
-
-            // Pido todos los rubros
-            SqlCommand all_functionalities_command = new SqlCommand("SELECT * FROM POSTRESQL.Rubro", connection);
-            connection.Open();
-            SqlDataReader reader = all_functionalities_command.ExecuteReader();
-            while (reader.Read())
-                rubros.Add(new Rubro(Int32.Parse(reader["rubr_id"].ToString()), reader["rubr_detalle"].ToString()));
-            connection.Close();
-            return rubros;
-        }
-
-        private void fill_empresas(String nombreFiltro, String cuitFiltro, Int32 codigoRubroFiltro)
+        private void fill_empresas()
         {
             this.cmbEmpresa.Items.Clear();
-            foreach (Empresa empresa in obtenerEmpresas(nombreFiltro, cuitFiltro, codigoRubroFiltro))
+            foreach (Empresa empresa in obtenerEmpresas())
                 this.cmbEmpresa.Items.Add(empresa);
         }
 
-        private List<Empresa> obtenerEmpresas(String nombreFiltro, String cuitFiltro, Int32 codigoRubroFiltro)
+        private void fill_clientes()
+        {
+            cmbCliente.Items.Clear();
+            foreach (Cliente cliente in obtenerClientes())
+                this.cmbCliente.Items.Add(cliente);
+        }
+
+        private List<Empresa> obtenerEmpresas()
         {
             List<Empresa> empresas = new List<Empresa>();
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand command = new SqlCommand("POSTRESQL.filtrarEmpresas", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-
-            command.Parameters.Add(new SqlParameter("@empr_nombre", nombreFiltro));
-            command.Parameters.Add(new SqlParameter("@empr_cuit", cuitFiltro));
-            command.Parameters.Add(new SqlParameter("@empr_rubro", codigoRubroFiltro));
+            SqlCommand command = new SqlCommand("select * from POSTRESQL.Empresa", connection);
 
             connection.Open();
 
@@ -71,10 +52,36 @@ namespace PagoAgilFrba.AbmFactura
             connection.Close();
             return empresas;
         }
-        
-        private void BMCliente_Load(object sender, EventArgs e)
+
+        private List<Cliente> obtenerClientes()
         {
-            ConfiguradorDataGrid.llenarDataGridConConsulta(this.todos(), dataGridView1);
+            int dni;
+            if (Validacion.estaVacio(txtFiltroDni.Text))
+                dni = 0;
+            else
+                dni = Int32.Parse(txtFiltroDni.Text);
+
+            var connection = DBConnection.getInstance().getConnection();
+            List<Cliente> clientes = new List<Cliente>();
+
+            // Filtro Clientes
+            SqlCommand query = new SqlCommand("POSTRESQL.filtrarClientes", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@nombre", txtFiltroNombre.Text));
+            query.Parameters.Add(new SqlParameter("@apellido", txtFiltroApellido.Text));
+            query.Parameters.Add(new SqlParameter("@dni", dni));
+            connection.Open();
+
+            SqlDataReader reader = query.ExecuteReader();
+            while (reader.Read())
+                clientes.Add(new Cliente(Int32.Parse(reader["clie_id"].ToString()), reader["clie_nombre"].ToString(), reader["clie_apellido"].ToString(), Int32.Parse(reader["clie_dni"].ToString())));
+            connection.Close();
+            return clientes;
+        }
+
+        private void filtrosClienteCambiaron(object sender, EventArgs e)
+        {
+            fill_clientes();
         }
 
         private SqlDataReader filtrar()
@@ -84,16 +91,19 @@ namespace PagoAgilFrba.AbmFactura
             command.CommandType = CommandType.StoredProcedure;
 
             int codigoEmpresa;
+            int codigoCliente;
+
             if(cmbEmpresa.SelectedItem != null)
-            {
                 codigoEmpresa = ((Empresa)cmbEmpresa.SelectedItem).code;
-            }
             else
-            {
                 codigoEmpresa = 0;
             
-            }
-            command.Parameters.Add(new SqlParameter("@fact_cliente", txtCliente.Text));
+            if (cmbCliente.SelectedItem != null)
+                codigoCliente = ((Cliente)cmbCliente.SelectedItem).code;
+            else
+                codigoCliente = 0;
+
+            command.Parameters.Add(new SqlParameter("@fact_cliente", codigoCliente));
             command.Parameters.Add(new SqlParameter("@fact_empresa", codigoEmpresa));
             command.Parameters.Add(new SqlParameter("@fact_numero", txtNumero.Text));
            
@@ -103,35 +113,23 @@ namespace PagoAgilFrba.AbmFactura
 
             return reader;
 
-
         }
-        private SqlDataReader todos()
-        {
+      
+        private void bajaFactura() {
 
-            SqlDataReader reader;
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand consulta = new SqlCommand("SELECT empr_id, empr_nombre, empr_cuit, empr_direccion, empr_rubro, rubr_detalle, empr_habilitado from POSTRESQL.Empresa join POSTRESQL.Rubro on empr_rubro = rubr_id", connection);
             connection.Open();
 
-            reader = consulta.ExecuteReader();
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SqlCommand query = new SqlCommand("POSTRESQL.bajaFactura", connection);
+                query.CommandType = CommandType.StoredProcedure;
+                query.Parameters.Add(new SqlParameter("@numero", Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[0].Value)));
+                query.ExecuteNonQuery();
+            }
 
-            return reader;
-
-
-        }
-
-        private void bajaEmpresa() {
-            var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.bajaEmpresa", connection);
-            query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@id", this.seleccionarEmpresa().id));
-            connection.Open();
-            query.ExecuteNonQuery();
             connection.Close();
-        
         }
-
-
 
         private void btnBaja_Click(object sender, EventArgs e)
         {
@@ -139,58 +137,50 @@ namespace PagoAgilFrba.AbmFactura
             {
                 try
                 {
-                    this.bajaEmpresa();
-                    this.Close();
+                    this.bajaFactura();
+                    this.actualizarFacturas();
                 }
                 catch (Exception excepcion)
                 {
                     MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
                 }
             }
-           
-        
-        }
-
-        private AbmEmpresa.ModificadoEmpresa seleccionarEmpresa(){
-            AbmEmpresa.ModificadoEmpresa modificar = new AbmEmpresa.ModificadoEmpresa();
-            Int16 id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[0].Value);
-            String nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-            String cuit = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-            String direccion = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-            Int16 rubro_id = Convert.ToInt16(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
-            String rubro_detalle = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
-            bool habilitado = (bool)dataGridView1.SelectedRows[0].Cells[6].Value;
-            AbmEmpresa.Rubro rubro = new AbmEmpresa.Rubro(rubro_id, rubro_detalle);
-
-            modificar.id = id;
-            modificar.cuit = cuit;
-            modificar.direccion = direccion;
-            modificar.nombre = nombre;
-            modificar.rubro = rubro;
-            modificar.habilitado = habilitado;
-            return modificar;
-        
         }
 
         private void btnModif_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            try
             {
-                try
+                if (dataGridView1.SelectedRows.Count == 1)
                 {
-                    AbmEmpresa.ModificadoEmpresa aModif = this.seleccionarEmpresa();
-                    Form modif = new AbmEmpresa.ModificarEmpresa(aModif.id, aModif.rubro, aModif.cuit, aModif.nombre, aModif.direccion, aModif.habilitado);
-                    modif.Show();
-                    this.Close();
+                    try
+                    {
+                        int idFactura = Int16.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                        Form modif = new AbmFactura.ModificarFactura(this, idFactura);
+                        modif.Show();
+                        this.Enabled = false;
+                    }
+                    catch (Exception excepcion)
+                    {
+                        MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+                    }
                 }
-                catch (Exception excepcion)
-                {
-                    MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
-                }
+                else
+                    throw new Exception("Se debe seleccionar exactamente una fila");
+            }
+
+            catch (Exception excepcion)
+            {
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
             }
         }
 
         private void cambioFiltro(object sender, EventArgs e)
+        {
+            actualizarFacturas();
+        }
+
+        private void actualizarFacturas()
         {
             ConfiguradorDataGrid.llenarDataGridConConsulta(this.filtrar(), dataGridView1);
         }
