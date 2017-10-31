@@ -144,20 +144,7 @@ namespace PagoAgilFrba.Rendicion
             }
             catch (Exception excepcion)
             {
-                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
             }  
-        }
-
-        private void cambioComision(object sender, EventArgs e)
-        {
-            try
-            {
-                this.validar();
-                actualizarImportes();
-            }
-            catch (Exception excepcion)
-            {
-            } 
         }
 
         private void cargarItems(object sender, DataGridViewCellEventArgs e)

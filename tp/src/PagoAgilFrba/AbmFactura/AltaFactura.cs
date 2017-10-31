@@ -102,7 +102,11 @@ namespace PagoAgilFrba.AbmFactura
             {
                 throw new Exception("La fecha de vencimiento debe ser posterior a la fecha de alta");
             }
-            if (esUnico(Int32.Parse(txtNumero.Text)))
+            if (!Validacion.contieneSoloNumeros(txtNumero.Text))
+            {
+                throw new Exception("El campo 'Número' solo puede tener números");
+            }
+            if (noEsUnico(Int32.Parse(txtNumero.Text)))
             {
                 throw new Exception("Ya existe una factura con el número ingresado");
             }
@@ -113,7 +117,7 @@ namespace PagoAgilFrba.AbmFactura
             
         }
 
-        private bool esUnico(Int32 unNumero)
+        private bool noEsUnico(Int32 unNumero)
         {
             bool existsNumber;
             var connection = DBConnection.getInstance().getConnection();
@@ -184,7 +188,7 @@ namespace PagoAgilFrba.AbmFactura
                     }
                
             }
-            catch (NullReferenceException e)
+            catch (Exception excepcion)
             {
                 listaItems.Clear();
             }

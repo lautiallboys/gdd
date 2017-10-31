@@ -152,7 +152,7 @@
             this.txtPorcentaje.Name = "txtPorcentaje";
             this.txtPorcentaje.Size = new System.Drawing.Size(200, 20);
             this.txtPorcentaje.TabIndex = 2;
-            this.txtPorcentaje.TextChanged += new System.EventHandler(this.cambioComision);
+            this.txtPorcentaje.TextChanged += new System.EventHandler(this.cambioFiltro);
             // 
             // fechaRendicion
             // 
@@ -211,9 +211,12 @@
             // 
             // grdItems
             // 
+            this.grdItems.AllowUserToAddRows = false;
+            this.grdItems.AllowUserToDeleteRows = false;
             this.grdItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdItems.Location = new System.Drawing.Point(701, 38);
             this.grdItems.Name = "grdItems";
+            this.grdItems.ReadOnly = true;
             this.grdItems.Size = new System.Drawing.Size(313, 242);
             this.grdItems.TabIndex = 4;
             // 
