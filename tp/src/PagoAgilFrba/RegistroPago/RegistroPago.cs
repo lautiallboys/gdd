@@ -120,7 +120,7 @@ namespace PagoAgilFrba.RegistroPago
             connection.Open();
             SqlDataReader reader = all_functionalities_command.ExecuteReader();
             while (reader.Read())
-                all_functionalities.Add(new AbmFactura.Cliente(Int32.Parse(reader["clie_id"].ToString()), reader["clie_nombre"].ToString(), reader["clie_apellido"].ToString()));
+                all_functionalities.Add(new AbmFactura.Cliente(Int32.Parse(reader["clie_id"].ToString()), reader["clie_nombre"].ToString(), reader["clie_apellido"].ToString(), Int32.Parse(reader["clie_dni"].ToString())));
             connection.Close();
             foreach (AbmFactura.Cliente cliente in all_functionalities)
             {

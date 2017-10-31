@@ -11,12 +11,14 @@ namespace PagoAgilFrba.AbmFactura
         public int code { get; private set; }
         public string name { get; private set; }
         public string surname{ get; private set; }
+        public int dni { get; private set; }
 
-        public Cliente(int code, string name, string surname)
+        public Cliente(int code, string name, string surname, int dni)
         {
             this.code = code;
             this.name= name;
             this.surname = surname;
+            this.dni = dni;
         }
 
         public bool Equals(Cliente other)
@@ -26,7 +28,7 @@ namespace PagoAgilFrba.AbmFactura
 
         public override string ToString()
         {
-            return this.name + this.surname;
+            return this.name + ' ' + this.surname + " (" + this.dni + ")";
         }
     }
 }

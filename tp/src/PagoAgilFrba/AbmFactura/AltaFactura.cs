@@ -20,29 +20,7 @@ namespace PagoAgilFrba.AbmFactura
             InitializeComponent();
             cargar_proximo_numero();
             fill_clientes();
-            fill_rubro_combo();
             fill_empresas();
-        }
-
-        private void fill_rubro_combo()
-        {
-            foreach (Rubro rubro in obtenerRubros())
-                this.cmbFiltroRubro.Items.Add(rubro);
-        }
-
-         private List<Rubro> obtenerRubros()
-        {
-            var connection = DBConnection.getInstance().getConnection();
-            List<Rubro> rubros = new List<Rubro>();
-
-            // Pido todos los rubros
-            SqlCommand all_functionalities_command = new SqlCommand("SELECT * FROM POSTRESQL.Rubro", connection);
-            connection.Open();
-            SqlDataReader reader = all_functionalities_command.ExecuteReader();
-            while (reader.Read())
-                rubros.Add(new Rubro(Int32.Parse(reader["rubr_id"].ToString()), reader["rubr_detalle"].ToString()));
-            connection.Close();
-            return rubros;
         }
 
         private void cargar_proximo_numero()
@@ -59,6 +37,7 @@ namespace PagoAgilFrba.AbmFactura
 
         private void fill_clientes()
         {
+            cmbCliente.Items.Clear();
             foreach (Cliente cliente in obtenerClientes())
                 this.cmbCliente.Items.Add(cliente);
         }
@@ -78,7 +57,6 @@ namespace PagoAgilFrba.AbmFactura
             var connection = DBConnection.getInstance().getConnection();
             SqlCommand command = new SqlCommand("select * from POSTRESQL.Empresa", connection);
 
- 
             connection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
@@ -91,15 +69,26 @@ namespace PagoAgilFrba.AbmFactura
 
         private List<Cliente> obtenerClientes()
         {
+            int dni;
+            if (Validacion.estaVacio(txtFiltroDni.Text))
+                dni = 0;
+            else
+                dni = Int32.Parse(txtFiltroDni.Text);
+
             var connection = DBConnection.getInstance().getConnection();
             List<Cliente> clientes= new List<Cliente>();
 
-            // Pido todos los clientes
-            SqlCommand all_clientes_command = new SqlCommand("SELECT * FROM POSTRESQL.Cliente", connection);
+            // Filtro Clientes
+            SqlCommand query = new SqlCommand("POSTRESQL.filtrarClientes", connection);
+            query.CommandType = CommandType.StoredProcedure;
+            query.Parameters.Add(new SqlParameter("@nombre", txtFiltroNombre.Text));
+            query.Parameters.Add(new SqlParameter("@apellido", txtFiltroApellido.Text));
+            query.Parameters.Add(new SqlParameter("@dni", dni));
             connection.Open();
-            SqlDataReader reader = all_clientes_command.ExecuteReader();
+
+            SqlDataReader reader = query.ExecuteReader();
             while (reader.Read())
-                clientes.Add(new Cliente(Int32.Parse(reader["clie_id"].ToString()), reader["clie_nombre"].ToString(), reader["clie_apellido"].ToString()));
+                clientes.Add(new Cliente(Int32.Parse(reader["clie_id"].ToString()), reader["clie_nombre"].ToString(), reader["clie_apellido"].ToString(), Int32.Parse(reader["clie_dni"].ToString())));
             connection.Close();
             return clientes;
         }
@@ -144,6 +133,7 @@ namespace PagoAgilFrba.AbmFactura
             {
                 this.validar();
                 this.altaFactura();
+                this.altaItems();
                 this.Close();
                 parent.Show();
             }
@@ -159,15 +149,9 @@ namespace PagoAgilFrba.AbmFactura
             this.parent.Show();
         }
 
-        private void filtrosEmpresaCambiaron(object sender, EventArgs e)
+        private void filtrosClienteCambiaron(object sender, EventArgs e)
         {
-            Int32 codigoRubro;
-            if(cmbFiltroRubro.SelectedItem != null)
-            {
-                codigoRubro =((Rubro)cmbFiltroRubro.SelectedItem).code;
-            }
-            else{codigoRubro = 0;}
-            fill_empresas();
+            fill_clientes();
         }
 
         private void cambioItems(object sender, DataGridViewCellEventArgs e)
@@ -197,7 +181,7 @@ namespace PagoAgilFrba.AbmFactura
                 foreach (DataGridViewRow row in grdItems.Rows)
                     if (!row.IsNewRow)
                     {
-                        listaItems.Add(new ItemFactura(row.Cells[0].Value.ToString(), Double.Parse(row.Cells[1].Value.ToString()), Int32.Parse(row.Cells[2].Value.ToString()), Int32.Parse(txtNumero.Text)));
+                        listaItems.Add(new ItemFactura(row.Cells[0].Value.ToString(), Double.Parse(row.Cells[1].Value.ToString()), Int32.Parse(row.Cells[2].Value.ToString()), Int16.Parse(txtNumero.Text)));
                     }
                
             }
@@ -223,9 +207,25 @@ namespace PagoAgilFrba.AbmFactura
             connection.Close();
         }
 
-        private void AltaFactura_Load(object sender, EventArgs e)
+        private void altaItems()
         {
+            List<ItemFactura> items = generarItems();
 
+            var connection = DBConnection.getInstance().getConnection();
+            connection.Open();
+
+            foreach (ItemFactura item in items)
+            {
+                SqlCommand query = new SqlCommand("POSTRESQL.altaItemFactura", connection);
+                query.CommandType = CommandType.StoredProcedure;
+                query.Parameters.Add(new SqlParameter("@concepto", item.concepto));
+                query.Parameters.Add(new SqlParameter("@cantidad", item.cantidad));
+                query.Parameters.Add(new SqlParameter("@monto", item.monto));
+                query.Parameters.Add(new SqlParameter("@numeroFactura", item.factura));    
+                query.ExecuteNonQuery();   
+            }
+            connection.Close();
         }
+
     }
 }

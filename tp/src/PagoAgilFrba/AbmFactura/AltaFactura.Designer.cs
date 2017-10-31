@@ -48,11 +48,11 @@
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtFiltroNombre = new System.Windows.Forms.TextBox();
-            this.txtFiltroCuit = new System.Windows.Forms.TextBox();
-            this.cmbFiltroRubro = new System.Windows.Forms.ComboBox();
+            this.txtFiltroDni = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtFiltroApellido = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 45);
+            this.label2.Location = new System.Drawing.Point(12, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 0;
@@ -77,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 128);
+            this.label3.Location = new System.Drawing.Point(12, 126);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 0;
@@ -86,21 +86,21 @@
             // txtTotal
             // 
             this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(232, 204);
+            this.txtTotal.Location = new System.Drawing.Point(232, 202);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(200, 20);
             this.txtTotal.TabIndex = 1;
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(232, 125);
+            this.txtNumero.Location = new System.Drawing.Point(232, 123);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(200, 20);
             this.txtNumero.TabIndex = 1;
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(830, 237);
+            this.btnVolver.Location = new System.Drawing.Point(830, 227);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 3;
@@ -111,7 +111,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 157);
+            this.label4.Location = new System.Drawing.Point(12, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 10;
@@ -121,7 +121,7 @@
             // 
             this.cmbEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(232, 41);
+            this.cmbEmpresa.Location = new System.Drawing.Point(232, 96);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(200, 21);
             this.cmbEmpresa.TabIndex = 11;
@@ -129,7 +129,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 207);
+            this.label5.Location = new System.Drawing.Point(12, 205);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 12;
@@ -137,6 +137,7 @@
             // 
             // cmbCliente
             // 
+            this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(232, 12);
             this.cmbCliente.Name = "cmbCliente";
@@ -146,7 +147,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 184);
+            this.label6.Location = new System.Drawing.Point(12, 182);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 13);
             this.label6.TabIndex = 14;
@@ -154,7 +155,7 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(749, 237);
+            this.btnConfirmar.Location = new System.Drawing.Point(749, 227);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmar.TabIndex = 16;
@@ -164,14 +165,14 @@
             // 
             // fechaVencimiento
             // 
-            this.fechaVencimiento.Location = new System.Drawing.Point(232, 178);
+            this.fechaVencimiento.Location = new System.Drawing.Point(232, 176);
             this.fechaVencimiento.Name = "fechaVencimiento";
             this.fechaVencimiento.Size = new System.Drawing.Size(200, 20);
             this.fechaVencimiento.TabIndex = 17;
             // 
             // fechaAlta
             // 
-            this.fechaAlta.Location = new System.Drawing.Point(232, 151);
+            this.fechaAlta.Location = new System.Drawing.Point(232, 149);
             this.fechaAlta.Name = "fechaAlta";
             this.fechaAlta.Size = new System.Drawing.Size(200, 20);
             this.fechaAlta.TabIndex = 18;
@@ -194,7 +195,7 @@
             this.Cantidad});
             this.grdItems.Location = new System.Drawing.Point(552, 12);
             this.grdItems.Name = "grdItems";
-            this.grdItems.Size = new System.Drawing.Size(353, 212);
+            this.grdItems.Size = new System.Drawing.Size(353, 206);
             this.grdItems.TabIndex = 24;
             this.grdItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cambioItems);
             // 
@@ -215,34 +216,25 @@
             // 
             // txtFiltroNombre
             // 
-            this.txtFiltroNombre.Location = new System.Drawing.Point(127, 42);
+            this.txtFiltroNombre.Location = new System.Drawing.Point(126, 13);
             this.txtFiltroNombre.Name = "txtFiltroNombre";
             this.txtFiltroNombre.Size = new System.Drawing.Size(100, 20);
             this.txtFiltroNombre.TabIndex = 25;
-            this.txtFiltroNombre.TextChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
+            this.txtFiltroNombre.TextChanged += new System.EventHandler(this.filtrosClienteCambiaron);
             // 
-            // txtFiltroCuit
+            // txtFiltroDni
             // 
-            this.txtFiltroCuit.Location = new System.Drawing.Point(127, 68);
-            this.txtFiltroCuit.Name = "txtFiltroCuit";
-            this.txtFiltroCuit.Size = new System.Drawing.Size(100, 20);
-            this.txtFiltroCuit.TabIndex = 27;
-            this.txtFiltroCuit.TextChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
-            // 
-            // cmbFiltroRubro
-            // 
-            this.cmbFiltroRubro.FormattingEnabled = true;
-            this.cmbFiltroRubro.Location = new System.Drawing.Point(127, 94);
-            this.cmbFiltroRubro.Name = "cmbFiltroRubro";
-            this.cmbFiltroRubro.Size = new System.Drawing.Size(100, 21);
-            this.cmbFiltroRubro.TabIndex = 28;
-            this.cmbFiltroRubro.SelectedIndexChanged += new System.EventHandler(this.filtrosEmpresaCambiaron);
+            this.txtFiltroDni.Location = new System.Drawing.Point(126, 65);
+            this.txtFiltroDni.Name = "txtFiltroDni";
+            this.txtFiltroDni.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltroDni.TabIndex = 27;
+            this.txtFiltroDni.TextChanged += new System.EventHandler(this.filtrosClienteCambiaron);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label8.Location = new System.Drawing.Point(74, 45);
+            this.label8.Location = new System.Drawing.Point(73, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 29;
@@ -252,32 +244,40 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label9.Location = new System.Drawing.Point(93, 71);
+            this.label9.Location = new System.Drawing.Point(92, 68);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(28, 13);
+            this.label9.Size = new System.Drawing.Size(26, 13);
             this.label9.TabIndex = 30;
-            this.label9.Text = "Cuit:";
+            this.label9.Text = "Dni:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label10.Location = new System.Drawing.Point(80, 97);
+            this.label10.Location = new System.Drawing.Point(73, 42);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 13);
-            this.label10.TabIndex = 31;
-            this.label10.Text = "Rubro:";
+            this.label10.Size = new System.Drawing.Size(47, 13);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "Apellido:";
+            // 
+            // txtFiltroApellido
+            // 
+            this.txtFiltroApellido.Location = new System.Drawing.Point(126, 39);
+            this.txtFiltroApellido.Name = "txtFiltroApellido";
+            this.txtFiltroApellido.Size = new System.Drawing.Size(100, 20);
+            this.txtFiltroApellido.TabIndex = 31;
+            this.txtFiltroApellido.TextChanged += new System.EventHandler(this.filtrosClienteCambiaron);
             // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 272);
+            this.ClientSize = new System.Drawing.Size(917, 262);
             this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtFiltroApellido);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.cmbFiltroRubro);
-            this.Controls.Add(this.txtFiltroCuit);
+            this.Controls.Add(this.txtFiltroDni);
             this.Controls.Add(this.txtFiltroNombre);
             this.Controls.Add(this.grdItems);
             this.Controls.Add(this.label7);
@@ -297,7 +297,6 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaFactura";
             this.Text = "Alta Factura";
-            this.Load += new System.EventHandler(this.AltaFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -326,10 +325,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.TextBox txtFiltroNombre;
-        private System.Windows.Forms.TextBox txtFiltroCuit;
-        private System.Windows.Forms.ComboBox cmbFiltroRubro;
+        private System.Windows.Forms.TextBox txtFiltroDni;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtFiltroApellido;
     }
 }
