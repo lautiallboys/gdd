@@ -48,8 +48,6 @@ namespace PagoAgilFrba.Devoluciones
             query.Parameters.Add(new SqlParameter("@motivo", this.txtMotivo.Text));
             query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
 
-
-
             connection.Open();
             query.ExecuteNonQuery();
             connection.Close();

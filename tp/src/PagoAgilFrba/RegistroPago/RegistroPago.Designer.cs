@@ -45,8 +45,6 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboCliente = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +60,7 @@
             // 
             // txtImporte
             // 
-            this.txtImporte.Location = new System.Drawing.Point(227, 116);
+            this.txtImporte.Location = new System.Drawing.Point(227, 129);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(200, 20);
             this.txtImporte.TabIndex = 12;
@@ -77,7 +75,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 119);
+            this.label6.Location = new System.Drawing.Point(40, 136);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 5;
@@ -95,7 +93,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 162);
+            this.label4.Location = new System.Drawing.Point(40, 180);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 7;
@@ -104,7 +102,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 229);
+            this.label3.Location = new System.Drawing.Point(40, 215);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 8;
@@ -160,7 +158,7 @@
             // comboEmpresa
             // 
             this.comboEmpresa.FormattingEnabled = true;
-            this.comboEmpresa.Location = new System.Drawing.Point(227, 225);
+            this.comboEmpresa.Location = new System.Drawing.Point(227, 215);
             this.comboEmpresa.Name = "comboEmpresa";
             this.comboEmpresa.Size = new System.Drawing.Size(200, 21);
             this.comboEmpresa.TabIndex = 25;
@@ -169,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(153, 288);
+            this.label2.Location = new System.Drawing.Point(48, 288);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(320, 13);
             this.label2.TabIndex = 26;
@@ -196,34 +194,16 @@
             // comboCliente
             // 
             this.comboCliente.FormattingEnabled = true;
-            this.comboCliente.Location = new System.Drawing.Point(227, 154);
+            this.comboCliente.Location = new System.Drawing.Point(227, 172);
             this.comboCliente.Name = "comboCliente";
             this.comboCliente.Size = new System.Drawing.Size(200, 21);
             this.comboCliente.TabIndex = 29;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(40, 196);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Usuario*";
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(227, 189);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(200, 20);
-            this.txtUsuario.TabIndex = 31;
             // 
             // RegistroPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 391);
-            this.Controls.Add(this.txtUsuario);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.comboCliente);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnVolver);
@@ -268,7 +248,5 @@
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboCliente;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtUsuario;
     }
 }
