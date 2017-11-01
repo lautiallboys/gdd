@@ -1,8 +1,8 @@
 Curso: K3521
-Número de grupo: POSTRESQL
+NÃºmero de grupo: POSTRESQL
 Nombre y legajo de todos los integrantes:
-Gonzalo Escandarani - 1556253
-Inaki Lopetegui - 1555250
+Gonzalo Escandarani - 155.625-3
+Inaki Lopetegui - 155.525-0
 Lautaro Fernandez - PONERLEGAJO
-Lucas Zibel - PONERLEGAJO
+Lucas Zibell - 156.089-0
 Email del integrante responsable del grupo: gonziesc@gmail.com
