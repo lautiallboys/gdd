@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace PagoAgilFrba.RegistroPago
 {
@@ -132,7 +133,7 @@ namespace PagoAgilFrba.RegistroPago
             }
 
             if( dtmFechaVenc.Value < DateTime.Today){
-        //        throw new Exception("La factura esta vencida");
+                throw new Exception("La factura esta vencida");
             }
 
         }
@@ -143,11 +144,6 @@ namespace PagoAgilFrba.RegistroPago
             if (Validacion.estaVacio(comboMedioPago.Text) || Validacion.estaVacio(comboEmpresa.Text) || Validacion.estaVacio(comboCliente.Text))
             {
                 throw new Exception("Debe completar todos los datos para pagar");
-            }
-
-            if (false)
-            {
-                //      if factura <> empresa -> Rompe        
             }
 
         }
@@ -234,7 +230,7 @@ namespace PagoAgilFrba.RegistroPago
         private void cargarFactura()
         {
             facturas.Add(Convert.ToDecimal(txtNumeroFactura.Text));
-            importeTotal += Convert.ToSingle(txtImporte.Text);
+            importeTotal += float.Parse(txtImporte.Text, CultureInfo.InvariantCulture);
         }
 
     }

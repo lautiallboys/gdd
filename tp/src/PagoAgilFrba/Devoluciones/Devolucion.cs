@@ -31,9 +31,9 @@ namespace PagoAgilFrba.Devoluciones
                 this.Close();
                 this.parent.Show();
             }
-            catch
+            catch (Exception excepcion)
             {
-               //essageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(excepcion.Message, "Error", MessageBoxButtons.OK);
             }
 
         }
