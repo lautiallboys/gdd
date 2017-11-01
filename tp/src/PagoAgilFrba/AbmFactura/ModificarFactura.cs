@@ -175,6 +175,7 @@ namespace PagoAgilFrba.AbmFactura
                 this.validar();
                 this.modificarFactura();
                 this.Close();
+                parent.Enabled = true;
                 parent.Show();
             }
             catch (Exception excepcion)
@@ -282,7 +283,7 @@ namespace PagoAgilFrba.AbmFactura
                     int id= Int32.Parse(row.Cells[0].Value.ToString());
                     double monto= Double.Parse(row.Cells[3].Value.ToString());
                     int cantidad= Int32.Parse(row.Cells[2].Value.ToString());
-                    string concepto = row.Cells[1].Value.ToString();
+                    string concepto = row.Cells[1].Value.ToString().Trim();
                     Form modif = new AbmFactura.ModificarItemFactura(this, id, monto, cantidad, concepto);
                     modif.Show();
                     this.Enabled = false;
