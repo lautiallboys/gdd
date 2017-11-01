@@ -191,5 +191,10 @@ namespace PagoAgilFrba.AbmFactura
             this.Close();
         }
 
+        private void BMFactura_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

@@ -212,6 +212,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistroPago";
             this.Text = "Registro Pago";
+            this.Load += new System.EventHandler(this.RegistroPago_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

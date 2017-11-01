@@ -188,7 +188,7 @@ namespace PagoAgilFrba.AbmFactura
                     }
                
             }
-            catch (Exception excepcion)
+            catch 
             {
                 listaItems.Clear();
             }

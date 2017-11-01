@@ -122,7 +122,7 @@ namespace PagoAgilFrba.RegistroPago
 
         private void validar()
         {
-            if (Validacion.estaVacio(txtNumeroFactura.Text) || Validacion.estaVacio(txtImporte.Text))
+            if (Validacion.estaVacio(txtNumeroFactura.Text) || Validacion.estaVacio(txtImporte.Text) || Validacion.estaVacio(comboEmpresa.Text) || Validacion.estaVacio(comboCliente.Text))
             {
                 throw new Exception("Debe completar todos los datos");
             }
@@ -141,7 +141,7 @@ namespace PagoAgilFrba.RegistroPago
 
         private void validarPago()
         {
-            if (Validacion.estaVacio(comboMedioPago.Text) || Validacion.estaVacio(comboEmpresa.Text) || Validacion.estaVacio(comboCliente.Text))
+            if (Validacion.estaVacio(comboMedioPago.Text))
             {
                 throw new Exception("Debe completar todos los datos para pagar");
             }
@@ -158,7 +158,7 @@ namespace PagoAgilFrba.RegistroPago
                 this.validarPago();
                 this.cargarFactura();
                 this.pagar();
-                this.Close();
+                MessageBox.Show("Pago correctamente ingresado");
             }
             catch (Exception excepcion)
             {
@@ -173,7 +173,6 @@ namespace PagoAgilFrba.RegistroPago
                     this.validar();
                     this.cargarFactura();
                     this.Controls.Clear();
-                    this.cargarPagina();
                 }
                 catch (Exception excepcion)
                 {
@@ -227,10 +226,43 @@ namespace PagoAgilFrba.RegistroPago
             connection.Close();
         }
 
+        private bool factura_es_valida(Int32 numero)
+        {
+            SqlDataReader reader;
+            var connection = DBConnection.getInstance().getConnection();
+            String command = "SELECT * from POSTRESQL.Factura where fact_numero=" + numero.ToString();
+            SqlCommand consulta = new SqlCommand(command, connection);
+            connection.Open();
+
+            reader = consulta.ExecuteReader();
+
+            if (!reader.HasRows)
+                return false;
+            else {
+                reader.Read();
+                AbmFactura.Cliente clienteSeleccionado = (AbmFactura.Cliente)(this.comboCliente.SelectedItem);
+                AbmFactura.Empresa empresaSeleccionado = (AbmFactura.Empresa)(this.comboEmpresa.SelectedItem);
+                Int32 cliente = Convert.ToInt32(reader["fact_cliente"].ToString());
+                Int32 empresa = Convert.ToInt32(reader["fact_empresa"].ToString());
+                return clienteSeleccionado.code == cliente && empresaSeleccionado.code == empresa;
+            }
+        }
+
         private void cargarFactura()
         {
-            facturas.Add(Convert.ToDecimal(txtNumeroFactura.Text));
-            importeTotal += float.Parse(txtImporte.Text, CultureInfo.InvariantCulture);
+            if (factura_es_valida(Convert.ToInt32(txtNumeroFactura.Text)))
+            {
+                facturas.Add(Convert.ToInt32(txtNumeroFactura.Text));
+                importeTotal += float.Parse(txtImporte.Text, CultureInfo.InvariantCulture);
+            }
+            else {
+                throw new Exception("Hay datos erroneos en la factura");
+            }
+        }
+
+        private void RegistroPago_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

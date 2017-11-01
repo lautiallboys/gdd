@@ -231,7 +231,7 @@ namespace PagoAgilFrba.AbmFactura
                     }
                
             }
-            catch (NullReferenceException e)
+            catch 
             {
                 listaItems.Clear();
             }

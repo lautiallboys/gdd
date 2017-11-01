@@ -42,16 +42,33 @@ namespace PagoAgilFrba.Devoluciones
         private void efectuarDevolucion()
         {   
             var connection = DBConnection.getInstance().getConnection();
-            SqlCommand query = new SqlCommand("POSTRESQL.efectuarDevolucion", connection);
-            query.CommandType = CommandType.StoredProcedure;
-            query.Parameters.Add(new SqlParameter("@factura", Convert.ToInt32(this.txtCodigoFactura.Text)));
-            query.Parameters.Add(new SqlParameter("@motivo", this.txtMotivo.Text));
-            query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
-
-            connection.Open();
-            query.ExecuteNonQuery();
-            connection.Close();
+            if (factura_es_valida(Convert.ToInt32(this.txtCodigoFactura.Text))) {
+              SqlCommand query = new SqlCommand("POSTRESQL.efectuarDevolucion", connection);
+              query.CommandType = CommandType.StoredProcedure;
+              query.Parameters.Add(new SqlParameter("@factura", Convert.ToInt32(this.txtCodigoFactura.Text)));
+              query.Parameters.Add(new SqlParameter("@motivo", this.txtMotivo.Text));
+              query.Parameters.Add(new SqlParameter("@fecha", DateTime.Today));
+              
+              connection.Open();
+              query.ExecuteNonQuery();
+              connection.Close();
+            } else {
+                throw new Exception("El numero de factura no existe");
+            }
             
+            
+        }
+
+        private bool factura_es_valida(Int32 numero) {
+            SqlDataReader reader;
+            var connection = DBConnection.getInstance().getConnection();
+            String command = "SELECT * from POSTRESQL.Factura where fact_numero=" + numero.ToString();
+            SqlCommand consulta = new SqlCommand(command, connection);
+            connection.Open();
+
+            reader = consulta.ExecuteReader();
+
+            return reader.HasRows;
         }
 
     

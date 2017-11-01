@@ -142,7 +142,7 @@ namespace PagoAgilFrba.Rendicion
                 actualizarFacturas();
                 actualizarImportes();
             }
-            catch (Exception excepcion)
+            catch 
             {
             }  
         }
@@ -170,6 +170,11 @@ namespace PagoAgilFrba.Rendicion
             if (grdFacturas.SelectedRows.Count == 1)
                 obtenerItemsPara(Int32.Parse(grdFacturas.SelectedRows[0].Cells[0].Value.ToString()));
      
+        }
+
+        private void Rendicion_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

@@ -14,7 +14,6 @@ namespace PagoAgilFrba.AbmFactura
     public partial class AgregarItemFactura : Form
     {
         ModificarFactura parent;
-        int id;
         public AgregarItemFactura(ModificarFactura parent)
         {
             this.parent = parent;

@@ -106,10 +106,10 @@ namespace PagoAgilFrba.AbmCliente
 
             if (!(txtPisoDepto.Text == ""))
             {
-                return this.txtCalle.Text + ", " + txtPisoDepto.Text + ", " + txtLocalidad.Text;
+                return this.txtCalle.Text + " " + txtPisoDepto.Text + " " + txtLocalidad.Text;
             }
             else
-                return this.txtCalle.Text + ", " + txtLocalidad.Text;
+                return this.txtCalle.Text + " " + txtLocalidad.Text;
         
         }
     }

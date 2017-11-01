@@ -245,6 +245,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Rendicion";
             this.Text = "Rendicion";
+            this.Load += new System.EventHandler(this.Rendicion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdFacturas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
             this.ResumeLayout(false);
