@@ -14,7 +14,7 @@ namespace PagoAgilFrba.RegistroPago
     public partial class RegistroPago : Form
     {
         private IList<SqlParameter> parametros = new List<SqlParameter>();
-        private double importeTotal = 0;
+        private float importeTotal = 0;
         private List<Decimal> facturas = new List<Decimal>();
         private int sucursalCode;
         private string username;
@@ -234,7 +234,7 @@ namespace PagoAgilFrba.RegistroPago
         private void cargarFactura()
         {
             facturas.Add(Convert.ToDecimal(txtNumeroFactura.Text));
-            importeTotal += Convert.ToDouble(txtImporte.Text);
+            importeTotal += Convert.ToSingle(txtImporte.Text);
         }
 
     }

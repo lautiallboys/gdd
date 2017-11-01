@@ -43,9 +43,7 @@
             this.comboEmpresa = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboCliente = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtmFechaVenc
@@ -129,7 +127,7 @@
             // 
             // btnCargarOtraFactura
             // 
-            this.btnCargarOtraFactura.Location = new System.Drawing.Point(227, 346);
+            this.btnCargarOtraFactura.Location = new System.Drawing.Point(167, 346);
             this.btnCargarOtraFactura.Name = "btnCargarOtraFactura";
             this.btnCargarOtraFactura.Size = new System.Drawing.Size(141, 23);
             this.btnCargarOtraFactura.TabIndex = 22;
@@ -175,21 +173,13 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(479, 346);
+            this.btnVolver.Location = new System.Drawing.Point(352, 346);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 27;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(479, 32);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(378, 269);
-            this.dataGridView1.TabIndex = 28;
             // 
             // comboCliente
             // 
@@ -203,9 +193,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 391);
+            this.ClientSize = new System.Drawing.Size(485, 391);
             this.Controls.Add(this.comboCliente);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboEmpresa);
@@ -223,7 +212,6 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistroPago";
             this.Text = "Registro Pago";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,7 +234,6 @@
         private System.Windows.Forms.ComboBox comboEmpresa;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboCliente;
     }
 }
