@@ -119,7 +119,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ModificarSucursal";
-            this.Text = "ModificarSucursall";
+            this.Text = "ModificarSucursal";
             this.Load += new System.EventHandler(this.ModificarSucursal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
