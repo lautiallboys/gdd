@@ -101,7 +101,7 @@
             this.Controls.Add(this.txtMotivo);
             this.Controls.Add(this.lblMotivoDevolucion);
             this.Name = "Devolucion";
-            this.Text = "AltaSucursal";
+            this.Text = "Devolucion";
             this.Load += new System.EventHandler(this.AltaSucursal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

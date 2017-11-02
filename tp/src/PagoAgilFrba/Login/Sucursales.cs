@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.Login
 {
+    /*si el usuario es cobrador en mas de una sucursal, aqui se elige, y este dato queda para el resto del flujo*/
     public partial class Sucursales : Form
     {
         Form login_form;

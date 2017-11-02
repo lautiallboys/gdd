@@ -230,5 +230,15 @@ namespace PagoAgilFrba.AbmFactura
             connection.Close();
         }
 
+        private void AltaFactura_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fechaAlta_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

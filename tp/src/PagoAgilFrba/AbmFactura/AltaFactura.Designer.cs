@@ -176,6 +176,7 @@
             this.fechaAlta.Name = "fechaAlta";
             this.fechaAlta.Size = new System.Drawing.Size(200, 20);
             this.fechaAlta.TabIndex = 6;
+            this.fechaAlta.ValueChanged += new System.EventHandler(this.fechaAlta_ValueChanged);
             // 
             // label7
             // 
@@ -297,6 +298,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaFactura";
             this.Text = "Alta Factura";
+            this.Load += new System.EventHandler(this.AltaFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

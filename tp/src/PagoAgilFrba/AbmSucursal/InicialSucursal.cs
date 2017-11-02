@@ -12,6 +12,7 @@ namespace PagoAgilFrba.AbmSucursal
 {
     public partial class InicialSucursal  : Form 
     {
+        /* Menu inicial del ABM Sucursal que permite alta, baja y modificacion */
         Form parent;
         public InicialSucursal(Form parent)
         {
@@ -35,6 +36,11 @@ namespace PagoAgilFrba.AbmSucursal
         {
             this.Close();
             this.parent.Show();
+        }
+
+        private void InicialSucursal_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

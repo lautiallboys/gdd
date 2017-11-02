@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.AbmCliente
 {
+    /* Menu inicial del ABM cliente que permite alta, baja y modificacion */
     public partial class InicialCliente : Form
     {
         Form parent;

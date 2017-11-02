@@ -98,6 +98,7 @@
             this.Name = "AbmRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM Rol - Pago Ágil";
+            this.Load += new System.EventHandler(this.AbmRol_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 
 namespace PagoAgilFrba.Devoluciones
 {
+    /* Funcionalidad que permite devolver una factura si esta existe y fue pagada */
     public partial class Devolucion : Form
     {
 
@@ -53,7 +54,7 @@ namespace PagoAgilFrba.Devoluciones
               query.ExecuteNonQuery();
               connection.Close();
             } else {
-                throw new Exception("El numero de factura no existe");
+                throw new Exception("El numero de factura no existe o no fue pagada");
             }
             
             
@@ -68,7 +69,17 @@ namespace PagoAgilFrba.Devoluciones
 
             reader = consulta.ExecuteReader();
 
-            return reader.HasRows;
+            if (reader.HasRows)
+            {
+                reader.Read();
+                string pagado = reader["fact_pagado"].ToString();
+                return pagado == "True";
+            }
+            else {
+
+                return false;
+            }
+
         }
 
     

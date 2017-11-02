@@ -14,6 +14,7 @@ namespace PagoAgilFrba.Login
 {
     public partial class Login : Form
     {
+        /*  funcionalidad de login, pide usuario y contraseña, muestra intentos restantes y carga roles*/
         public Login()
         {
             InitializeComponent();
@@ -79,6 +80,11 @@ namespace PagoAgilFrba.Login
             {
                 button1_Click(sender, e);
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

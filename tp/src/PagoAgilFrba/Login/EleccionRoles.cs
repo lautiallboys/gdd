@@ -12,6 +12,7 @@ namespace PagoAgilFrba.Login
 {
     public partial class EleccionRoles : Form
     {
+        /* si el usuario tiene mas de un rol, aqui se elige*/
         Form login_form;
         string username;
         int sucursal_code = 0;

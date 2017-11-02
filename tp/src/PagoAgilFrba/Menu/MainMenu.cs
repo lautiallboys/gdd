@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.Menu
 {
+    /*menu que muestra las funcionalidades disponibles para ese rol*/
     public partial class MainMenu : Form
     {
         Dictionary<int, Func<Form>> form_mapping;

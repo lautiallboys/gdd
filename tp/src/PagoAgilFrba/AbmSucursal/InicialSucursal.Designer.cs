@@ -73,6 +73,7 @@
             this.Controls.Add(this.btnAlta);
             this.Name = "InicialSucursal";
             this.Text = "InicialSucursal";
+            this.Load += new System.EventHandler(this.InicialSucursal_Load);
             this.ResumeLayout(false);
 
         }

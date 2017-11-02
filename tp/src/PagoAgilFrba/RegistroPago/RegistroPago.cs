@@ -12,6 +12,7 @@ using System.Globalization;
 
 namespace PagoAgilFrba.RegistroPago
 {
+    /*funcionalidad para cargar una o muchas facturas en un pago, siempre que estas sean validas*/
     public partial class RegistroPago : Form
     {
         private IList<SqlParameter> parametros = new List<SqlParameter>();
@@ -172,7 +173,7 @@ namespace PagoAgilFrba.RegistroPago
                 {
                     this.validar();
                     this.cargarFactura();
-                    this.Controls.Clear();
+                    MessageBox.Show("Factura cargada correctamente");
                 }
                 catch (Exception excepcion)
                 {
@@ -261,6 +262,11 @@ namespace PagoAgilFrba.RegistroPago
         }
 
         private void RegistroPago_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtmFechaVenc_ValueChanged(object sender, EventArgs e)
         {
 
         }

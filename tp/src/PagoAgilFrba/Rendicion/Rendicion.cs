@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.Rendicion
 {
+    /*funcionalidad para rendir facturas de una empresa, siempre que estas no hayan sido rendidas en ese mes*/
     public partial class Rendicion: Form
     {
         Form parent;

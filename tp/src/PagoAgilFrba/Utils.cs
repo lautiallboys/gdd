@@ -10,9 +10,6 @@ using System.Windows.Forms;
 namespace PagoAgilFrba
 {
     class Utils
-    /* Me hubiese gustado que fueran funciones sueltas
-     * Thanks C#!
-     */
     {
         static public void populate(ComboBox combo, List<KeyValuePair<int, string>> items)
         {

@@ -13,6 +13,7 @@ namespace PagoAgilFrba.AbmFactura
 {
     public partial class  MenuFactura : Form
     {
+        /* Menu inicial del ABM factura que permite alta, baja y modificacion, incluyendo sus respectivos items */
         Form parent;
         public MenuFactura(Form parent)
         {
@@ -38,6 +39,11 @@ namespace PagoAgilFrba.AbmFactura
         {
             this.Close();
             this.parent.Show();
+        }
+
+        private void MenuFactura_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -55,6 +55,7 @@
             this.dtmFechaVenc.Size = new System.Drawing.Size(200, 20);
             this.dtmFechaVenc.TabIndex = 18;
             this.dtmFechaVenc.Value = new System.DateTime(2017, 10, 26, 11, 38, 33, 0);
+            this.dtmFechaVenc.ValueChanged += new System.EventHandler(this.dtmFechaVenc_ValueChanged);
             // 
             // txtImporte
             // 

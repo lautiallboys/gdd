@@ -14,6 +14,7 @@ namespace PagoAgilFrba.ListadoEstadistico
 {
     public partial class ListadoEstadistico : Form
     {
+        /* funcionalidad para mostrar listados estadisticos para empresas y clientes por trimestre y año */
         Form parent;
         List<string> meses = new List<string>();
 
@@ -54,6 +55,11 @@ namespace PagoAgilFrba.ListadoEstadistico
                 this.dataGridView1.MultiSelect = false;
                 this.dataGridView1.AllowUserToAddRows = false;
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
     }

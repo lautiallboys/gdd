@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.AbmRol
 {
+    /* Menu inicial del ABM rol que permite alta, baja y modificacion */
     public partial class AbmRol : Form
     {
         Form parent;
@@ -98,6 +99,11 @@ namespace PagoAgilFrba.AbmRol
 
             MessageBox.Show("Rol dado de baja");
             this.fill_data_set();
+
+        }
+
+        private void AbmRol_Load(object sender, EventArgs e)
+        {
 
         }
     }

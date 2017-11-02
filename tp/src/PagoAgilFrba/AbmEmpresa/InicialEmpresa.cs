@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PagoAgilFrba.AbmEmpresa
 {
+    /* Menu inicial del ABM empresa que permite alta, baja y modificacion */
     public partial class InicialEmpresa : Form
     {
         Form parent;

@@ -8,6 +8,7 @@ using System.Configuration;
 
 namespace PagoAgilFrba
 {
+    /*aqui agrupamos los parametros de conexion para toda la app*/
      public sealed class DBConnection
     {
         string server = ConfigurationManager.AppSettings["server"].ToString();
